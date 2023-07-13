@@ -1,4 +1,4 @@
-import MenuList from "./menu"
+import MenuList from "../menu"
 
 const Header = () => {
   return (
