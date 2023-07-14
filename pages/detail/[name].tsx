@@ -1,4 +1,5 @@
 import { CoffeeBeanInfoType } from "../../types";
+import RoastingTable from "../../components/table/roastingTable";
 
 const DetailPage = () => {
   const testData: CoffeeBeanInfoType = {
@@ -12,7 +13,7 @@ const DetailPage = () => {
 
   return (
     <div>
-      Recommend
+      <RoastingTable/>
     </div>
   )
 };
