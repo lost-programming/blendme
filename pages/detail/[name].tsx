@@ -1,6 +1,30 @@
+import React from "react";
 import { CoffeeBeanInfoType } from "../../types";
 import RoastingTable from "../../components/table/roastingTable";
+import { styled } from "@mui/material";
 
+const DetailContainer = styled('div')({
+  width: '1140px',
+  padding: '20px',
+  margin: '0 auto',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  border: '1px solid #000',
+  borderRadius: '5px',
+});
+
+const BeanImage = styled('img')({
+  width: '300px',
+  height: '300px',
+  marginRight: '10px',
+});
+
+const BeanInfoContainer = styled('div')({
+
+});
+
+// 원두 상세 페이지
 const DetailPage = () => {
   const testData: CoffeeBeanInfoType = {
     name: '과테말라 안티구아',
@@ -12,9 +36,12 @@ const DetailPage = () => {
   };
 
   return (
-    <div>
-      <RoastingTable/>
-    </div>
+    <DetailContainer>
+      <BeanImage src={'../coffee_bean.png'}/>
+      <BeanInfoContainer>
+        <RoastingTable/>
+      </BeanInfoContainer>
+    </DetailContainer>
   )
 };
 

@@ -10,6 +10,9 @@ const Item = styled('div')({
   justifyContent: 'center',
   textAlign: 'center',
   fontSize: '14px',
+  "&:first-of-type": {
+    paddingLeft: '0px'
+  }
 });
 
 const IconImage = styled('img')({
@@ -22,25 +25,34 @@ const IconImage = styled('img')({
   }
 });
 
+const SubTitle = styled('h4')({
+  fontSize: '22px',
+  fontWeight: '600',
+  margin: '0 0 5px 0',
+});
+
 // 원두 상세 페이지 로스팅 레벨 표시
 const RoastingTable = () => {
   const roasting_level = ['Light', 'Cinnamon', 'Medium', 'High', 'City', 'Full City', 'French', 'Italian'];
   const active_level = ['City', 'Medium'];
 
   return (
-    <Stack direction="row" spacing={2}>
-      {roasting_level.map((level: string) => {
-        return (
-          <Item key={level}>
-            <IconImage
-              src={'../coffee_bean.png'}
-              className={active_level.includes(level) ? 'active' : ''}
-            />
-            <p>{level}</p>
-          </Item>
-        )
-      })}
-    </Stack>
+    <div>
+      <SubTitle>Recommend Roasting Level</SubTitle>
+      <Stack direction="row" spacing={2}>
+        {roasting_level.map((level: string) => {
+          return (
+            <Item key={level}>
+              <IconImage
+                src={'../coffee_bean.png'}
+                className={active_level.includes(level) ? 'active' : ''}
+              />
+              <p>{level}</p>
+            </Item>
+          )
+        })}
+      </Stack>
+    </div>
   )
 };
 
