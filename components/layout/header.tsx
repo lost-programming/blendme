@@ -1,8 +1,8 @@
-import MenuList from "../menu"
+import Nav from "../nav";
 
 const Header = () => {
   return (
-    <MenuList />
+    <Nav />
   )
 }
 

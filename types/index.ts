@@ -6,3 +6,8 @@ export interface CoffeeBeanInfoType {
   feature: string[];
   description: string;
 };
+
+export interface MenuItemListType {
+  name: string;
+  items: string[];
+}
