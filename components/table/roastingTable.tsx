@@ -31,9 +31,11 @@ const SubTitle = styled('h4')({
   margin: '0 0 5px 0',
 });
 
+export const roasting_level = ['Light', 'Cinnamon', 'Medium', 'High', 'City', 'Full City', 'French', 'Italian'];
+
 // 원두 상세 페이지 로스팅 레벨 표시
 const RoastingTable = () => {
-  const roasting_level = ['Light', 'Cinnamon', 'Medium', 'High', 'City', 'Full City', 'French', 'Italian'];
+  // const roasting_level = ['Light', 'Cinnamon', 'Medium', 'High', 'City', 'Full City', 'French', 'Italian'];
   const active_level = ['City', 'Medium'];
 
   return (

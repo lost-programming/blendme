@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from 'next/router';
-import { MenuItemListType } from '../types/index';
+import { MenuItemListType } from '../../types/index';
 import Image from 'next/image';
 import coffeebean from '../public/coffeebean.png';
 import Stack from '@mui/material/Stack';

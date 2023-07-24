@@ -11,3 +11,9 @@ export interface MenuItemListType {
   name: string;
   items: string[];
 }
+
+export interface roastingItemsType {
+  name: string;
+  category: string;
+  active: boolean;
+}

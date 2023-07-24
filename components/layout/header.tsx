@@ -1,8 +1,12 @@
-import Nav from "../nav";
+import Nav from "./nav";
+import Roasting from "../menu/roasting";
 
 const Header = () => {
   return (
-    <Nav />
+    <div>
+      <Nav />
+      <Roasting />
+    </div>
   )
 }
 
