@@ -2,6 +2,7 @@ import * as React from "react";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material";
 
+// Roasting 단계 Container
 const Item = styled('div')({
   padding: '5px',
   display: 'flex',
@@ -15,6 +16,7 @@ const Item = styled('div')({
   }
 });
 
+// 커피콩 이미지
 const IconImage = styled('img')({
   width: '38px',
   height: '38px',
@@ -25,6 +27,7 @@ const IconImage = styled('img')({
   }
 });
 
+// Roasting Level 글씨  
 const SubTitle = styled('h4')({
   fontSize: '22px',
   fontWeight: '600',

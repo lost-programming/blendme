@@ -1,6 +1,10 @@
 import * as React from "react";
 import { styled } from "@mui/material";
 
+interface SimpleTextProp {
+  infoText: string;
+}
+
 const SimpleTextContainer = styled('div')({
 
 });
@@ -15,7 +19,7 @@ const Text = styled('p')({
 
 });
 
-const SimpleInfoText = (infoText: string) => {
+const SimpleInfoText = ({ infoText }: SimpleTextProp) => {
   return (
     <SimpleTextContainer>
       <SubTitle>Coffee Bean Info</SubTitle>

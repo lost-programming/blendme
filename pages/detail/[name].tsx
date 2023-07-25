@@ -2,6 +2,7 @@ import React from "react";
 import { CoffeeBeanInfoType } from "../../types";
 import RoastingTable from "../../components/table/roastingTable";
 import { styled } from "@mui/material";
+import SimpleInfoText from "../../components/text/simpleInfoText";
 
 const DetailContainer = styled('div')({
   width: '1140px',
@@ -21,7 +22,7 @@ const BeanImage = styled('img')({
 });
 
 const BeanInfoContainer = styled('div')({
-
+  width: '50%',
 });
 
 // 원두 상세 페이지
@@ -40,6 +41,7 @@ const DetailPage = () => {
       <BeanImage src={'../coffee_bean.png'}/>
       <BeanInfoContainer>
         <RoastingTable/>
+        <SimpleInfoText infoText={ testData.description }/>
       </BeanInfoContainer>
     </DetailContainer>
   )
