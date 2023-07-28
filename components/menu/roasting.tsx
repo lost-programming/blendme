@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { data } from '../../firebase';
-import { roasting_level } from '../table/roastingTable';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';

@@ -27,18 +27,21 @@ const IconImage = styled('img')({
   }
 });
 
-// Roasting Level 글씨  
+// Roasting Level 글씨
 const SubTitle = styled('h4')({
   fontSize: '22px',
   fontWeight: '600',
   margin: '0 0 5px 0',
 });
 
-export const roasting_level = ['Light', 'Cinnamon', 'Medium', 'High', 'City', 'Full City', 'French', 'Italian'];
+// 활성화될 로스팅 레벨
+interface RoastingPropsType {
+  activeLevel: string[];
+}
 
 // 원두 상세 페이지 로스팅 레벨 표시
-const RoastingTable = () => {
-  // const roasting_level = ['Light', 'Cinnamon', 'Medium', 'High', 'City', 'Full City', 'French', 'Italian'];
+const RoastingTable = ({ activeLevel }: RoastingPropsType) => {
+  const roasting_level = ['Light', 'Cinnamon', 'Medium', 'High', 'City', 'Full City', 'French', 'Italian'];
   const active_level = ['City', 'Medium'];
 
   return (
