@@ -14,27 +14,26 @@ const Roasting = ({ getBeanData, data, roastingItems }: any) => {
   };
   
   return (
-    <div>
-      {roastingItems && roastingItems.map((item: roastingItemsType, index: number) => {
+    <div style={{ display: 'flex', flexDirection: 'row' }}>
+      {roastingItems.map((item: roastingItemsType, index: number) => {
         return (
-          <div key={index}>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                '& > *': {
-                  m: 1,
-                },
-              }}
-            >
-              <ButtonGroup variant="text" aria-label="text button group">
-                <Button onClick={() => menuClick(item)}>
-                  {item.name}
-                </Button>
-              </ButtonGroup>
-            </Box>
-          </div>
+          <Box
+            key={index}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              '& > *': {
+                m: 1,
+              },
+            }}
+          >
+            <ButtonGroup variant="text" aria-label="text button group">
+              <Button onClick={() => menuClick(item)}>
+                {item.name}
+              </Button>
+            </ButtonGroup>
+          </Box>
         )
       })}
     </div>

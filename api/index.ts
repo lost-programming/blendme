@@ -3,7 +3,7 @@ import { getFirestore, doc, getDoc, collection, query, getDocs } from "firebase/
 
 // 원두 전체 정보 조회
 export const getCoffeeBeans = async (path: string) => {
-  const data = [];
+  const data: any = [];
   const beans = await getDocs(collection(db, path));
   beans.forEach((doc) => {
     data.push(doc.data())
