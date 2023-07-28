@@ -14,12 +14,3 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-
-export const data = [];
-
-const querySnapshot = await getDocs(collection(db, "bean"));
-querySnapshot.forEach((doc) => {
-	// doc.data() is never undefined for query doc snapshots
-	// console.log(doc.data());
-  data.push(doc.data())
-});

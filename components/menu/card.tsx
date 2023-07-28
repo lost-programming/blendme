@@ -8,7 +8,7 @@ import { CardActionArea } from '@mui/material';
 const RoastingCard = ({ beanData }: any) => {
   return (
     <div>
-      {beanData.map((bean: any, index: number) => {
+      {beanData && beanData.map((bean: any, index: number) => {
         return (
           <Card sx={{ maxWidth: 345 }} key={index}>
             <CardActionArea>

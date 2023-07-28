@@ -3,15 +3,15 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import { roastingItemsType } from '../../types/index';
 
-const Roasting = ({ getBeanData, data, roastingItems, select, getSelect }: any) => {
+const Roasting = ({ getBeanData, data, roastingItems }: any) => {
   // onClick 이상함
   
   const menuClick = (item: roastingItemsType) => {
-    getSelect(item)
-    select.category === 'all' 
+    const beans = data.filter((bean: any) => bean.roasting.includes(item.category));
+    item.category === 'all'
     ? getBeanData(data) 
-    : getBeanData(data.filter((bean: any) => bean.roasting.includes(select.category)))
-  }
+    : getBeanData(beans)
+  };
   
   return (
     <div>

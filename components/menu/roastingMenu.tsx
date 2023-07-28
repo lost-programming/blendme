@@ -1,8 +1,9 @@
 import RoastingCard from "./card";
 import Roasting from "./roasting";
-import { data } from '../../firebase';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { roastingItemsType } from '../../types/index';
+import { useRouter } from "next/router";
+import { getCoffeeBeans } from "../../api";
 
 const RoastingMenu = () => {
   // 로스팅 별 간단한 특징 설명(description) 필요
@@ -29,25 +30,30 @@ const RoastingMenu = () => {
     },
   ]
 
-  const [beanData, setBeanData] = useState(data);
-  const [select, setSelect] = useState(roastingItems[0]);
+  const router = useRouter();
+  const [staticBeans, setStaticBeans] = useState();
+  const [beanData, setBeanData] = useState();
+
+  useEffect(() => {
+    if (router.isReady) {
+      getCoffeeBeans('bean').then((res: any) => {
+        setStaticBeans(res);
+        setBeanData(res);
+      })
+    }
+  }, [router.isReady]);
 
   const getBeanData = (v: any) => {
     setBeanData(v)
-  }
+  };
 
-  const getSelect = (v: any) => {
-    setSelect(v)
-  }
 
   return (
     <div>
       <Roasting 
         roastingItems={roastingItems} 
-        data={data} 
+        data={staticBeans}
         getBeanData={getBeanData}
-        select={select}
-        getSelect={getSelect}
       />
       <RoastingCard beanData={beanData}/>
     </div>
