@@ -15,7 +15,7 @@ const Roasting = ({ getBeanData, data, roastingItems, select, getSelect }: any) 
   
   return (
     <div>
-      {roastingItems.map((item: roastingItemsType, index: number) => {
+      {roastingItems && roastingItems.map((item: roastingItemsType, index: number) => {
         return (
           <div key={index}>
             <Box
