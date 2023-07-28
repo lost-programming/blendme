@@ -45,10 +45,6 @@ const DetailPage = () => {
   });
 
   useEffect(() => {
-    console.log('aaaa');
-  }, [])
-
-  useEffect(() => {
     if (router.isReady) {
       const name: string = query.name;
       getCoffeeBeanInfo(name).then((res: CoffeeBeanInfoType) => { setBeanData(res) });
