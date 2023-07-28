@@ -1,54 +1,18 @@
-import { useState, useEffect } from 'react';
-import { data } from '../../firebase';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
-import RoastingCard from './card';
 import { roastingItemsType } from '../../types/index';
 
-const Roasting = () => {
-    // 로스팅 별 간단한 특징 설명(description) 필요
-    const roastingItems: roastingItemsType[] = [
-      {
-        name: '전체',
-        category: 'all',
-        active: true
-      },
-      {
-        name: '미디엄 로스팅',
-        category: 'Medium',
-        active: false
-      },
-      {
-        name: '하이 로스팅',
-        category: 'High',
-        active: false
-      },
-      {
-        name: '시티 로스팅',
-        category: 'City',
-        active: false
-      },
-      {
-        name: '풀 시티 로스팅',
-        category: 'Full City',
-        active: false
-      },
-    ]
-
-  const [beanData, setBeanData] = useState(data);
-  const [select, setSelect] = useState(roastingItems[0]);
-
-  // onClick 클릭 두 번 해야 바뀜
+const Roasting = ({ getBeanData, data, roastingItems, select, getSelect }: any) => {
+  // onClick 이상함
   
-  const menuClick = () => {
+  const menuClick = (item: roastingItemsType) => {
+    getSelect(item)
     select.category === 'all' 
-    ? setBeanData(data) 
-    : setBeanData(data.filter(bean => bean.roasting.includes(select.category)))
+    ? getBeanData(data) 
+    : getBeanData(data.filter((bean: any) => bean.roasting.includes(select.category)))
   }
   
-  // useEffect(() => {}, [select.active])
-
   return (
     <div>
       {roastingItems.map((item: roastingItemsType, index: number) => {
@@ -65,12 +29,11 @@ const Roasting = () => {
               }}
             >
               <ButtonGroup variant="text" aria-label="text button group">
-                <Button onClick={() => {menuClick(), setSelect(item), !select.active}}>
+                <Button onClick={() => menuClick(item)}>
                   {item.name}
                 </Button>
               </ButtonGroup>
             </Box>
-            {item.active && <RoastingCard beanData={beanData}/>}
           </div>
         )
       })}

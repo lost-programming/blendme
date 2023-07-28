@@ -8,9 +8,9 @@ import { CardActionArea } from '@mui/material';
 const RoastingCard = ({ beanData }: any) => {
   return (
     <div>
-      {beanData.map((bean: any) => {
+      {beanData.map((bean: any, index: number) => {
         return (
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ maxWidth: 345 }} key={index}>
             <CardActionArea>
               {/* <CardMedia  // 이미지
                 component="img"
@@ -30,6 +30,7 @@ const RoastingCard = ({ beanData }: any) => {
                     <Typography 
                       variant="body2" 
                       color="text.secondary"
+                      key={index}
                     >
                       {/* bean.roasting.length-1 !== index ? `${item} / ` : item    Typography 줄 바꿈 태그 못 씀 */}
                       {item}

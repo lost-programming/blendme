@@ -15,5 +15,4 @@ export interface MenuItemListType {
 export interface roastingItemsType {
   name: string;
   category: string;
-  active: boolean;
 }
