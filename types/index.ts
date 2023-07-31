@@ -12,7 +12,7 @@ export interface MenuItemListType {
   items: string[];
 }
 
-export interface roastingItemsType {
+export interface RoastingItemsType {
   name: string;
   category: string;
 }

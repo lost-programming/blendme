@@ -1,21 +1,33 @@
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import Box from '@mui/material/Box';
-import { roastingItemsType } from '../../types/index';
+import Box from '@mui/material/Box'
+import { RoastingItemsType, CoffeeBeanInfoType } from '../../types/index';
+import { styled } from '@mui/material';
 
-const Roasting = ({ getBeanData, data, roastingItems }: any) => {
+interface RoastingPropsType {
+  getBeanData: Function
+  data: CoffeeBeanInfoType[] | undefined
+  roastingItems: RoastingItemsType[]
+}
+
+const RoastingName = styled('div')({
+  display: 'flex',
+  flexDirection: 'row'
+})
+
+const Roasting = ({ getBeanData, data, roastingItems }: RoastingPropsType) => {
   // onClick 이상함
   
-  const menuClick = (item: roastingItemsType) => {
-    const beans = data.filter((bean: any) => bean.roasting.includes(item.category));
+  const menuClick = (item: RoastingItemsType) => {
+    const beans = data && data.filter((bean: CoffeeBeanInfoType) => bean.roasting.includes(item.category));
     item.category === 'all'
     ? getBeanData(data) 
     : getBeanData(beans)
   };
   
   return (
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
-      {roastingItems.map((item: roastingItemsType, index: number) => {
+    <RoastingName>
+      {roastingItems.map((item: RoastingItemsType, index: number) => {
         return (
           <Box
             key={index}
@@ -36,7 +48,7 @@ const Roasting = ({ getBeanData, data, roastingItems }: any) => {
           </Box>
         )
       })}
-    </div>
+    </RoastingName>
   )
 }
 

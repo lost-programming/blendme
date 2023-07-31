@@ -3,11 +3,21 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, styled } from '@mui/material';
+import { CoffeeBeanInfoType } from '../../types/index';
 
-const RoastingCard = ({ beanData }: any) => {
+interface RoastingCardPropsType {
+  beanData: CoffeeBeanInfoType[] | undefined
+}
+
+const CardList = styled('div')({
+  display: 'flex',
+  flexDirection: 'row'
+})
+
+const RoastingCard = ({ beanData }: RoastingCardPropsType) => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
+    <CardList>
       {beanData && beanData.map((bean: any, index: number) => {
         return (
           <Card sx={{ maxWidth: 345 }} key={index}>
@@ -42,7 +52,7 @@ const RoastingCard = ({ beanData }: any) => {
           </Card>
         )
       })}
-    </div>
+    </CardList>
   );
 }
 
