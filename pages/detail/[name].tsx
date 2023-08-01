@@ -5,17 +5,16 @@ import { styled } from "@mui/material";
 import SimpleInfoText from "../../components/text/simpleInfoText";
 import { useRouter } from "next/router";
 import { getCoffeeBeanInfo } from "../../api";
+import Paper from '@mui/material/Paper';
 
-const DetailContainer = styled('div')({
+const DetailContainer = styled(Paper)(({ theme }) => ({
   width: '1140px',
-  padding: '20px',
+  padding: '30px',
   margin: '0 auto',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  border: '1px solid #000',
-  borderRadius: '5px',
-});
+}));
 
 const BeanImage = styled('img')({
   width: '300px',
@@ -23,7 +22,7 @@ const BeanImage = styled('img')({
   marginRight: '10px',
 });
 
-const BeanInfoContainer = styled('div')({
+const BeanInfoContainer = styled('Paper')({
   width: '50%',
 });
 
@@ -52,12 +51,18 @@ const DetailPage = () => {
   }, [router.isReady]);
 
   return (
-    <DetailContainer>
-      <BeanImage src={'../coffee_bean.png'}/>
-      <BeanInfoContainer>
-        <RoastingTable/>
-        <SimpleInfoText infoText={ beanData.description }/>
-      </BeanInfoContainer>
+    <DetailContainer elevation={3}>
+      {beanData ?
+        <>
+          <BeanImage src={'../coffee_bean.png'}/>
+          <BeanInfoContainer>
+            {beanData.feature.map((v: string) => <div>{v}</div>)}
+            <RoastingTable active_level={ beanData.roasting }/>
+            <SimpleInfoText infoText={ beanData.description }/>
+          </BeanInfoContainer>
+        </> :
+        <div>데이터가 없습니다.</div>
+      }
     </DetailContainer>
   )
 };

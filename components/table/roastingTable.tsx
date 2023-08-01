@@ -20,7 +20,7 @@ const Item = styled('div')({
 const IconImage = styled('img')({
   width: '38px',
   height: '38px',
-  opacity: '0.2',
+  opacity: '0.1',
   marginBottom: '10px',
   "&.active": {
     opacity: '1'
@@ -36,17 +36,16 @@ const SubTitle = styled('h4')({
 
 // 활성화될 로스팅 레벨
 interface RoastingPropsType {
-  activeLevel: string[];
+  active_level: string[];
 }
 
 // 원두 상세 페이지 로스팅 레벨 표시
-const RoastingTable = ({ activeLevel }: RoastingPropsType) => {
+const RoastingTable = ({ active_level }: RoastingPropsType) => {
   const roasting_level = ['Light', 'Cinnamon', 'Medium', 'High', 'City', 'Full City', 'French', 'Italian'];
-  const active_level = ['City', 'Medium'];
 
   return (
     <div>
-      <SubTitle>Recommend Roasting Level</SubTitle>
+      <SubTitle>추천 로스트 레벨</SubTitle>
       <Stack direction="row" spacing={2}>
         {roasting_level.map((level: string) => {
           return (

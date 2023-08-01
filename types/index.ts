@@ -5,7 +5,7 @@ export interface CoffeeBeanInfoType {
   roasting: string[];
   feature: string[];
   description: string;
-};
+}
 
 export interface MenuItemListType {
   name: string;
