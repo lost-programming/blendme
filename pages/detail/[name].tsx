@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { CoffeeBeanInfoType } from "../../types";
 import RoastingTable from "../../components/table/roastingTable";
-import { styled } from "@mui/material";
+import { styled, Paper } from "@mui/material";
 import SimpleInfoText from "../../components/text/simpleInfoText";
 import { useRouter } from "next/router";
 import { getCoffeeBeanInfo } from "../../api";
-import Paper from '@mui/material/Paper';
+import FeatureList from "../../components/list/FeatureList";
 
 const DetailContainer = styled(Paper)(({ theme }) => ({
   width: '1140px',
@@ -16,13 +16,28 @@ const DetailContainer = styled(Paper)(({ theme }) => ({
   justifyContent: 'space-between',
 }));
 
+// 이름, 이미지 Box
+const BeanSimpleContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
+
+// 원두 이름
+const BeanName = styled('p')({
+  fontSize: '28px',
+  fontWeight: '700',
+  marginBottom: '15px',
+});
+
+// 원두 이미지
 const BeanImage = styled('img')({
   width: '300px',
   height: '300px',
   marginRight: '10px',
 });
 
-const BeanInfoContainer = styled('Paper')({
+const BeanInfoContainer = styled('div')({
   width: '50%',
 });
 
@@ -54,9 +69,12 @@ const DetailPage = () => {
     <DetailContainer elevation={3}>
       {beanData ?
         <>
-          <BeanImage src={'../coffee_bean.png'}/>
+          <BeanSimpleContainer>
+            <BeanName>{ beanData.name }</BeanName>
+            <BeanImage src={'../coffee_bean.png'}/>
+          </BeanSimpleContainer>
           <BeanInfoContainer>
-            {beanData.feature.map((v: string) => <div>{v}</div>)}
+            <FeatureList feature={ beanData.feature }/>
             <RoastingTable active_level={ beanData.roasting }/>
             <SimpleInfoText infoText={ beanData.description }/>
           </BeanInfoContainer>

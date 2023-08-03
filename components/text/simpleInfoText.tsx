@@ -16,7 +16,7 @@ const SubTitle = styled('h4')({
 });
 
 const Text = styled('p')({
-
+  lineHeight: '1.4'
 });
 
 const SimpleInfoText = ({ infoText }: SimpleTextProp) => {

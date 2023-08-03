@@ -2,6 +2,9 @@ import * as React from "react";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material";
 
+const RoastingContainer = styled('div')({
+});
+
 // Roasting 단계 Container
 const Item = styled('div')({
   padding: '5px',
@@ -13,6 +16,9 @@ const Item = styled('div')({
   fontSize: '14px',
   "&:first-of-type": {
     paddingLeft: '0px'
+  },
+  "&>p": {
+    whiteSpace: 'nowrap'
   }
 });
 
@@ -44,7 +50,7 @@ const RoastingTable = ({ active_level }: RoastingPropsType) => {
   const roasting_level = ['Light', 'Cinnamon', 'Medium', 'High', 'City', 'Full City', 'French', 'Italian'];
 
   return (
-    <div>
+    <RoastingContainer>
       <SubTitle>추천 로스트 레벨</SubTitle>
       <Stack direction="row" spacing={2}>
         {roasting_level.map((level: string) => {
@@ -59,7 +65,7 @@ const RoastingTable = ({ active_level }: RoastingPropsType) => {
           )
         })}
       </Stack>
-    </div>
+    </RoastingContainer>
   )
 };
 
