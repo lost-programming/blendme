@@ -6,7 +6,7 @@ interface SimpleTextProp {
 }
 
 const SimpleTextContainer = styled('div')({
-  marginTop: '5px'
+  marginBottom: '10px'
 });
 
 const SubTitle = styled('h4')({

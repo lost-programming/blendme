@@ -8,6 +8,7 @@ const RoastingContainer = styled('div')({
 // Roasting 단계 Container
 const Item = styled('div')({
   padding: '5px',
+  marginBottom: '10px',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
