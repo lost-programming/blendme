@@ -12,7 +12,8 @@ interface RoastingCardPropsType {
 
 const CardList = styled('div')({
   display: 'flex',
-  flexDirection: 'row'
+  flexDirection: 'row',
+  flexWrap: 'wrap'
 })
 
 const RoastingCard = ({ beanData }: RoastingCardPropsType) => {
@@ -20,7 +21,7 @@ const RoastingCard = ({ beanData }: RoastingCardPropsType) => {
     <CardList>
       {beanData && beanData.map((bean: any, index: number) => {
         return (
-          <Card sx={{ maxWidth: 345 }} key={index}>
+          <Card sx={{ maxWidth: 345, width: 230 }} key={index}>
             <CardActionArea>
               {/* <CardMedia  // 이미지
                 component="img"
@@ -41,9 +42,9 @@ const RoastingCard = ({ beanData }: RoastingCardPropsType) => {
                       variant="body2" 
                       color="text.secondary"
                       key={index}
+                      display="inline"
                     >
-                      {/* bean.roasting.length-1 !== index ? `${item} / ` : item    Typography 줄 바꿈 태그 못 씀 */}
-                      {item}
+                      {bean.roasting.length-1 !== index ? `${item} / ` : item}
                     </Typography>
                   )
                 })}

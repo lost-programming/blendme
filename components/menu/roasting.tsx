@@ -12,12 +12,11 @@ interface RoastingPropsType {
 
 const RoastingName = styled('div')({
   display: 'flex',
-  flexDirection: 'row'
+  flexDirection: 'row',
+  justifyContent: 'center'
 })
 
 const Roasting = ({ getBeanData, data, roastingItems }: RoastingPropsType) => {
-  // onClick 이상함
-  
   const menuClick = (item: RoastingItemsType) => {
     const beans = data && data.filter((bean: CoffeeBeanInfoType) => bean.roasting.includes(item.category));
     item.category === 'all'

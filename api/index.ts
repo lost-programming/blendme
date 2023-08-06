@@ -2,7 +2,7 @@ import { db } from "../firebase";
 import { getFirestore, doc, getDoc, collection, query, getDocs } from "firebase/firestore";
 
 // 원두 전체 정보 조회
-export const getCoffeeBeans = async (path: string) => {
+export const getCollectionData = async (path: string) => {
   const data: any = [];
   const beans = await getDocs(collection(db, path));
   beans.forEach((doc) => {

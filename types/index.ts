@@ -16,3 +16,9 @@ export interface RoastingItemsType {
   name: string;
   category: string;
 }
+
+export interface RoastingDocsType {
+  name: string;
+  level: number;
+  description: string;
+}
