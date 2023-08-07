@@ -1,22 +1,47 @@
 import React, { useEffect, useState } from "react";
 import { CoffeeBeanInfoType } from "../../types";
 import RoastingTable from "../../components/table/roastingTable";
-import { styled } from "@mui/material";
+import { styled, Paper } from "@mui/material";
 import SimpleInfoText from "../../components/text/simpleInfoText";
 import { useRouter } from "next/router";
 import { getCoffeeBeanInfo } from "../../api";
+import FeatureList from "../../components/list/FeatureList";
+import { setNumberComma } from "../../utils/dataFormat";
+import PriceText from "../../components/text/priceText";
 
-const DetailContainer = styled('div')({
+const DetailContainer = styled(Paper)(({ theme }) => ({
   width: '1140px',
-  padding: '20px',
+  padding: '30px',
   margin: '0 auto',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  border: '1px solid #000',
-  borderRadius: '5px',
+}));
+
+// 이름, 이미지 Box
+const BeanSimpleContainer = styled('div')({
+  width: '45%',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
 });
 
+// 원두 이름
+const BeanName = styled('p')({
+  fontSize: '28px',
+  fontWeight: '700',
+  marginBottom: '5px',
+});
+
+// 원두 원산지
+const BeanOrigin = styled('p')({
+  color: '#000',
+  fontSize: '13px',
+  fontWeight: '500',
+  marginBottom: '15px',
+});
+
+// 원두 이미지
 const BeanImage = styled('img')({
   width: '300px',
   height: '300px',
@@ -52,12 +77,23 @@ const DetailPage = () => {
   }, [router.isReady]);
 
   return (
-    <DetailContainer>
-      <BeanImage src={'../coffee_bean.png'}/>
-      <BeanInfoContainer>
-        <RoastingTable/>
-        <SimpleInfoText infoText={ beanData.description }/>
-      </BeanInfoContainer>
+    <DetailContainer elevation={3}>
+      {beanData ?
+        <>
+          <BeanSimpleContainer>
+            <BeanName>{ beanData.name } { setNumberComma(beanData.weight) }g</BeanName>
+            <BeanOrigin>원산지: { beanData.origin }</BeanOrigin>
+            <BeanImage src={'../coffee_bean.png'}/>
+          </BeanSimpleContainer>
+          <BeanInfoContainer>
+            <FeatureList feature={ beanData.feature }/>
+            <RoastingTable active_level={ beanData.roasting }/>
+            <SimpleInfoText infoText={ beanData.description }/>
+            <PriceText price={ beanData.weight }/>
+          </BeanInfoContainer>
+        </> :
+        <div>데이터가 없습니다.</div>
+      }
     </DetailContainer>
   )
 };

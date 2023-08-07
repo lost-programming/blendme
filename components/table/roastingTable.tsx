@@ -2,9 +2,13 @@ import * as React from "react";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material";
 
+const RoastingContainer = styled('div')({
+});
+
 // Roasting 단계 Container
 const Item = styled('div')({
   padding: '5px',
+  marginBottom: '10px',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -13,6 +17,9 @@ const Item = styled('div')({
   fontSize: '14px',
   "&:first-of-type": {
     paddingLeft: '0px'
+  },
+  "&>p": {
+    whiteSpace: 'nowrap'
   }
 });
 
@@ -20,7 +27,7 @@ const Item = styled('div')({
 const IconImage = styled('img')({
   width: '38px',
   height: '38px',
-  opacity: '0.2',
+  opacity: '0.1',
   marginBottom: '10px',
   "&.active": {
     opacity: '1'
@@ -36,17 +43,16 @@ const SubTitle = styled('h4')({
 
 // 활성화될 로스팅 레벨
 interface RoastingPropsType {
-  activeLevel: string[];
+  active_level: string[];
 }
 
 // 원두 상세 페이지 로스팅 레벨 표시
-const RoastingTable = ({ activeLevel }: RoastingPropsType) => {
+const RoastingTable = ({ active_level }: RoastingPropsType) => {
   const roasting_level = ['Light', 'Cinnamon', 'Medium', 'High', 'City', 'Full City', 'French', 'Italian'];
-  const active_level = ['City', 'Medium'];
 
   return (
-    <div>
-      <SubTitle>Recommend Roasting Level</SubTitle>
+    <RoastingContainer>
+      <SubTitle>추천 로스트 레벨</SubTitle>
       <Stack direction="row" spacing={2}>
         {roasting_level.map((level: string) => {
           return (
@@ -60,7 +66,7 @@ const RoastingTable = ({ activeLevel }: RoastingPropsType) => {
           )
         })}
       </Stack>
-    </div>
+    </RoastingContainer>
   )
 };
 
