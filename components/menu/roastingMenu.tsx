@@ -36,9 +36,9 @@ const RoastingMenu = () => {
   ]
   
   const router = useRouter();
-  const [staticBeans, setStaticBeans] = useState<CoffeeBeanInfoType[] | undefined>();
-  const [beanData, setBeanData] = useState<CoffeeBeanInfoType[] | undefined>();
-  const [roastingData, setRoastingData] = useState<RoastingDocsType[] | undefined>();
+  const [staticBeans, setStaticBeans] = useState<CoffeeBeanInfoType[]>([]);
+  const [beanData, setBeanData] = useState<CoffeeBeanInfoType[]>([]);
+  const [roastingData, setRoastingData] = useState<RoastingDocsType[]>([]);
 
   useEffect(() => {
     if (router.isReady) {

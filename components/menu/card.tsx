@@ -7,7 +7,7 @@ import { CardActionArea, styled } from '@mui/material';
 import { CoffeeBeanInfoType } from '../../types/index';
 
 interface RoastingCardPropsType {
-  beanData: CoffeeBeanInfoType[] | undefined
+  beanData: CoffeeBeanInfoType[]
 }
 
 const CardList = styled('div')({

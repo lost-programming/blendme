@@ -6,7 +6,7 @@ import { styled } from '@mui/material';
 
 interface RoastingPropsType {
   getBeanData: Function
-  data: CoffeeBeanInfoType[] | undefined
+  data: CoffeeBeanInfoType[]
   roastingItems: RoastingItemsType[]
 }
 
