@@ -54,7 +54,7 @@ const BeanInfoContainer = styled('div')({
 
 interface queryData {
   name: string;
-}
+};
 
 // 원두 상세 페이지
 const DetailPage = () => {
