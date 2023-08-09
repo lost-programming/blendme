@@ -1,4 +1,4 @@
-import RoastingCard from "./card";
+import RoastingCardList from "./roastingCardList";
 import Roasting from "./roasting";
 import { useEffect, useState } from "react";
 import { RoastingItemsType, RoastingDocsType } from '../../types/index';
@@ -8,7 +8,7 @@ import { CoffeeBeanInfoType } from '../../types/index'
 import { styled } from "@mui/material";
 
 const RoastingBeanList = styled('div')({
-  
+
 })
 
 const RoastingMenu = () => {
@@ -57,14 +57,14 @@ const RoastingMenu = () => {
   };
 
   return (
-    <div>
+    <RoastingBeanList>
       <Roasting 
         roastingItems={roastingItems} 
         data={staticBeans}
         getBeanData={getBeanData}
       />
-      <RoastingCard beanData={beanData}/>
-    </div>
+      <RoastingCardList beanData={beanData}/>
+    </RoastingBeanList>
   )
 }
 
