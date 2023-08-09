@@ -1,4 +1,4 @@
-import RoastingMenu from "../components/menu/roastingMenu"
+import RoastingMenu from "../components/menu/roastingMenu";
 
 const Home = () => {
   return (
@@ -6,6 +6,6 @@ const Home = () => {
       <RoastingMenu />
     </div>
   )
-}
+};
 
-export default Home
+export default Home;

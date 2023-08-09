@@ -1,24 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea, styled } from '@mui/material';
+import { CardActionArea } from '@mui/material';
 import { useRouter } from 'next/router';
 
 const RoastingCard = ({ bean }: any) => {
   const router = useRouter();
-  const [urlName, setUrlName] = useState<any>('');
-
-  useEffect(() => {
-    if (router.isReady) {
-      const name = router.query.name
-      setUrlName(name)
-    }
-  }, [router.isReady, router.query])
 
   return (
-    <Card sx={{ maxWidth: 345, width: 260 }} onClick={() => router.push(`/detail/${urlName}`)}>
+    <Card sx={{ maxWidth: 345, width: 260 }} onClick={() => router.push(`/detail/${bean.name_en}`)}>
       <CardActionArea>
         {/* <CardMedia  // 이미지
           component="img"
@@ -49,6 +41,6 @@ const RoastingCard = ({ bean }: any) => {
       </CardActionArea>
     </Card>
   )
-}
+};
 
 export default RoastingCard;

@@ -66,6 +66,6 @@ const RoastingMenu = () => {
       <RoastingCardList beanData={beanData}/>
     </RoastingBeanList>
   )
-}
+};
 
 export default RoastingMenu;

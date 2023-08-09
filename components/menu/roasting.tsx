@@ -14,7 +14,7 @@ const RoastingName = styled('div')({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center'
-})
+});
 
 const Roasting = ({ getBeanData, data, roastingItems }: RoastingPropsType) => {
   const menuClick = (item: RoastingItemsType) => {
@@ -49,6 +49,6 @@ const Roasting = ({ getBeanData, data, roastingItems }: RoastingPropsType) => {
       })}
     </RoastingName>
   )
-}
+};
 
 export default Roasting;

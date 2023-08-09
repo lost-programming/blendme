@@ -11,7 +11,7 @@ const CardList = styled('div')({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap'
-})
+});
 
 const RoastingCardList = ({ beanData }: RoastingCardPropsType) => {
   return (
@@ -22,7 +22,7 @@ const RoastingCardList = ({ beanData }: RoastingCardPropsType) => {
         )
       })}
     </CardList>
-  );
-}
+  )
+};
 
 export default RoastingCardList;
