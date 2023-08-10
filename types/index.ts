@@ -1,6 +1,6 @@
 export interface CoffeeBeanInfoType {
   name: string;
-  name_en?: string;
+  name_en: string;
   origin: string;
   weight: number;
   roasting: string[];

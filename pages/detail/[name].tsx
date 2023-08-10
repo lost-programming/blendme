@@ -82,6 +82,7 @@ const DetailPage = () => {
     description: "",
     feature: [],
     name: "",
+    name_en: "",
     origin: "",
     roasting: [],
     weight: 0
