@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CoffeeBeanInfoType } from "../../types";
 import RoastingTable from "../../components/table/roastingTable";
-import { styled, Paper } from "@mui/material";
+import { styled, Paper, Button } from "@mui/material";
 import SimpleInfoText from "../../components/text/simpleInfoText";
 import { useRouter } from "next/router";
 import { getCoffeeBeanInfo } from "../../api";
@@ -10,9 +10,7 @@ import { setNumberComma } from "../../utils/dataFormat";
 import PriceText from "../../components/text/priceText";
 
 const DetailContainer = styled(Paper)(({ theme }) => ({
-  width: '1140px',
   padding: '30px',
-  margin: '0 auto',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -48,13 +46,33 @@ const BeanImage = styled('img')({
   marginRight: '10px',
 });
 
+// 원두 정보 Container
 const BeanInfoContainer = styled('div')({
   width: '50%',
 });
 
+// 결제 Container
+const ButtonContainer = styled('div')({
+
+});
+
+// 블랜딩, 결제 버튼
+const BlendButton = styled(Button)(({ theme }) => ({
+  padding: '5px 15px',
+  marginRight: '10px',
+  color: '#fff',
+  borderColor: '#808080',
+  backgroundColor: '#808080',
+  "&:hover": {
+    borderColor: '#808080',
+    backgroundColor: '#808080',
+  }
+}));
+
+
 interface queryData {
   name: string;
-};
+}
 
 // 원두 상세 페이지
 const DetailPage = () => {
@@ -80,16 +98,23 @@ const DetailPage = () => {
     <DetailContainer elevation={3}>
       {beanData ?
         <>
+          {/* 원두 이름, 이미지 */}
           <BeanSimpleContainer>
             <BeanName>{ beanData.name } { setNumberComma(beanData.weight) }g</BeanName>
             <BeanOrigin>원산지: { beanData.origin }</BeanOrigin>
             <BeanImage src={'../coffee_bean.png'}/>
           </BeanSimpleContainer>
+          {/* 원두 기본 정보 */}
           <BeanInfoContainer>
             <FeatureList feature={ beanData.feature }/>
             <RoastingTable active_level={ beanData.roasting }/>
             <SimpleInfoText infoText={ beanData.description }/>
             <PriceText price={ beanData.weight }/>
+            {/* 버튼 Box */}
+            <ButtonContainer>
+              <BlendButton onClick={() => router.push('/blend')}>블랜딩</BlendButton>
+              <BlendButton onClick={() => router.push('/payment')}>바로 구매하기</BlendButton>
+            </ButtonContainer>
           </BeanInfoContainer>
         </> :
         <div>데이터가 없습니다.</div>

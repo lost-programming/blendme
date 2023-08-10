@@ -6,6 +6,7 @@ const PriceTextContainer = styled('div')({
   display: 'flex',
   textAlign: 'right',
   alignItems: 'center',
+  justifyContent: 'space-between',
   marginBottom: '10px',
 });
 
