@@ -9,7 +9,7 @@ import { styled } from "@mui/material";
 
 const RoastingBeanList = styled('div')({
 
-})
+});
 
 const RoastingMenu = () => {
   const roastingItems: RoastingItemsType[] = [
