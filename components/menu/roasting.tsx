@@ -40,7 +40,7 @@ const Roasting = ({ getBeanData, data, roastingItems }: RoastingPropsType) => {
             }}
           >
             <ButtonGroup variant="text" aria-label="text button group">
-              <Button onClick={() => menuClick(item)}>
+              <Button onClick={() => menuClick(item)} style={{ fontSize: '15px' }}>
                 {item.name}
               </Button>
             </ButtonGroup>
