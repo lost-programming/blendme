@@ -27,7 +27,6 @@ const BlendItemList = styled('div')({
 });
 
 // 원두 섞는거는 최대 5개까지 가능
-// 원두 상세에서 넘어올때 쿠키로 넘길지 recoil로 넘길지
 const BlendPage = () => {
   const router = useRouter();
   const [blendList, setBlendList] = useState<CoffeeBeanInfoType[]>([]);
@@ -37,6 +36,14 @@ const BlendPage = () => {
   const cardClickEvent = (name: string) => {
     const select = beanData.filter((v) => v.name_en === name);
     setBlendList([...blendList, ...select]);
+    setBeanData(beanData.filter((v) => v.name_en !== name));
+  };
+
+  // 블랜딩 카드 제거
+  const deleteBlendCard = (name: string) => {
+    const deleteCard = blendList.filter((v) => v.name_en === name);
+    setBlendList(blendList.filter((v) => v.name_en !== name));
+    setBeanData([...beanData, ...deleteCard]);
   };
 
   useEffect(() => {
@@ -56,7 +63,7 @@ const BlendPage = () => {
       <SelectItemList>
         {blendList.map((bean, index) => {
           return (
-            <RoastingCard bean={ bean } key={ index }/>
+            <RoastingCard bean={ bean } key={ index } clickEvent={() => deleteBlendCard(bean.name_en)}/>
           )
           })
         }
