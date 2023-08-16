@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { CoffeeBeanInfoType } from "../../types";
-import RoastingTable from "../../components/table/roastingTable";
-import { styled, Paper, Button } from "@mui/material";
-import SimpleInfoText from "../../components/text/simpleInfoText";
 import { useRouter } from "next/router";
+import { getCookie, setCookie } from "cookies-next/lib";
+import { styled, Paper, Button } from "@mui/material";
+// ------------------------------------------------------ //
 import { getCoffeeBeanInfo } from "../../api";
+import { CoffeeBeanInfoType } from "../../types";
+import { addHours, setNumberComma } from "../../utils/dataFormat";
+import RoastingTable from "../../components/table/roastingTable";
+import SimpleInfoText from "../../components/text/simpleInfoText";
 import FeatureList from "../../components/list/FeatureList";
-import { setNumberComma } from "../../utils/dataFormat";
 import PriceText from "../../components/text/priceText";
 
 const DetailContainer = styled(Paper)(({ theme }) => ({
@@ -69,7 +71,6 @@ const BlendButton = styled(Button)(({ theme }) => ({
   }
 }));
 
-
 interface queryData {
   name: string;
 }
@@ -95,6 +96,12 @@ const DetailPage = () => {
     }
   }, [router.isReady]);
 
+  const Blending = () => {
+    const expiryDate = addHours(new Date(), 1);
+    setCookie('defaultBean', query.name, {expires: expiryDate});
+    router.push(`/blend`);
+  };
+
   return (
     <DetailContainer elevation={3}>
       {beanData ?
@@ -113,7 +120,7 @@ const DetailPage = () => {
             <PriceText price={ beanData.weight }/>
             {/* 버튼 Box */}
             <ButtonContainer>
-              <BlendButton onClick={() => router.push('/blend')}>블랜딩</BlendButton>
+              <BlendButton onClick={() => Blending()}>블랜딩</BlendButton>
               <BlendButton onClick={() => router.push('/payment')}>바로 구매하기</BlendButton>
             </ButtonContainer>
           </BeanInfoContainer>

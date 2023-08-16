@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { CoffeeBeanInfoType } from "../../types";
-import { getCollectionData } from "../../api";
 import { useRouter } from "next/router";
 import { styled } from "@mui/material";
-import RoastingCardList from "../../components/menu/roastingCardList";
+import { getCookie } from "cookies-next/lib";
+
+import { CoffeeBeanInfoType } from "../../types";
+import { getCollectionData } from "../../api";
 import RoastingCard from "../../components/menu/roastingCard";
 
 const BlendContainer = styled('div')({
@@ -40,7 +41,12 @@ const BlendPage = () => {
 
   useEffect(() => {
     if (router.isReady) {
-      getCollectionData('bean').then((res: CoffeeBeanInfoType[]) => { setBeanData(res); });
+      const defaultBean = getCookie('defaultBean');
+      getCollectionData('bean')
+        .then((res: CoffeeBeanInfoType[]) => {
+          setBlendList(res.filter((v) => v.name_en === defaultBean));
+          setBeanData(res.filter((v) => v.name_en !== defaultBean));
+        });
     }
   }, [router.isReady]);
 
