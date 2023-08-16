@@ -5,12 +5,20 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { useRouter } from 'next/router';
+import { CoffeeBeanInfoType } from "../../types";
 
-const RoastingCard = ({ bean }: any) => {
+interface RoastingCardProps {
+  bean: CoffeeBeanInfoType;
+  index: number;
+  clickEvent?: any;
+}
+
+const RoastingCard = ({ bean, index, clickEvent }: RoastingCardProps) => {
   const router = useRouter();
 
   return (
-    <Card sx={{ maxWidth: 345, width: 260 }} onClick={() => router.push(`/detail/${bean.name_en}`)}>
+    // <Card sx={{ maxWidth: 345, width: 260 }} onClick={() => router.push(`/detail/${bean.name_en}`)}>
+    <Card sx={{ maxWidth: 345, width: 260 }} onClick={clickEvent}>
       <CardActionArea>
         {/* <CardMedia  // 이미지
           component="img"
