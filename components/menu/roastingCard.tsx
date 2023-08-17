@@ -9,11 +9,10 @@ import { CoffeeBeanInfoType } from "../../types";
 
 interface RoastingCardProps {
   bean: CoffeeBeanInfoType;
-  index: number;
   clickEvent?: any;
 }
 
-const RoastingCard = ({ bean, index, clickEvent }: RoastingCardProps) => {
+const RoastingCard = ({ bean, clickEvent }: RoastingCardProps) => {
   const router = useRouter();
 
   return (

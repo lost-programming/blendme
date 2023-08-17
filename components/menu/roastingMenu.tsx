@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import { getCollectionData } from "../../api";
 import { CoffeeBeanInfoType } from '../../types/index'
 import { styled } from "@mui/material";
-import RoastingDescription from "./roastingDescription";
 
 const RoastingBeanList = styled('div')({
 
@@ -63,8 +62,8 @@ const RoastingMenu = () => {
         roastingItems={roastingItems} 
         data={staticBeans}
         getBeanData={getBeanData}
+        roastingData={roastingData}
       />
-      <RoastingDescription roastingData={roastingData}/>
       <RoastingCardList beanData={beanData}/>
     </RoastingBeanList>
   )
