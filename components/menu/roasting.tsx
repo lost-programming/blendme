@@ -16,17 +16,18 @@ interface RoastingPropsType {
 const RoastingName = styled('div')({
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  height: 200,
+  flexWrap: 'wrap'
 });
 
 const Roasting = ({ getBeanData, data, roastingItems, roastingData }: RoastingPropsType) => {
-  const [selectedMenu, setSelectedMenu] = useState<RoastingDocsType>({});
-  const [selectedRoasting, setSelectedRoasting] = useState<RoastingItemsType>({});
+  const [selectedMenu, setSelectedMenu] = useState<RoastingDocsType[] | undefined>();
+  const [selectedRoasting, setSelectedRoasting] = useState<RoastingItemsType>(roastingItems[0]);
 
   const menuClick = (item: RoastingItemsType) => {
     const beans = data && data.filter((bean: CoffeeBeanInfoType) => bean.roasting.includes(item.category));
     const menus = roastingData.filter((menu: RoastingDocsType) => menu.name === item.name)
-    console.log(menus)
     setSelectedMenu(menus)
     setSelectedRoasting(item)
 
@@ -52,7 +53,7 @@ const Roasting = ({ getBeanData, data, roastingItems, roastingData }: RoastingPr
               }}
             >
               <ButtonGroup variant="text" aria-label="text button group">
-                <Button onClick={() => menuClick(item)} style={{ fontSize: '15px' }}>
+                <Button onClick={() => menuClick(item)} style={{ fontSize: '15px', height: '45px' }}>
                   {item.name}
                 </Button>
               </ButtonGroup>
