@@ -21,6 +21,21 @@ const RoastingName = styled('div')({
   flexWrap: 'wrap'
 });
 
+const RoastingButton = styled(Button)({
+  fontSize: 15,
+  height: 45,
+  '&:hover': {
+    backgroundColor: '#111111'
+  },
+  '&:active': {
+    backgroundColor: '#111111'
+  },
+  '&:focus': {
+    backgroundColor: '#111111'
+  }
+});
+
+
 const Roasting = ({ getBeanData, data, roastingItems, roastingData }: RoastingPropsType) => {
   const [selectedMenu, setSelectedMenu] = useState<RoastingDocsType[] | undefined>();
   const [selectedRoasting, setSelectedRoasting] = useState<RoastingItemsType>(roastingItems[0]);
@@ -53,9 +68,9 @@ const Roasting = ({ getBeanData, data, roastingItems, roastingData }: RoastingPr
               }}
             >
               <ButtonGroup variant="text" aria-label="text button group">
-                <Button onClick={() => menuClick(item)} style={{ fontSize: '15px', height: '45px' }}>
+                <RoastingButton onClick={() => menuClick(item)}>
                   {item.name}
-                </Button>
+                </RoastingButton>
               </ButtonGroup>
             </Box>
           </>

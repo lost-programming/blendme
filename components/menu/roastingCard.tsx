@@ -17,7 +17,14 @@ const RoastingCard = ({ bean, clickEvent }: RoastingCardProps) => {
 
   return (
     // <Card sx={{ maxWidth: 345, width: 260 }} onClick={() => router.push(`/detail/${bean.name_en}`)}>
-    <Card sx={{ maxWidth: 345, width: 260 }} onClick={clickEvent}>
+    <Card 
+      sx={{ 
+        maxWidth: 345, 
+        width: 285, 
+        padding: '5px', 
+      }} 
+      onClick={clickEvent}
+    >
       <CardActionArea>
         {/* <CardMedia  // 이미지
           component="img"
