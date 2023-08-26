@@ -11,7 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.14.0",
+    "@mui/material": "^5.14.6",
     "babel-plugin-styled-components": "^2.1.4",
     "cookies-next": "^2.1.2",
     "firebase": "^10.0.0",

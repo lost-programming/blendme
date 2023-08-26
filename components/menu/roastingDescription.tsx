@@ -11,15 +11,17 @@ const Description = styled('div')({
   flexFlow: 'row',
   width: 1140,
   height: 100,
-  background: '#3f51b5',
+  background: '#3F51B5',
   padding: 5,
+  alignItems: 'center',
+  justifyContent: 'center'
 })
 
 const RoastingDescription = ({ selectedMenu, selectedRoasting }: RoastingDescriptionPropsType) => {
   return (
     <div>
       {selectedMenu && selectedRoasting.category !== 'all'
-        ? <Description>{selectedMenu[0].description}</Description>
+        ? <Description>{selectedMenu[0].short_description}</Description>
         : <Description>전체 로스팅 목록입니다.</Description>
       }
     </div>

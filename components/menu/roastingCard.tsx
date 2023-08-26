@@ -4,8 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import { useRouter } from 'next/router';
-import { CoffeeBeanInfoType } from "../../types";
+import { CoffeeBeanInfoType } from '../../types';
 
 interface RoastingCardProps {
   bean: CoffeeBeanInfoType;
@@ -13,25 +12,22 @@ interface RoastingCardProps {
 }
 
 const RoastingCard = ({ bean, clickEvent }: RoastingCardProps) => {
-  const router = useRouter();
-
   return (
-    // <Card sx={{ maxWidth: 345, width: 260 }} onClick={() => router.push(`/detail/${bean.name_en}`)}>
     <Card 
       sx={{ 
         maxWidth: 345, 
         width: 285, 
-        padding: '5px', 
+        padding: '20px', 
       }} 
       onClick={clickEvent}
     >
       <CardActionArea>
-        {/* <CardMedia  // 이미지
+        <CardMedia
           component="img"
           height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
-        /> */}
+          image="../../public/dummy.jpeg"
+          alt="dummy"
+        />
         <CardContent>
           <Typography 
             gutterBottom variant="h5" 
