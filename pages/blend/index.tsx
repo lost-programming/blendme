@@ -54,6 +54,7 @@ const BlendPage = () => {
     }
   };
 
+  // 처음 페이지 접속시 기본 블랜드 원두 설정
   useEffect(() => {
     if (router.isReady) {
       const defaultBean = getCookie('defaultBean');
