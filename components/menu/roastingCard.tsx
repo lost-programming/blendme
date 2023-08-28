@@ -17,7 +17,7 @@ const RoastingCard = ({ bean, clickEvent }: RoastingCardProps) => {
       sx={{ 
         maxWidth: 345, 
         width: 285, 
-        padding: '20px', 
+        padding: '15px', 
       }} 
       onClick={clickEvent}
     >

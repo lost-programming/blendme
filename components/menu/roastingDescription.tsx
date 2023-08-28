@@ -14,7 +14,8 @@ const Description = styled('div')({
   background: '#3F51B5',
   padding: 5,
   alignItems: 'center',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  color: '#FFFAFA'
 })
 
 const RoastingDescription = ({ selectedMenu, selectedRoasting }: RoastingDescriptionPropsType) => {
