@@ -9,29 +9,34 @@ import { styled } from "@mui/material";
 
 const RoastingBeanList = styled('div')({
 
-})
+});
 
 const RoastingMenu = () => {
   const roastingItems: RoastingItemsType[] = [
     {
       name: '전체',
       category: 'all',
+      color: '#808080'
     },
     {
       name: '미디엄 로스팅',
       category: 'Medium',
+      color: '#C2986C'
     },
     {
       name: '하이 로스팅',
       category: 'High',
+      color: '#AE794B'
     },
     {
       name: '시티 로스팅',
       category: 'City',
+      color: '#976841'
     },
     {
       name: '풀 시티 로스팅',
       category: 'Full City',
+      color: '#6A452C'
     },
   ]
   
@@ -62,6 +67,7 @@ const RoastingMenu = () => {
         roastingItems={roastingItems} 
         data={staticBeans}
         getBeanData={getBeanData}
+        roastingData={roastingData}
       />
       <RoastingCardList beanData={beanData}/>
     </RoastingBeanList>

@@ -51,12 +51,13 @@ const Nav = () => {
               aria-controls={open ? 'basic-menu' : undefined}
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
+              style={{ fontSize: '18px' }}
               onClick={(event) => {
                 handleClick(event);
                 setMenuSelect(menu)
               }}
             >
-            {menu.name}
+              {menu.name}
             </Button>
             <Menu
               id="basic-menu"

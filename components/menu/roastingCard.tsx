@@ -3,30 +3,36 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import { useRouter } from 'next/router';
-import { CoffeeBeanInfoType } from "../../types";
+import { CardActionArea, styled } from '@mui/material';
+import { CoffeeBeanInfoType } from '../../types';
 
 interface RoastingCardProps {
   bean: CoffeeBeanInfoType;
-  index: number;
   clickEvent?: any;
 }
 
-const RoastingCard = ({ bean, index, clickEvent }: RoastingCardProps) => {
-  const router = useRouter();
+const CustomCard = styled(Card)({
+  maxWidth: 345, 
+  width: 285, 
+  padding: '15px',
+  boxShadow: 'none',
+})
 
+const CustomCardContent = styled(CardContent)({
+  padding: '15px 0'
+})
+
+const RoastingCard = ({ bean, clickEvent }: RoastingCardProps) => {
   return (
-    // <Card sx={{ maxWidth: 345, width: 260 }} onClick={() => router.push(`/detail/${bean.name_en}`)}>
-    <Card sx={{ maxWidth: 345, width: 260 }} onClick={clickEvent}>
+    <CustomCard onClick={clickEvent}>
       <CardActionArea>
-        {/* <CardMedia  // 이미지
+        <CardMedia
           component="img"
           height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
-        /> */}
-        <CardContent>
+          image="Roasted_coffee_beans.jpg"
+          alt="coffee_bean"
+        />
+        <CustomCardContent>
           <Typography 
             gutterBottom variant="h5" 
             component="div"
@@ -45,9 +51,9 @@ const RoastingCard = ({ bean, index, clickEvent }: RoastingCardProps) => {
               </Typography>
             )
           })}
-        </CardContent>
+        </CustomCardContent>
       </CardActionArea>
-    </Card>
+    </CustomCard>
   )
 };
 

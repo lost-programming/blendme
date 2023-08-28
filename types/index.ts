@@ -16,10 +16,12 @@ export interface MenuItemListType {
 export interface RoastingItemsType {
   name: string;
   category: string;
+  color: string;
 }
 
 export interface RoastingDocsType {
   name: string;
   level: number;
   description: string;
+  short_description: string;
 }
