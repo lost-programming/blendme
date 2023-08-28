@@ -26,24 +26,32 @@ const BlendItemList = styled('div')({
   justifyContent: 'center'
 });
 
-// 원두 섞는거는 최대 5개까지 가능
+// TO-DO : 블랜딩 % 적용 ->
 const BlendPage = () => {
   const router = useRouter();
+  const [percentList, setPercentList] = useState([]);
   const [blendList, setBlendList] = useState<CoffeeBeanInfoType[]>([]);
   const [beanData, setBeanData] = useState<CoffeeBeanInfoType[]>([]);
 
-  // 카드 선택시 이벤트
-  const cardClickEvent = (name: string) => {
-    const select = beanData.filter((v) => v.name_en === name);
-    setBlendList([...blendList, ...select]);
-    setBeanData(beanData.filter((v) => v.name_en !== name));
-  };
-
-  // 블랜딩 카드 제거
-  const deleteBlendCard = (name: string) => {
-    const deleteCard = blendList.filter((v) => v.name_en === name);
-    setBlendList(blendList.filter((v) => v.name_en !== name));
-    setBeanData([...beanData, ...deleteCard]);
+  // 리스트 클릭시 이벤트 (겹치는 부분이 있어서 한개로 합침) // TO-DO : 추가로 나눌수있는지 계속 확인
+  const itemClickEvent = (items: CoffeeBeanInfoType[], name: string, type: string) => {
+    const selectItem = items.filter((v) => v.name_en === name);
+    if (type === 'beanList') {
+      if (blendList.length <= 4) {
+        // 원두 리스트 클릭시
+        setBlendList([...blendList, ...selectItem]);
+        setBeanData(beanData.filter((v) => v.name_en !== name));
+      } else {
+        // 경고창은 추후 수정 예정 -> 기본 js 말고 다른 디자인 적용된거 사용하는게 좋을거같음
+        // 일단은 아무 반응이 없으면 이상해서 추가해둠
+        alert('더 이상 추가 불가능합니다.');
+        return false;
+      }
+    } else if (type === 'blendList') {
+      // 블랜드 리스트 클릭시
+      setBlendList(blendList.filter((v) => v.name_en !== name));
+      setBeanData([...beanData, ...selectItem]);
+    }
   };
 
   useEffect(() => {
@@ -63,16 +71,15 @@ const BlendPage = () => {
       <SelectItemList>
         {blendList.map((bean, index) => {
           return (
-            <RoastingCard bean={ bean } key={ index } clickEvent={() => deleteBlendCard(bean.name_en)}/>
+            <RoastingCard bean={ bean } key={ index } clickEvent={() => itemClickEvent(blendList, bean.name_en, 'blendList')}/>
           )
-          })
-        }
+        })}
       </SelectItemList>
       {/* 블랜딩 원두 리스트 */}
       <BlendItemList>
         {beanData.map((bean: CoffeeBeanInfoType, index: number) => {
           return (
-            <RoastingCard bean={ bean } key={ index } clickEvent={() => cardClickEvent(bean.name_en)}/>
+						<RoastingCard bean={ bean } key={ index } clickEvent={() => itemClickEvent(beanData, bean.name_en, 'beanList')}/>
           )
         })}
       </BlendItemList>
