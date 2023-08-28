@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, styled } from '@mui/material';
 import { CoffeeBeanInfoType } from '../../types';
 
 interface RoastingCardProps {
@@ -11,16 +11,20 @@ interface RoastingCardProps {
   clickEvent?: any;
 }
 
+const CustomCard = styled(Card)({
+  maxWidth: 345, 
+  width: 285, 
+  padding: '15px',
+  boxShadow: 'none',
+})
+
+const CustomCardContent = styled(CardContent)({
+  padding: '15px 0'
+})
+
 const RoastingCard = ({ bean, clickEvent }: RoastingCardProps) => {
   return (
-    <Card 
-      sx={{ 
-        maxWidth: 345, 
-        width: 285, 
-        padding: '15px', 
-      }} 
-      onClick={clickEvent}
-    >
+    <CustomCard onClick={clickEvent}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -28,7 +32,7 @@ const RoastingCard = ({ bean, clickEvent }: RoastingCardProps) => {
           image="Roasted_coffee_beans.jpg"
           alt="coffee_bean"
         />
-        <CardContent>
+        <CustomCardContent>
           <Typography 
             gutterBottom variant="h5" 
             component="div"
@@ -47,9 +51,9 @@ const RoastingCard = ({ bean, clickEvent }: RoastingCardProps) => {
               </Typography>
             )
           })}
-        </CardContent>
+        </CustomCardContent>
       </CardActionArea>
-    </Card>
+    </CustomCard>
   )
 };
 

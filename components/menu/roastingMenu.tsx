@@ -16,27 +16,27 @@ const RoastingMenu = () => {
     {
       name: '전체',
       category: 'all',
-      color: '#3F51B5'
+      color: '#808080'
     },
     {
       name: '미디엄 로스팅',
       category: 'Medium',
-      color: '#964B00'
+      color: '#C2986C'
     },
     {
       name: '하이 로스팅',
       category: 'High',
-      color: '#7C3F06'
+      color: '#AE794B'
     },
     {
       name: '시티 로스팅',
       category: 'City',
-      color: '#633309'
+      color: '#976841'
     },
     {
       name: '풀 시티 로스팅',
       category: 'Full City',
-      color: '#4B280A'
+      color: '#6A452C'
     },
   ]
   

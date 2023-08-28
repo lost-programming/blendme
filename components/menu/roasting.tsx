@@ -26,17 +26,22 @@ interface RoastingButtonType {
 }
 
 const RoastingButton = styled(Button)<RoastingButtonType>(({ bgColor }) => ({
-  fontSize: 15,
+  fontSize: 18,
   height: 45,
+  fontWeight: 700,
+  color: '#212121',
 
   '&:hover': {
-    backgroundColor: bgColor
+    backgroundColor: bgColor,
+    color: '#FFFAFA'
   },
   '&:active': {
-    backgroundColor: bgColor
+    backgroundColor: bgColor,
+    color: '#FFFAFA'
   },
   '&:focus': {
-    backgroundColor: bgColor
+    backgroundColor: bgColor,
+    color: '#FFFAFA'
   }
 }))
 
