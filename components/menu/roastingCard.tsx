@@ -25,8 +25,8 @@ const RoastingCard = ({ bean, clickEvent }: RoastingCardProps) => {
         <CardMedia
           component="img"
           height="140"
-          image="../../public/dummy.jpeg"
-          alt="dummy"
+          image="Roasted_coffee_beans.jpg"
+          alt="coffee_bean"
         />
         <CardContent>
           <Typography 
