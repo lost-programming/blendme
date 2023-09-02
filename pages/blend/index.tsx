@@ -6,19 +6,27 @@ import { getCookie } from "cookies-next/lib";
 import { CoffeeBeanInfoType } from "../../types";
 import { getCollectionData } from "../../api";
 import RoastingCard from "../../components/menu/roastingCard";
+import RatioInput from "../../components/blend/ratioInput";
 
 const BlendContainer = styled('div')({
   width: '100%',
 });
 
+// 블랜드 원두 리스트
 const SelectItemList = styled('div')({
   width: '100%',
-  height: '300px',
+  height: 'fit-content',
   marginBottom: '40px',
-  backgroundColor: '#808080',
   display: 'flex',
 });
 
+// 선택한 원두
+const SelectItem = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+// 전체 원두 리스트
 const BlendItemList = styled('div')({
   display: 'flex',
   flexWrap: 'wrap',
@@ -29,9 +37,21 @@ const BlendItemList = styled('div')({
 // TO-DO : 블랜딩 % 적용 ->
 const BlendPage = () => {
   const router = useRouter();
-  const [percentList, setPercentList] = useState([]);
+  const [ratioList, setRatioList] = useState([40,8,9,7,6]);
   const [blendList, setBlendList] = useState<CoffeeBeanInfoType[]>([]);
   const [beanData, setBeanData] = useState<CoffeeBeanInfoType[]>([]);
+
+  // 처음 페이지 접속시 기본 블랜드 원두 설정
+  useEffect(() => {
+    if (router.isReady) {
+      const defaultBean = getCookie('defaultBean');
+      getCollectionData('bean')
+        .then((res: CoffeeBeanInfoType[]) => {
+          setBlendList(res.filter((v) => v.name_en === defaultBean));
+          setBeanData(res.filter((v) => v.name_en !== defaultBean));
+        });
+    }
+  }, [router.isReady]);
 
   // 리스트 클릭시 이벤트 (겹치는 부분이 있어서 한개로 합침) // TO-DO : 추가로 나눌수있는지 계속 확인
   const itemClickEvent = (items: CoffeeBeanInfoType[], name: string, type: string) => {
@@ -54,17 +74,32 @@ const BlendPage = () => {
     }
   };
 
-  // 처음 페이지 접속시 기본 블랜드 원두 설정
-  useEffect(() => {
-    if (router.isReady) {
-      const defaultBean = getCookie('defaultBean');
-      getCollectionData('bean')
-        .then((res: CoffeeBeanInfoType[]) => {
-          setBlendList(res.filter((v) => v.name_en === defaultBean));
-          setBeanData(res.filter((v) => v.name_en !== defaultBean));
-        });
+  // 블랜딩 비율 값 입력, 변경 (input)
+  const RatioOnChange = (event: any, index: number) => {
+    const v: number = Number(event.target.value);
+    if (v <= 100) {
+      const list = [...ratioList];
+      list[index] = v;
+      setRatioList(list);
     }
-  }, [router.isReady]);
+  };
+
+  // 블랜딩 비율 -.+ 버튼
+  const RatioAddRemove = (type: string, index: number) => {
+    const list = [...ratioList];
+    if (type === 'add') {
+      list[index]++;
+    } else if (type === 'remove') {
+      list[index]--;
+    } else {
+      console.log('잘못된 타입 입력');
+    }
+
+    // 0 미만 또는 100 초과로 값이 안들어가게 설정
+    if (list[index] <= 100 && list[index] >= 0) {
+      setRatioList(list)
+    }
+  };
 
   return (
     <BlendContainer>
@@ -72,7 +107,10 @@ const BlendPage = () => {
       <SelectItemList>
         {blendList.map((bean, index) => {
           return (
-            <RoastingCard bean={ bean } key={ index } clickEvent={() => itemClickEvent(blendList, bean.name_en, 'blendList')}/>
+            <SelectItem key={ 'selectItem' + index }>
+              <RoastingCard bean={ bean } clickEvent={() => itemClickEvent(blendList, bean.name_en, 'blendList')}/>
+              <RatioInput value={ ratioList[index] } index={ index } changeEvent={ RatioOnChange } ButtonEvent={ RatioAddRemove }/>
+            </SelectItem>
           )
         })}
       </SelectItemList>
