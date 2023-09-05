@@ -26,6 +26,23 @@ const SelectItem = styled('div')({
   flexDirection: 'column',
 });
 
+// 안내 문구 커버
+const InfoTextContainer = styled('div')({
+  width: '100%',
+  padding: '10px 20px',
+  margin: '20px 0',
+  backgroundColor: '#DEDEDE',
+  borderRadius: '8px',
+  lineHeight: '24px',
+});
+
+const InfoText = styled('p')({
+  "&.red": {
+    color: 'red',
+    fontWeight: '700'
+  }
+});
+
 // 전체 원두 리스트
 const BlendItemList = styled('div')({
   display: 'flex',
@@ -34,10 +51,12 @@ const BlendItemList = styled('div')({
   justifyContent: 'center'
 });
 
-// TO-DO : 블랜딩 % 적용 ->
+// TO-DO : 블랜딩 % 적용 -> index 0번이 40% 이하로 내려갔을때랑 추가 원두가 8% 이하로 내려가면 안내문구 제공
+//                      -> 블랜딩 총합이 100%가 안되거나 초과되면 안내문구 제공 및 버튼 비활성화
 const BlendPage = () => {
   const router = useRouter();
-  const [ratioList, setRatioList] = useState([40,8,9,7,6]);
+  const [ratioSum, setRatioSum] = useState(0);
+  const [ratioList, setRatioList] = useState([40, 8, 8, 8, 8]);
   const [blendList, setBlendList] = useState<CoffeeBeanInfoType[]>([]);
   const [beanData, setBeanData] = useState<CoffeeBeanInfoType[]>([]);
 
@@ -93,13 +112,23 @@ const BlendPage = () => {
       list[index]--;
     } else {
       console.log('잘못된 타입 입력');
+      return false;
     }
 
     // 0 미만 또는 100 초과로 값이 안들어가게 설정
     if (list[index] <= 100 && list[index] >= 0) {
-      setRatioList(list)
+      setRatioList(list);
     }
   };
+
+  useEffect(() => {
+    const list = [...ratioList].splice(0, blendList.length);
+    const sum = list.reduce((a, b) => {
+      return a + b;
+    }, 0);
+    setRatioSum(sum);
+    console.log(sum);
+  }, [ratioList, blendList]);
 
   return (
     <BlendContainer>
@@ -108,12 +137,21 @@ const BlendPage = () => {
         {blendList.map((bean, index) => {
           return (
             <SelectItem key={ 'selectItem' + index }>
-              <RoastingCard bean={ bean } clickEvent={() => itemClickEvent(blendList, bean.name_en, 'blendList')}/>
+              <RoastingCard
+                bean={ bean }
+                clickEvent={() => itemClickEvent(blendList, bean.name_en, 'blendList')}
+              />
               <RatioInput value={ ratioList[index] } index={ index } changeEvent={ RatioOnChange } ButtonEvent={ RatioAddRemove }/>
             </SelectItem>
           )
         })}
       </SelectItemList>
+      {/* 안내 문구 */}
+      <InfoTextContainer>
+        <InfoText>* 블랜딩: 2가지 이상의 원두를 섞어 새로운 맛과 향의 커피를 만드는 것</InfoText>
+        <InfoText className={'red'}>* 베이스 원두(첫번째 원두)의 비율이 40% 이하면 원하는 맛이 나오지 않습니다.</InfoText>
+        {ratioSum > 100 && <InfoText className={'red'}>* 전체 원두 비율 합이 100%가 넘었습니다. 비율을 100%로 맞춰주세요.</InfoText>}
+      </InfoTextContainer>
       {/* 블랜딩 원두 리스트 */}
       <BlendItemList>
         {beanData.map((bean: CoffeeBeanInfoType, index: number) => {

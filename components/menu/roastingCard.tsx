@@ -16,11 +16,11 @@ const CustomCard = styled(Card)({
   width: 285, 
   padding: '15px',
   boxShadow: 'none',
-})
+});
 
 const CustomCardContent = styled(CardContent)({
   padding: '15px 0'
-})
+});
 
 const RoastingCard = ({ bean, clickEvent }: RoastingCardProps) => {
   return (
