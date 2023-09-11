@@ -86,7 +86,8 @@ const DetailPage = () => {
     name_en: "",
     origin: "",
     roasting: [],
-    weight: 0
+    weight: 0,
+    price: 20000
   });
 
   useEffect(() => {

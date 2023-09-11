@@ -6,6 +6,7 @@ export interface CoffeeBeanInfoType {
   roasting: string[];
   feature: string[];
   description: string;
+  price: number;
 }
 
 export interface MenuItemListType {
