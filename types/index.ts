@@ -26,3 +26,7 @@ export interface RoastingDocsType {
   description: string;
   short_description: string;
 }
+
+export interface RequiredInputType {
+  name: string;
+}
