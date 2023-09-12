@@ -1,9 +1,11 @@
-import { CardMedia } from "@mui/material";
-import PaymentField from "./paymentField";
+import { CardMedia, TextField, styled } from "@mui/material";
 
-interface PaymentListPropsType {
-  props: any;
-}
+const CustomTextField = styled(TextField)({
+  background: "white",
+  marginBottom: "20px",
+  borderRadius: "5px",
+  width: "50%"
+})
 
 const PaymentList = () => {
   return (
@@ -14,11 +16,12 @@ const PaymentList = () => {
         image=""
         alt=""
       />
-      {/* {props.map((v: any, index: number) => {
-        return (
-          <PaymentField key={index}/>
-        )
-      })} */}
+      <CustomTextField
+        disabled
+        id="outlined-disabled"
+        label=""
+        defaultValue=""
+      />
     </div>
   )
 }
