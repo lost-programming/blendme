@@ -142,11 +142,17 @@ const BlendPage = () => {
 
   useEffect(() => {
     const list = [...ratioList].splice(0, blendList.length);
+    // 전체 퍼센트 합 구함
     const sum = list.reduce((a, b) => {
       return a + b;
     }, 0);
+    // 블랜딩 가격 구하기
+    const totalPrice = blendList.reduce((a, b, i) => {
+      return a + (b.price * (list[i] / 100))
+    }, 0);
     setRatioSum(sum);
-    console.log(sum);
+    console.log(blendList);
+    console.log(totalPrice);
   }, [ratioList, blendList]);
 
   return (
