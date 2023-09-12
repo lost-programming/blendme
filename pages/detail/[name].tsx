@@ -118,7 +118,7 @@ const DetailPage = () => {
             <FeatureList feature={ beanData.feature }/>
             <RoastingTable active_level={ beanData.roasting }/>
             <SimpleInfoText infoText={ beanData.description }/>
-            <PriceText price={ beanData.weight }/>
+            <PriceText price={ beanData.price }/>
             {/* 버튼 Box */}
             <ButtonContainer>
               <BlendButton onClick={() => Blending()}>블랜딩</BlendButton>

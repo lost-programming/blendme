@@ -19,6 +19,7 @@ const SelectItemList = styled('div')({
   padding: '20px 10px',
   marginBottom: '20px',
   display: 'flex',
+  flexWrap: 'wrap',
   border: '1px solid #DEDEDE',
   borderRadius: '8px',
 });
@@ -30,8 +31,11 @@ const NoSelect = styled('div')({
 
 // 선택한 원두
 const SelectItem = styled('div')({
+  position: 'relative',
+  minHeight: '330px',
   display: 'flex',
   flexDirection: 'column',
+  flexBasis: '20%'
 });
 
 // 안내 문구 커버

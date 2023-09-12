@@ -12,10 +12,10 @@ interface RoastingCardProps {
 }
 
 const CustomCard = styled(Card)({
-  maxWidth: 345, 
-  width: 285, 
+  flexBasis: '25%',
   padding: '15px',
   boxShadow: 'none',
+  overflow: 'unset'
 });
 
 const CustomCardContent = styled(CardContent)({
