@@ -16,8 +16,16 @@ const BlendContainer = styled('div')({
 const SelectItemList = styled('div')({
   width: '100%',
   height: 'fit-content',
-  marginBottom: '40px',
+  padding: '20px 10px',
+  marginBottom: '20px',
   display: 'flex',
+  border: '1px solid #DEDEDE',
+  borderRadius: '8px',
+});
+
+const NoSelect = styled('div')({
+  width: '100%',
+  textAlign: 'center'
 });
 
 // 선택한 원두
@@ -34,6 +42,13 @@ const InfoTextContainer = styled('div')({
   backgroundColor: '#DEDEDE',
   borderRadius: '8px',
   lineHeight: '24px',
+});
+
+const InfoTitle = styled('h4')({
+  margin: '0 0 10px',
+  color: '#020715',
+  fontSize: '16px',
+  fontWeight: '700',
 });
 
 const InfoText = styled('p')({
@@ -134,23 +149,27 @@ const BlendPage = () => {
     <BlendContainer>
       {/* 블랜딩 원두 리스트 */}
       <SelectItemList>
-        {blendList.map((bean, index) => {
-          return (
-            <SelectItem key={ 'selectItem' + index }>
-              <RoastingCard
-                bean={ bean }
-                clickEvent={() => itemClickEvent(blendList, bean.name_en, 'blendList')}
-              />
-              <RatioInput value={ ratioList[index] } index={ index } changeEvent={ RatioOnChange } ButtonEvent={ RatioAddRemove }/>
-            </SelectItem>
-          )
-        })}
+        {blendList.length > 0 ?
+          blendList.map((bean, index) => {
+            return (
+              <SelectItem key={ 'selectItem' + index }>
+                <RoastingCard
+                  bean={ bean }
+                  clickEvent={() => itemClickEvent(blendList, bean.name_en, 'blendList')}
+                />
+                <RatioInput value={ ratioList[index] } index={ index } changeEvent={ RatioOnChange } ButtonEvent={ RatioAddRemove }/>
+              </SelectItem>
+            )
+          }) :
+          <NoSelect>원두를 선택해주세요</NoSelect>
+        }
       </SelectItemList>
       {/* 안내 문구 */}
       <InfoTextContainer>
+        <InfoTitle>안내사항</InfoTitle>
         <InfoText>* 블랜딩: 2가지 이상의 원두를 섞어 새로운 맛과 향의 커피를 만드는 것</InfoText>
-        <InfoText className={'red'}>* 베이스 원두(첫번째 원두)의 비율이 40% 이하면 원하는 맛이 나오지 않습니다.</InfoText>
         {ratioSum > 100 && <InfoText className={'red'}>* 전체 원두 비율 합이 100%가 넘었습니다. 비율을 100%로 맞춰주세요.</InfoText>}
+        <InfoText className={'red'}>* 베이스 원두(첫번째 원두)의 비율이 40% 이하면 원하는 맛이 나오지 않습니다.</InfoText>
       </InfoTextContainer>
       {/* 블랜딩 원두 리스트 */}
       <BlendItemList>
