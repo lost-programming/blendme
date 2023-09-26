@@ -1,14 +1,17 @@
 import PaymentList from "./paymenyList"
 import PaymentInput from "./paymentInput"
+import styled from "styled-components"
 
-// 결제 방식 추가 해야함 ex) 카카오페이, 네이버페이 등
+const PaymentContainer = styled('div')({
+  marginTop: 30
+})
 
 const Payment = () => {
   return (
-    <div>
+    <PaymentContainer>
       <PaymentList />
       <PaymentInput />
-    </div>
+    </PaymentContainer>
   )
 }
 

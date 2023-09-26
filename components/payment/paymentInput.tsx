@@ -1,34 +1,36 @@
 import { TextField, Button, styled, Checkbox } from "@mui/material"
 import React, { useState } from "react";
+import PaymentAddress from "./paymentAddress";
 
 const CustomPaymentInput = styled(TextField)({
   display: "flex",
   flexDirection: "column",
   background: "white",
-  marginBottom: "20px",
-  borderRadius: "5px"
+  marginBottom: 20,
+  borderRadius: 5,
 })
 
 const Terms = styled('div')({
   display: "flex",
   justifyContent: "end",
   alignItems: "center",
-  marginBottom: "10px"
+  marginBottom: 10
 })
 
 const PaymentButton = styled(Button)({
   display: "flex",
-  borderRadius: "5px",
+  borderRadius: 5,
   marginLeft: "auto"
 })
 
 const PaymentInput = () => {
-  const inputName: string[] = ["이름", "배송지 정보", "전화번호"];
-  const [checked, setChecked] = useState(true);
+  const inputName: string[] = ["이름", "전화번호"];
+  const inputAddress: string[] = ["도로명 주소", "상세 주소 입력"]
 
+  const [checked, setChecked] = useState(true);
+  const [addressInfo, setAddressInfo] = useState("");
   const [detail, setDetail] = useState({
     name: "",
-    address: "",
     phone: ""
   });
 
@@ -61,6 +63,20 @@ const PaymentInput = () => {
             key={index}
             onChange={inputChange}
           />
+        )
+      })}
+      <PaymentAddress setAddressInfo={setAddressInfo}/>
+      {inputAddress.map((address: string, index: number) => {
+        return (
+          <CustomPaymentInput 
+            required
+            id="outlined-required"
+            label={address}
+            value={addressInfo}
+            size="small"
+            key={index}
+            onChange={inputChange}
+        />
         )
       })}
       <Terms>
