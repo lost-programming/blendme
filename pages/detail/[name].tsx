@@ -10,6 +10,7 @@ import RoastingTable from "../../components/table/roastingTable";
 import SimpleInfoText from "../../components/text/simpleInfoText";
 import FeatureList from "../../components/list/FeatureList";
 import PriceText from "../../components/text/priceText";
+import QuantityText from "../../components/text/quantityText";
 
 const DetailContainer = styled(Paper)(({ theme }) => ({
   padding: '30px',
@@ -79,6 +80,7 @@ interface queryData {
 const DetailPage = () => {
   const router = useRouter();
   const { query }: queryData = router;
+  const [quantity, setQuantity] = useState(1);
   const [beanData, setBeanData] = useState<CoffeeBeanInfoType>({
     description: "",
     feature: [],
@@ -97,10 +99,18 @@ const DetailPage = () => {
     }
   }, [router.isReady]);
 
-  const Blending = () => {
+  const GoBlending = () => {
     const expiryDate = addHours(new Date(), 1);
     setCookie('defaultBean', query.name, {expires: expiryDate});
     router.push(`/blend`);
+  };
+
+  const GoPayment = () => {
+    let paymentArr: CoffeeBeanInfoType = beanData;
+    paymentArr.quantity = quantity;
+    console.log(paymentArr);
+    localStorage.setItem('buyBean', JSON.stringify(paymentArr));
+    router.push('/payment');
   };
 
   return (
@@ -119,10 +129,11 @@ const DetailPage = () => {
             <RoastingTable active_level={ beanData.roasting }/>
             <SimpleInfoText infoText={ beanData.description }/>
             <PriceText price={ beanData.price }/>
+            <QuantityText quantity={ quantity } setQuantity={ setQuantity }/>
             {/* 버튼 Box */}
             <ButtonContainer>
-              <BlendButton onClick={() => Blending()}>블랜딩</BlendButton>
-              <BlendButton onClick={() => router.push('/payment')}>바로 구매하기</BlendButton>
+              <BlendButton onClick={() => GoBlending()}>블랜딩</BlendButton>
+              <BlendButton onClick={() => GoPayment()}>바로 구매하기</BlendButton>
             </ButtonContainer>
           </BeanInfoContainer>
         </> :

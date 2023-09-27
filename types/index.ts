@@ -7,6 +7,8 @@ export interface CoffeeBeanInfoType {
   feature: string[];
   description: string;
   price: number;
+  quantity?: number;
+  blendingList?: string[];
 }
 
 export interface MenuItemListType {

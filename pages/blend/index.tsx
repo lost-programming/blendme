@@ -7,6 +7,7 @@ import { CoffeeBeanInfoType } from "../../types";
 import { getCollectionData } from "../../api";
 import RoastingCard from "../../components/menu/roastingCard";
 import RatioInput from "../../components/blend/ratioInput";
+import QuantityText from "../../components/text/quantityText";
 
 const BlendContainer = styled('div')({
   width: '100%',
@@ -76,6 +77,7 @@ const BlendPage = () => {
   const router = useRouter();
   const [ratioSum, setRatioSum] = useState(0);
   const [ratioList, setRatioList] = useState([40, 8, 8, 8, 8]);
+  const [quantity, setQuantity] = useState(1);
   const [blendList, setBlendList] = useState<CoffeeBeanInfoType[]>([]);
   const [beanData, setBeanData] = useState<CoffeeBeanInfoType[]>([]);
 
@@ -174,6 +176,7 @@ const BlendPage = () => {
           <NoSelect>원두를 선택해주세요</NoSelect>
         }
       </SelectItemList>
+      <QuantityText quantity={ quantity } setQuantity={ setQuantity }/>
       {/* 안내 문구 */}
       <InfoTextContainer>
         <InfoTitle>안내사항</InfoTitle>
