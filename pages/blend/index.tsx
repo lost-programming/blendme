@@ -19,6 +19,7 @@ const SelectItemList = styled('div')({
   padding: '20px 10px',
   marginBottom: '20px',
   display: 'flex',
+  flexWrap: 'wrap',
   border: '1px solid #DEDEDE',
   borderRadius: '8px',
 });
@@ -30,8 +31,11 @@ const NoSelect = styled('div')({
 
 // 선택한 원두
 const SelectItem = styled('div')({
+  position: 'relative',
+  minHeight: '330px',
   display: 'flex',
   flexDirection: 'column',
+  flexBasis: '20%'
 });
 
 // 안내 문구 커버
@@ -138,11 +142,17 @@ const BlendPage = () => {
 
   useEffect(() => {
     const list = [...ratioList].splice(0, blendList.length);
+    // 전체 퍼센트 합 구함
     const sum = list.reduce((a, b) => {
       return a + b;
     }, 0);
+    // 블랜딩 가격 구하기
+    const totalPrice = blendList.reduce((a, b, i) => {
+      return a + (b.price * (list[i] / 100))
+    }, 0);
     setRatioSum(sum);
-    console.log(sum);
+    console.log(blendList);
+    console.log(totalPrice);
   }, [ratioList, blendList]);
 
   return (

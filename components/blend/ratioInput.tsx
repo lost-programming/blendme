@@ -9,9 +9,14 @@ interface RatioInputProps {
 }
 
 const InputBox = styled('div')({
+  position: 'absolute',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  left: '50%',
+  bottom: '0',
+  transform: 'translate(-50%, 0%)',
+
 });
 
 const IconButton = styled(Icon)(({ theme }) => ({
