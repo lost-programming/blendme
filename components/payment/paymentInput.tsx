@@ -8,6 +8,7 @@ const CustomPaymentInput = styled(TextField)({
   background: "white",
   marginBottom: 20,
   borderRadius: 5,
+  width: "50%"
 })
 
 const Terms = styled('div')({
@@ -58,7 +59,7 @@ const PaymentInput = () => {
             required
             id="outlined-required"
             label={name}
-            defaultValue=""
+            value={detail.name}
             size="small"
             key={index}
             onChange={inputChange}

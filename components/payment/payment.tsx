@@ -1,6 +1,6 @@
 import PaymentList from "./paymenyList"
 import PaymentInput from "./paymentInput"
-import styled from "styled-components"
+import { styled } from "@mui/material";
 
 const PaymentContainer = styled('div')({
   marginTop: 30
