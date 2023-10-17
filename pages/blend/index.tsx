@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { styled } from "@mui/material";
+import { Button, styled } from "@mui/material";
 import { getCookie } from "cookies-next/lib";
 
 import { CoffeeBeanInfoType } from "../../types";
@@ -71,6 +71,18 @@ const BlendItemList = styled('div')({
   justifyContent: 'center'
 });
 
+const BlendButton = styled(Button)(({ theme }) => ({
+  padding: '5px 15px',
+  marginRight: '10px',
+  color: '#fff',
+  borderColor: '#808080',
+  backgroundColor: '#808080',
+  "&:hover": {
+    borderColor: '#808080',
+    backgroundColor: '#808080',
+  }
+}));
+
 // TO-DO : 블랜딩 % 적용 -> index 0번이 40% 이하로 내려갔을때랑 추가 원두가 8% 이하로 내려가면 안내문구 제공
 //                      -> 블랜딩 총합이 100%가 안되거나 초과되면 안내문구 제공 및 버튼 비활성화
 const BlendPage = () => {
@@ -78,6 +90,7 @@ const BlendPage = () => {
   const [ratioSum, setRatioSum] = useState(0);
   const [ratioList, setRatioList] = useState([40, 8, 8, 8, 8]);
   const [quantity, setQuantity] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
   const [blendList, setBlendList] = useState<CoffeeBeanInfoType[]>([]);
   const [beanData, setBeanData] = useState<CoffeeBeanInfoType[]>([]);
 
@@ -142,6 +155,24 @@ const BlendPage = () => {
     }
   };
 
+  // 구매 페이지 이동
+  const GoPayment = () => {
+    const payData = {
+      name: '블랜딩 원두',
+      name_en: 'blending Beans',
+      origin: 'blending',
+      weight: 1000 * quantity,
+      roasting: [...new Set(blendList.map((v) => v.roasting).flat())],
+      feature: [...new Set(blendList.map((v) => v.feature).flat())],
+      description: '다른 품종의 생두를 혼합해 새로운 커피의 맛과 향을 가진 커피를 만들기 위해 생두를 혼합한 원두',
+      price: totalPrice,
+      quantity: quantity,
+      blendingList: blendList.map((v) => v.name),
+    };
+    localStorage.setItem('buyBean', JSON.stringify(payData));
+    router.push('/payment');
+  };
+
   useEffect(() => {
     const list = [...ratioList].splice(0, blendList.length);
     // 전체 퍼센트 합 구함
@@ -149,12 +180,11 @@ const BlendPage = () => {
       return a + b;
     }, 0);
     // 블랜딩 가격 구하기
-    const totalPrice = blendList.reduce((a, b, i) => {
+    const price = blendList.reduce((a, b, i) => {
       return a + (b.price * (list[i] / 100))
     }, 0);
     setRatioSum(sum);
-    console.log(blendList);
-    console.log(totalPrice);
+    setTotalPrice(price);
   }, [ratioList, blendList]);
 
   return (
@@ -177,6 +207,7 @@ const BlendPage = () => {
         }
       </SelectItemList>
       <QuantityText quantity={ quantity } setQuantity={ setQuantity }/>
+      <BlendButton onClick={() => GoPayment()} disabled={ratioSum !== 100}>구매하기</BlendButton>
       {/* 안내 문구 */}
       <InfoTextContainer>
         <InfoTitle>안내사항</InfoTitle>
