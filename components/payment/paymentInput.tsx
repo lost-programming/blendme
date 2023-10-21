@@ -42,6 +42,7 @@ const PaymentInput = () => {
   });
 
   const [checked, setChecked] = useState<boolean>(false);
+  const [finish, setFinish] = useState<boolean>(false);
   const [addressInfo, setAddressInfo] = useState<string>("");
   const [detailAddressInfo, setDetailAddressInfo] = useState<string>("");
   const [fullAddressInfo, setFullAddressInfo] = useState<string>("");
@@ -93,14 +94,17 @@ const PaymentInput = () => {
     open({onComplete: handleComplete});
   }
 
-  const inputSubmit = () => {
+  // inputSubmit 상품 정보, name, phone, fullAddressInfo 객체 형식으로 넘기기
+
+  const inputSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     checked 
-      ? setFullAddressInfo(addressInfo + detailAddressInfo)
+      ? (setFullAddressInfo(addressInfo + detailAddressInfo), setFinish(!finish))
       : alert("약관 내용에 동의해주세요.")
   };
 
   return (
-    <div>
+    <form onSubmit={inputSubmit}>
       {inputName.map((name: InputNameType, index: number) => {
         return (
           <InputTextField
@@ -131,10 +135,10 @@ const PaymentInput = () => {
         주문 내용을 확인하였으며, 정보 제공 등에 동의합니다.
         <Checkbox checked={checked} onChange={checkChange}/>
       </Terms>
-      <PaymentButton variant="contained" onClick={inputSubmit}>
+      <PaymentButton type="submit" variant="contained" disabled={finish}>
         결제 완료
       </PaymentButton>
-    </div>
+    </form>
   )
 }
 
