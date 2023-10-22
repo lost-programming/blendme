@@ -167,10 +167,11 @@ const BlendPage = () => {
       description: '다른 품종의 생두를 혼합해 새로운 커피의 맛과 향을 가진 커피를 만들기 위해 생두를 혼합한 원두',
       price: totalPrice,
       quantity: quantity,
-      blendingList: blendList.map((v) => v.name),
+      blendingList: blendList.map((v, i) => { return [v.name, ratioList[i]] }),
     };
-    localStorage.setItem('buyBean', JSON.stringify(payData));
-    router.push('/payment');
+    console.log(payData);
+    // localStorage.setItem('buyBean', JSON.stringify(payData));
+    // router.push('/payment');
   };
 
   useEffect(() => {
