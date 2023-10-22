@@ -1,27 +1,24 @@
-import { Card, CardMedia, CardContent, Typography } from "@mui/material";
+import { Card, CardMedia, styled } from "@mui/material";
 
 interface CustomCardTypes {
   image: string;
   alt: string;
-  value: string;
 }
 
-const CustomCard = ({ image, alt, value }: CustomCardTypes) => {
+const CardConatainer = styled(Card)({
+  display: "flex",
+  width: 350,
+})
+
+const CustomCard = ({ image, alt }: CustomCardTypes) => {
   return (
-    <Card>
+    <CardConatainer>
       <CardMedia
         component="img"
-        height="140"
         image={image}
         alt={alt}
-        sx={{ maxWidth: 350 }}
       />
-      <CardContent>
-        <Typography gutterBottom variant="body2" component="div">
-          {value}
-        </Typography>
-      </CardContent>
-    </Card>
+    </CardConatainer>
   )
 };
 

@@ -1,7 +1,6 @@
 import { Button, styled, Checkbox } from "@mui/material"
 import React, { useState } from "react";
 import { InputNameType } from "../../types/index";
-import { CustomTextField } from "./disabledTextField";
 import InputTextField from "./inputTextField";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
@@ -117,12 +116,10 @@ const PaymentInput = () => {
           />
         )
       })}
-      <CustomTextField
-        required
-        id="outlined-required"
+      <InputTextField
+        title="address"
         label="배송지 정보"
         value={addressInfo}
-        size="small"
         onClick={addressSelect}
       />
       <InputTextField

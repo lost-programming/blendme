@@ -5,7 +5,8 @@ interface InputTextFieldTypes {
   label: string;
   value: string;
   name?: string;
-  onChange: React.ChangeEventHandler
+  onChange?: React.ChangeEventHandler
+  onClick?: React.MouseEventHandler<HTMLDivElement>
 }
 
 const CustomInputTextField = styled(TextField)({
@@ -16,7 +17,7 @@ const CustomInputTextField = styled(TextField)({
   borderRadius: 5,
 });
 
-const InputTextField = ({ title, name, label, value, onChange }: InputTextFieldTypes) => {
+const InputTextField = ({ title, name, label, value, onChange, onClick }: InputTextFieldTypes) => {
   return (
     <CustomInputTextField 
       required
@@ -27,6 +28,7 @@ const InputTextField = ({ title, name, label, value, onChange }: InputTextFieldT
       value={value}
       size="small"
       onChange={onChange}
+      onClick={onClick}
     />
   )
 }

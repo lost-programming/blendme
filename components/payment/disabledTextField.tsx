@@ -1,27 +1,32 @@
 import { TextField, styled } from "@mui/material";
 
-export const CustomTextField = styled(TextField)({
+interface CustomTextFieldTypes {
+  width: string;
+}
+
+export const CustomTextField = styled(TextField)<CustomTextFieldTypes>(({ width }) => ({
   diplay: "flex",
   flexDirection: "row",
-  background: "white",
-  marginBottom: "20px",
-  borderRadius: "5px",
-  width: "30%",
-});
+  borderRadius: 5,
+  width: width
+}));
 
 interface DisabledTextFieldTypes {
   label: string;
   value: string;
+  width: string;
 }
 
-const DisabledTextField = ({ label, value }: DisabledTextFieldTypes) => {
+const DisabledTextField = ({ label, value, width}: DisabledTextFieldTypes) => {
   return (
-    <CustomTextField 
+    <CustomTextField
       disabled
       id="outlined-disabled"
+      fullWidth
       label={label}
       value={value}
       size="small"
+      width={width}
     />
   )
 }
