@@ -8,6 +8,7 @@ import { getCollectionData } from "../../api";
 import RoastingCard from "../../components/menu/roastingCard";
 import RatioInput from "../../components/blend/ratioInput";
 import QuantityText from "../../components/text/quantityText";
+import withHead from "../../hoc/withHead";
 
 const BlendContainer = styled('div')({
   width: '100%',
@@ -228,4 +229,4 @@ const BlendPage = () => {
   )
 };
 
-export default BlendPage;
+export default withHead(BlendPage, '블랜딩 페이지', '원하는 원두를 섞어 하나의 원두를 만드는것을 도와주는 페이지');
