@@ -28,3 +28,8 @@ export interface RoastingDocsType {
   description: string;
   short_description: string;
 }
+
+export interface InputNameType {
+  title: string;
+  category: string;
+}

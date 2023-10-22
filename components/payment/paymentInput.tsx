@@ -1,93 +1,141 @@
-import { TextField, Button, styled, Checkbox } from "@mui/material"
+import { Button, styled, Checkbox } from "@mui/material"
 import React, { useState } from "react";
-import PaymentAddress from "./paymentAddress";
+import { InputNameType } from "../../types/index";
+import InputTextField from "./inputTextField";
+import { useDaumPostcodePopup } from "react-daum-postcode";
+import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
 
-const CustomPaymentInput = styled(TextField)({
-  display: "flex",
-  flexDirection: "column",
-  background: "white",
-  marginBottom: 20,
-  borderRadius: 5,
-  width: "50%"
-})
+interface InputsType {
+  name: string;
+  phone: string;
+};
 
-const Terms = styled('div')({
+const Terms = styled("div")({
   display: "flex",
   justifyContent: "end",
   alignItems: "center",
   marginBottom: 10
-})
+});
 
 const PaymentButton = styled(Button)({
   display: "flex",
   borderRadius: 5,
   marginLeft: "auto"
-})
+});
 
 const PaymentInput = () => {
-  const inputName: string[] = ["이름", "전화번호"];
-  const inputAddress: string[] = ["도로명 주소", "상세 주소 입력"]
+  const inputName: InputNameType[] = [
+    {
+      title: "name",
+      category: "이름"
+    },
+    {
+      title: "phone",
+      category: "전화번호"
+    }
+  ];
 
-  const [checked, setChecked] = useState(true);
-  const [addressInfo, setAddressInfo] = useState("");
-  const [detail, setDetail] = useState({
+  const [inputs, setInputs] = useState<InputsType>({
     name: "",
     phone: ""
   });
 
+  const [checked, setChecked] = useState<boolean>(false);
+  const [finish, setFinish] = useState<boolean>(false);
+  const [addressInfo, setAddressInfo] = useState<string>("");
+  const [detailAddressInfo, setDetailAddressInfo] = useState<string>("");
+  const [fullAddressInfo, setFullAddressInfo] = useState<string>("");
+
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    console.log(e.target.value)
-    setDetail({ ...detail, [name]: value })
+    const { name, value } = e.target;
+    setInputs({ ...inputs, [name]: value });
   };
 
+  const addressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDetailAddressInfo(e.target.value);
+  };
+
+  // 필수 입력 정보를 지웠을떄 처리는 어떻게 해야함
   const checkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(e.target.checked);
+    if (inputs.name && inputs.phone && addressInfo && detailAddressInfo) {
+      setChecked(e.target.checked);
+    }
+    else {
+      if (checked) {
+        setChecked(!checked);
+      }
+      else {
+        alert("필수 입력 정보가 입력되지 않았습니다.");
+      }
+    }
+  };
+
+  const open = useDaumPostcodePopup(postcodeScriptUrl);
+
+  const handleComplete = (data: any) => {
+    let fullAddress = data.address;
+    let extraAddress = "";
+    let localAddress = data.sido + " " + data.sigungu;
+
+    if (data.addressType === "R") {
+      if (data.bname !== "") {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== "") {
+        extraAddress += (extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName);
+      }
+      fullAddress = fullAddress.replace(localAddress, "");
+      setAddressInfo(fullAddress += (extraAddress !== "" ? `(${extraAddress})` : ""));
+    }
   }
+
+  const addressSelect = () => {
+    open({onComplete: handleComplete});
+  }
+
+  // inputSubmit 상품 정보, name, phone, fullAddressInfo 객체 형식으로 넘기기
 
   const inputSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // detail 넘겨야 함
-    // post 요청 자리인가?
-  }
+    checked 
+      ? (setFullAddressInfo(addressInfo + detailAddressInfo), setFinish(!finish))
+      : alert("약관 내용에 동의해주세요.")
+  };
 
   return (
-    <div>
-      {inputName.map((name: string, index: number) => {
+    <form onSubmit={inputSubmit}>
+      {inputName.map((name: InputNameType, index: number) => {
         return (
-          <CustomPaymentInput 
-            required
-            id="outlined-required"
-            label={name}
-            value={detail.name}
-            size="small"
+          <InputTextField
+            title={name.title}
+            name={name.title}
+            label={name.category}
+            value={name.title === "name" ? inputs.name : inputs.phone}
             key={index}
             onChange={inputChange}
           />
         )
       })}
-      <PaymentAddress setAddressInfo={setAddressInfo}/>
-      {inputAddress.map((address: string, index: number) => {
-        return (
-          <CustomPaymentInput 
-            required
-            id="outlined-required"
-            label={address}
-            value={addressInfo}
-            size="small"
-            key={index}
-            onChange={inputChange}
-        />
-        )
-      })}
+      <InputTextField
+        title="address"
+        label="배송지 정보"
+        value={addressInfo}
+        onClick={addressSelect}
+      />
+      <InputTextField
+        title="detail"
+        label="상세 주소 입력"
+        value={detailAddressInfo}
+        onChange={addressChange}
+      />
       <Terms>
         주문 내용을 확인하였으며, 정보 제공 등에 동의합니다.
         <Checkbox checked={checked} onChange={checkChange}/>
       </Terms>
-      <PaymentButton variant="contained" onSubmit={inputSubmit}>
+      <PaymentButton type="submit" variant="contained" disabled={finish}>
         결제 완료
       </PaymentButton>
-    </div>
+    </form>
   )
 }
 
