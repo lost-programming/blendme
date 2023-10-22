@@ -9,9 +9,9 @@ import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
 interface InputsType {
   name: string;
   phone: string;
-}
+};
 
-const Terms = styled('div')({
+const Terms = styled("div")({
   display: "flex",
   justifyContent: "end",
   alignItems: "center",

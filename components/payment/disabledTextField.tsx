@@ -1,10 +1,12 @@
 import { TextField, styled } from "@mui/material";
 
 export const CustomTextField = styled(TextField)({
+  diplay: "flex",
+  flexDirection: "row",
   background: "white",
   marginBottom: "20px",
   borderRadius: "5px",
-  width: "60%",
+  width: "30%",
 });
 
 interface DisabledTextFieldTypes {

@@ -1,16 +1,41 @@
-import { CardMedia, styled } from "@mui/material";
+import { Card, CardMedia, styled, CardContent, Typography } from "@mui/material";
 import DisabledTextField from "./disabledTextField";
 import { useEffect, useState } from "react";
+import CustomCard from "./customCard";
 
-// 받아야 하는 props 목록 => 이미지 / 상품 정보(이름, 용량) / 수량 / 가격
+interface buyBeanTypes {
+  name: string;
+  name_en: string;
+  origin: string;
+  weight: number;
+  roasting: string[];
+  feature: string[];
+  description: string;
+  price: number;
+  quantity: number;
+  blendingList: string[];
+};
 
 const PaymentListContainer = styled("div")({
   border: 5,
-  borderRadius: 5
+  borderRadius: 5,
+  width: 1000,
+  height: 300
 });
 
 const PaymentList = () => {
-  const [buyBeanData, setBuyBeanData] = useState("");
+  const [buyBeanData, setBuyBeanData] = useState<buyBeanTypes>({
+    name: "",
+    name_en: "",
+    origin: "",
+    weight: 0,
+    roasting: [],
+    feature: [],
+    description: "",
+    price: 0,
+    quantity: 0,
+    blendingList: []
+  });
 
   useEffect(() => {
     const getbuyBean = localStorage.getItem("buyBean");
@@ -19,17 +44,39 @@ const PaymentList = () => {
     }
   }, []);
   console.log(buyBeanData)
+  const { name, price, quantity, blendingList } = buyBeanData;
+
+  const blending: string = blendingList.toString();
+  const total_price: string = price.toLocaleString();
+  const total_quantity: string = quantity.toLocaleString();
+
   return (
     <PaymentListContainer>
-      <CardMedia
-        component="img"
-        height="100%"
-        image="" // props.이미지
-        alt="" // props.이름
+      {buyBeanData && blendingList.length === 1 
+        ? 
+          <CustomCard 
+            image="roasted_coffee_beans.jpg"
+            alt={blending}
+            value={blending}
+          />
+        :
+          <CustomCard 
+            image="coffeebean.png"
+            alt={name}
+            value={blending}
+          />
+      }
+      <DisabledTextField
+        label="상품 정보"
+        value={blending}
       />
       <DisabledTextField
-        label=""
-        value=""
+        label="수량"
+        value={total_quantity}
+      />
+      <DisabledTextField
+        label="가격"
+        value={total_price}
       />
     </PaymentListContainer>
   )
