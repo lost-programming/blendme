@@ -8,6 +8,7 @@ import { getCollectionData } from "../../api";
 import RoastingCard from "../../components/menu/roastingCard";
 import RatioInput from "../../components/blend/ratioInput";
 import QuantityText from "../../components/text/quantityText";
+import withHead from "../../hoc/withHead";
 
 const BlendContainer = styled('div')({
   width: '100%',
@@ -167,10 +168,11 @@ const BlendPage = () => {
       description: '다른 품종의 생두를 혼합해 새로운 커피의 맛과 향을 가진 커피를 만들기 위해 생두를 혼합한 원두',
       price: totalPrice,
       quantity: quantity,
-      blendingList: blendList.map((v) => v.name),
+      blendingList: blendList.map((v, i) => { return [v.name, ratioList[i]] }),
     };
-    localStorage.setItem('buyBean', JSON.stringify(payData));
-    router.push('/payment');
+    console.log(payData);
+    // localStorage.setItem('buyBean', JSON.stringify(payData));
+    // router.push('/payment');
   };
 
   useEffect(() => {
@@ -227,4 +229,4 @@ const BlendPage = () => {
   )
 };
 
-export default BlendPage;
+export default withHead(BlendPage, '블랜딩 페이지', '원하는 원두를 섞어 하나의 원두를 만드는것을 도와주는 페이지');
