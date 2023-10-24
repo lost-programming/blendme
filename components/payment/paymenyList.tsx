@@ -1,7 +1,6 @@
 import { styled } from "@mui/material";
-import DisabledTextField from "./disabledTextField";
 import { useEffect, useState } from "react";
-import CustomCard from "./customCard";
+import CustomTable from "./customTable";
 
 interface buyBeanTypes {
   name: string;
@@ -49,40 +48,19 @@ const PaymentList = () => {
     }
   }, []);
   console.log(buyBeanData)
-  const { name, price, quantity, blendingList } = buyBeanData;
+  const { price, quantity, weight, blendingList } = buyBeanData;
 
   const blending: string = blendingList.toString();
   const total_price: string = price.toLocaleString();
-  const total_quantity: string = quantity.toLocaleString();
+  const quantity_weight: string = quantity.toLocaleString() + ", " + weight.toLocaleString();
 
   return (
     <PaymentListContainer>
-      {buyBeanData && blendingList.length === 1 
-        ? 
-          <CustomCard 
-            image="roasted_coffee_beans.jpg"
-            alt={blending}
-          />
-        :
-          <CustomCard 
-            image="coffeebean.png"
-            alt={name}
-          />
-      }
-      <DisabledTextField
-        label="상품 정보"
-        value={blending}
-        width="30%"
-      />
-      <DisabledTextField
-        label="수량"
-        value={total_quantity}
-        width="30%"
-      />
-      <DisabledTextField
-        label="가격"
-        value={total_price}
-        width="30%"
+      <CustomTable 
+        image={buyBeanData && blendingList.length === 1 ? "roasted_coffee_beans.jpg" : "coffeebean.png"}
+        name={blending}
+        quantity_weight={quantity_weight}
+        price={total_price}
       />
     </PaymentListContainer>
   )
