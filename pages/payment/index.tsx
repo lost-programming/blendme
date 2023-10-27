@@ -1,20 +1,44 @@
 import { styled, Box } from "@mui/material";
-import PaymentList from "../../components/payment/paymenyList";
+import PaymentList from "../../components/payment/paymentList";
 import PaymentInput from "../../components/payment/paymentInput";
-
-// paymentList props로 받기
-// component, page 분리 작업 해야함 (menu, payment)
-// 변수명 변경 작업 해야함
+import { useEffect, useState } from "react";
+import { CoffeeBeanInfoType } from "../../types";
 
 const PaymentContainer = styled(Box)({
   marginTop: 30,
 })
 
 const Payment = () => {
+  const [buyBeanData, setBuyBeanData] = useState<CoffeeBeanInfoType>({
+    name: "",
+    name_en: "",
+    origin: "",
+    weight: 0,
+    roasting: [],
+    feature: [],
+    description: "",
+    price: 0,
+    quantity: 0,
+    blendingList: []
+  });
+
+  useEffect(() => {
+    const getbuyBean = localStorage.getItem("buyBean");
+    if (getbuyBean !== null) {
+      setBuyBeanData(JSON.parse(getbuyBean));
+    }
+  }, []);
+  
   return (
     <PaymentContainer>
-      <PaymentList />
-      <PaymentInput />
+      <PaymentList
+        image={buyBeanData.origin}
+        name={buyBeanData.blendingList?.join(" / ")}
+        weight={buyBeanData.weight}
+        quantity={buyBeanData.quantity}
+        price={buyBeanData.price}
+      />
+      <PaymentInput price={buyBeanData.price} quantity={buyBeanData.quantity}/>
     </PaymentContainer>
   )
 }

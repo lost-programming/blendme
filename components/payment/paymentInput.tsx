@@ -1,29 +1,52 @@
-import { Button, styled, Checkbox } from "@mui/material"
+import { Button, styled, Checkbox, FormControlLabel, FormControl, RadioGroup, Radio } from "@mui/material"
 import React, { useState } from "react";
 import { InputNameType } from "../../types/index";
 import InputTextField from "./inputTextField";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
+import { setNumberComma } from "../../utils/dataFormat";
+
+interface PaymentInputTypes {
+  price: number;
+  quantity: number | undefined;
+}
 
 interface InputsType {
   name: string;
   phone: string;
 };
 
+const Title = styled("h4")({
+  
+})
+
+const InputContainer = styled("div")({
+  marginBottom: 10
+})
+
+const TotalPrice = styled("div")({
+  textAlign: "center"
+})
+
 const Terms = styled("div")({
   display: "flex",
-  justifyContent: "end",
+  justifyContent: "center",
   alignItems: "center",
   marginBottom: 10
 });
 
-const PaymentButton = styled(Button)({
+const ButtonContainer = styled("div")({
   display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  marginBottom: 20
+})
+
+const PaymentButton = styled(Button)({
   borderRadius: 5,
-  marginLeft: "auto"
 });
 
-const PaymentInput = () => {
+const PaymentInput = ({ price, quantity }: PaymentInputTypes) => {
   const inputName: InputNameType[] = [
     {
       title: "name",
@@ -104,37 +127,62 @@ const PaymentInput = () => {
 
   return (
     <form onSubmit={inputSubmit}>
-      {inputName.map((name: InputNameType, index: number) => {
-        return (
-          <InputTextField
-            title={name.title}
-            name={name.title}
-            label={name.category}
-            value={name.title === "name" ? inputs.name : inputs.phone}
-            key={index}
-            onChange={inputChange}
-          />
-        )
-      })}
-      <InputTextField
-        title="address"
-        label="배송지 정보"
-        value={addressInfo}
-        onClick={addressSelect}
-      />
-      <InputTextField
-        title="detail"
-        label="상세 주소 입력"
-        value={detailAddressInfo}
-        onChange={addressChange}
-      />
+      <InputContainer>
+        <Title>
+          필수 정보 입력
+        </Title>
+        {inputName.map((name: InputNameType, index: number) => {
+          return (
+            <InputTextField
+              title={name.title}
+              name={name.title}
+              label={name.category}
+              value={name.title === "name" ? inputs.name : inputs.phone}
+              key={index}
+              onChange={inputChange}
+            />
+          )
+        })}
+        <InputTextField
+          title="address"
+          label="배송지 정보"
+          value={addressInfo}
+          onClick={addressSelect}
+        />
+        <InputTextField
+          title="detail"
+          label="상세 주소 입력"
+          value={detailAddressInfo}
+          onChange={addressChange}
+        />
+      </InputContainer>
+      <InputContainer>
+        <FormControl>
+          <Title>
+            결제 수단 선택
+          </Title>
+          <RadioGroup
+            aria-labelledby="demo-radio-buttons-group-label"
+            name="radio-buttons-group"
+          >
+            <FormControlLabel value="card" control={<Radio />} label="카드 간편 결제"/>
+            <FormControlLabel value="normal" control={<Radio />} label="일반 결제"/>
+            <FormControlLabel value="naverpay" control={<Radio />} label="네이버페이"/>
+          </RadioGroup>
+      </FormControl>
+      </InputContainer>
+      <TotalPrice>
+        총 결제 금액 {quantity && <strong>{setNumberComma(price * quantity)}</strong>} 원
+      </TotalPrice>
       <Terms>
         주문 내용을 확인하였으며, 정보 제공 등에 동의합니다.
         <Checkbox checked={checked} onChange={checkChange}/>
       </Terms>
-      <PaymentButton type="submit" variant="contained" disabled={finish}>
-        결제 완료
-      </PaymentButton>
+      <ButtonContainer>
+        <PaymentButton type="submit" variant="contained" disabled={!checked || finish}>
+          결제 완료
+        </PaymentButton>
+      </ButtonContainer>
     </form>
   )
 }
