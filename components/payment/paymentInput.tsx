@@ -5,6 +5,7 @@ import InputTextField from "./inputTextField";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
 import { setNumberComma } from "../../utils/dataFormat";
+import { useRouter } from "next/router";
 
 interface PaymentInputTypes {
   price: number;
@@ -43,10 +44,13 @@ const ButtonContainer = styled("div")({
 })
 
 const PaymentButton = styled(Button)({
+  width: 500,
   borderRadius: 5,
 });
 
 const PaymentInput = ({ price, quantity }: PaymentInputTypes) => {
+  const router = useRouter();
+
   const inputName: InputNameType[] = [
     {
       title: "name",
@@ -65,6 +69,7 @@ const PaymentInput = ({ price, quantity }: PaymentInputTypes) => {
 
   const [checked, setChecked] = useState<boolean>(false);
   const [finish, setFinish] = useState<boolean>(false);
+  const [payway, setPayway] = useState<boolean>(false);
   const [addressInfo, setAddressInfo] = useState<string>("");
   const [detailAddressInfo, setDetailAddressInfo] = useState<string>("");
   const [fullAddressInfo, setFullAddressInfo] = useState<string>("");
@@ -80,7 +85,7 @@ const PaymentInput = ({ price, quantity }: PaymentInputTypes) => {
 
   // 필수 입력 정보를 지웠을떄 처리는 어떻게 해야함
   const checkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (inputs.name && inputs.phone && addressInfo && detailAddressInfo) {
+    if (inputs.name && inputs.phone && addressInfo && detailAddressInfo && payway) {
       setChecked(e.target.checked);
     }
     else {
@@ -115,8 +120,6 @@ const PaymentInput = ({ price, quantity }: PaymentInputTypes) => {
   const addressSelect = () => {
     open({onComplete: handleComplete});
   }
-
-  // inputSubmit 상품 정보, name, phone, fullAddressInfo 객체 형식으로 넘기기
 
   const inputSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -165,9 +168,9 @@ const PaymentInput = ({ price, quantity }: PaymentInputTypes) => {
             aria-labelledby="demo-radio-buttons-group-label"
             name="radio-buttons-group"
           >
-            <FormControlLabel value="card" control={<Radio />} label="카드 간편 결제"/>
-            <FormControlLabel value="normal" control={<Radio />} label="일반 결제"/>
-            <FormControlLabel value="naverpay" control={<Radio />} label="네이버페이"/>
+            <FormControlLabel value="normal" control={<Radio />} label="일반 결제" onClick={() => setPayway(true)}/>
+            <FormControlLabel value="card" control={<Radio />} label="카드 간편 결제" onClick={() => setPayway(true)}/>
+            <FormControlLabel value="naverpay" control={<Radio />} label="네이버페이" onClick={() => setPayway(true)}/>
           </RadioGroup>
       </FormControl>
       </InputContainer>
@@ -179,7 +182,13 @@ const PaymentInput = ({ price, quantity }: PaymentInputTypes) => {
         <Checkbox checked={checked} onChange={checkChange}/>
       </Terms>
       <ButtonContainer>
-        <PaymentButton type="submit" variant="contained" disabled={!checked || finish}>
+        <PaymentButton 
+          type="submit" 
+          variant="contained" 
+          size="large" 
+          disabled={!checked || finish}
+          onClick={() => router.push("/success")}
+        >
           결제 완료
         </PaymentButton>
       </ButtonContainer>

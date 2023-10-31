@@ -1,14 +1,16 @@
-import { styled, Box } from "@mui/material";
+import { styled, Button } from "@mui/material";
+import { useRouter } from "next/router";
 import PaymentList from "../../components/payment/paymentList";
-import PaymentInput from "../../components/payment/paymentInput";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { CoffeeBeanInfoType } from "../../types";
 
-const PaymentContainer = styled(Box)({
-  marginTop: 30,
+const SucceessContainer = styled("div")({
+  textAlign: "center"
 })
 
-const Payment = () => {
+const PaymentSuccess = () => {
+  const router = useRouter();
+
   const [buyBeanData, setBuyBeanData] = useState<CoffeeBeanInfoType>({
     name: "",
     name_en: "",
@@ -22,16 +24,16 @@ const Payment = () => {
     blendingList: [],
     image: ""
   });
-
+  
   useEffect(() => {
     const getbuyBean = localStorage.getItem("buyBean");
     if (getbuyBean !== null) {
       setBuyBeanData(JSON.parse(getbuyBean));
     }
   }, []);
-  
+
   return (
-    <PaymentContainer>
+    <SucceessContainer>
       <PaymentList
         image={buyBeanData.image}
         info={buyBeanData.blendingList?.join(" / ")}
@@ -39,9 +41,10 @@ const Payment = () => {
         quantity={buyBeanData.quantity}
         price={buyBeanData.price}
       />
-      <PaymentInput price={buyBeanData.price} quantity={buyBeanData.quantity}/>
-    </PaymentContainer>
+      <h3>결제가 완료됐습니다.</h3>
+      <Button onClick={() => router.push("/")}>메인으로</Button>
+    </SucceessContainer>
   )
 }
 
-export default Payment;
+export default PaymentSuccess;

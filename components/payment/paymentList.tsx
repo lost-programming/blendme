@@ -4,7 +4,7 @@ import Image from "next/image";
 
 interface PaymentListTypes {
   image: string;
-  name: string | undefined;
+  info: string | undefined;
   weight: number;
   quantity: number | undefined;
   price: number;
@@ -26,13 +26,13 @@ const BodyTableCell = styled(TableCell)({
   display: "inline-block"
 })
 
-const PaymentList = ({ image, name, weight, quantity, price }: PaymentListTypes) => {
+const PaymentList = ({ image, info, weight, quantity, price }: PaymentListTypes) => {
   const total_price = quantity && setNumberComma(price * quantity);
   const comma_quantity = quantity && setNumberComma(quantity)
 
   const rowHeads: string[] = ["상품 이미지", "상품 정보", "무게(g)", "개당 가격(EA)", "수량", "총 가격"]
   const rowBodys: (string | number | undefined)[] = [
-    image, name, setNumberComma(weight), setNumberComma(price), comma_quantity, total_price]
+    image, info, setNumberComma(weight), setNumberComma(price), comma_quantity, total_price]
 
   return (
     <PaymentListContainer>
@@ -53,10 +53,25 @@ const PaymentList = ({ image, name, weight, quantity, price }: PaymentListTypes)
                 <TableCell
                   key={index}
                   align="center"
+                  sx={{ border: 0 }}
                 >
-                  {name && body === image
-                    ? <Image src={`/${image}`} alt={name} width={200} height={150}/>
-                    : <BodyTableCell component="th" scope="row" align="center">{body}</BodyTableCell>
+                  {info && body === image
+                    ? 
+                      <Image
+                        src={`/${image}`} 
+                        alt={info} 
+                        width={200} 
+                        height={150}
+                      />
+                    : 
+                      <BodyTableCell 
+                        component="th" 
+                        scope="row" 
+                        align="center" 
+                        sx={{ border: 0 }}
+                      >
+                        {body}
+                      </BodyTableCell>
                   }
                 </TableCell>
               )

@@ -29,8 +29,9 @@ const RoastingCard = ({ bean, clickEvent }: RoastingCardProps) => {
         <CardMedia
           component="img"
           height="140"
-          image="roasted_coffee_beans.jpg"
-          alt="coffee_bean"
+          src={bean.image}
+          alt={bean.image}
+          sx={{ objectFit: "contain" }}
         />
         <CustomCardContent>
           <Typography 

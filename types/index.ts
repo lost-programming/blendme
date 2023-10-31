@@ -9,6 +9,7 @@ export interface CoffeeBeanInfoType {
   price: number;
   quantity?: number;
   blendingList?: string[];
+  image?: string;
 }
 
 export interface MenuItemListType {
