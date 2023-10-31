@@ -3,7 +3,7 @@ import { setNumberComma } from "../../utils/dataFormat";
 import Image from "next/image";
 
 interface PaymentListTypes {
-  image: string;
+  image: string | undefined;
   info: string | undefined;
   weight: number;
   quantity: number | undefined;
