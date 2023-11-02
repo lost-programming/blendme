@@ -7,7 +7,7 @@ import InputTextField from "./inputTextField";
 import { Button, styled, Checkbox, FormControlLabel, FormControl, RadioGroup, Radio } from "@mui/material";
 import { InputNameType } from "../../types/index";
 
-interface PaymentInputTypes {
+interface PaymentInputPropsType {
   price: number;
   quantity: number | undefined;
 }
@@ -48,7 +48,7 @@ const PaymentButton = styled(Button)({
   borderRadius: 5,
 });
 
-const PaymentInput = ({ price, quantity }: PaymentInputTypes) => {
+const PaymentInput = ({ price, quantity }: PaymentInputPropsType) => {
   const router = useRouter();
 
   const inputName: InputNameType[] = [

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getCollectionData } from "../../api";
-import Roasting from "./roasting";
+import RoastingButton from "./roastingButton";
 import RoastingCardList from "./roastingCardList";
 import { styled } from "@mui/material";
 import { CoffeeBeanInfoType, RoastingItemsType, RoastingDocsType } from "../../types/index";
@@ -62,7 +62,7 @@ const RoastingMenu = () => {
 
   return (
     <RoastingBeanList>
-      <Roasting 
+      <RoastingButton
         roastingItems={roastingItems} 
         data={staticBeans}
         getBeanData={getBeanData}

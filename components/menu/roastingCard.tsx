@@ -1,7 +1,7 @@
 import { styled, Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
 import { CoffeeBeanInfoType } from "../../types";
 
-interface RoastingCardProps {
+interface RoastingCardPropsType {
   bean: CoffeeBeanInfoType;
   clickEvent?: any;
 }
@@ -17,7 +17,7 @@ const CustomCardContent = styled(CardContent)({
   padding: '15 0'
 });
 
-const RoastingCard = ({ bean, clickEvent }: RoastingCardProps) => {
+const RoastingCard = ({ bean, clickEvent }: RoastingCardPropsType) => {
   return (
     <CustomCard onClick={clickEvent}>
       <CardActionArea>

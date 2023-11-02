@@ -2,7 +2,7 @@ import Image from "next/image";
 import { setNumberComma } from "../../utils/dataFormat";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, styled } from "@mui/material";
 
-interface PaymentListTypes {
+interface PaymentListPropsType {
   image: string | undefined;
   info: string | undefined;
   weight: number;
@@ -26,7 +26,7 @@ const BodyTableCell = styled(TableCell)({
   display: 'inline-block'
 })
 
-const PaymentList = ({ image, info, weight, quantity, price }: PaymentListTypes) => {
+const PaymentList = ({ image, info, weight, quantity, price }: PaymentListPropsType) => {
   const total_price = quantity && setNumberComma(price * quantity);
   const comma_quantity = quantity && setNumberComma(quantity)
 

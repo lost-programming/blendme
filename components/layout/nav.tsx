@@ -1,12 +1,7 @@
-import { useState, MouseEvent }from 'react';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import { useRouter } from 'next/router';
-import { MenuItemListType } from '../../types/index';
-import Image from 'next/image';
-import coffeebean from '../public/coffeebean.png';
-import Stack from '@mui/material/Stack';
+import { useState, MouseEvent }from "react";
+import { useRouter } from "next/router";
+import { Button, Menu, MenuItem, Stack } from "@mui/material";
+import { MenuItemListType } from "../../types/index";
 
 const Nav = () => {
   const router = useRouter();
@@ -42,7 +37,6 @@ const Nav = () => {
       justifyContent='center' 
       marginTop='15px'
     >
-      {/* <Image src={coffeebean} alt='main'/> */}
       {menuItemList.map((menu: MenuItemListType, index: number) => {
         return (
           <div key={index}>

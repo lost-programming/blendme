@@ -7,7 +7,7 @@ interface RoastingCardPropsType {
   beanData: CoffeeBeanInfoType[];
 }
 
-const CardList = styled('div')({
+const CardContainer = styled('div')({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap'
@@ -21,13 +21,13 @@ const RoastingCardList = ({ beanData }: RoastingCardPropsType) => {
   };
 
   return (
-    <CardList>
+    <CardContainer>
       {beanData && beanData.map((bean: any, index: number) => {
         return (
           <RoastingCard bean={bean} key={index} clickEvent={() => routerEvent(bean.name_en)}/>
         )
       })}
-    </CardList>
+    </CardContainer>
   )
 };
 

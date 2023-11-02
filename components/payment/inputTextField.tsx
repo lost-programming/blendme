@@ -1,12 +1,12 @@
 import { styled, TextField } from "@mui/material";
 
-interface InputTextFieldTypes {
+interface InputTextFieldPropsType {
   title: string;
   label: string;
   value: string;
   name?: string;
-  onChange?: React.ChangeEventHandler
-  onClick?: React.MouseEventHandler<HTMLDivElement>
+  onChange?: React.ChangeEventHandler;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 const CustomInputTextField = styled(TextField)({
@@ -17,7 +17,7 @@ const CustomInputTextField = styled(TextField)({
   borderRadius: 5
 });
 
-const InputTextField = ({ title, name, label, value, onChange, onClick }: InputTextFieldTypes) => {
+const InputTextField = ({ title, name, label, value, onChange, onClick }: InputTextFieldPropsType) => {
   return (
     <CustomInputTextField 
       required

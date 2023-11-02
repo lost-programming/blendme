@@ -1,9 +1,9 @@
 import { styled } from "@mui/material";
 import { RoastingDocsType, RoastingItemsType } from "../../types";
 
-interface RoastingDescriptionPropsType {
-  selectedMenu: RoastingDocsType[] | undefined
-  selectedRoasting: RoastingItemsType
+interface RoastingDesPropsType {
+  selectedMenu: RoastingDocsType[] | undefined;
+  selectedRoasting: RoastingItemsType;
 }
 
 const Description = styled('div')({
@@ -18,7 +18,7 @@ const Description = styled('div')({
   background: '#3F51B5'
 })
 
-const RoastingDescription = ({ selectedMenu, selectedRoasting }: RoastingDescriptionPropsType) => {
+const RoastingDescription = ({ selectedMenu, selectedRoasting }: RoastingDesPropsType) => {
   return (
     <div>
       {selectedMenu && selectedRoasting.category !== 'all'
