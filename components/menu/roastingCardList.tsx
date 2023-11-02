@@ -1,8 +1,7 @@
-import React from 'react';
-import {  styled } from '@mui/material';
-import { CoffeeBeanInfoType } from '../../types/index';
-import RoastingCard from './roastingCard';
 import { useRouter } from "next/router";
+import { styled } from "@mui/material";
+import RoastingCard from "./roastingCard";
+import { CoffeeBeanInfoType } from "../../types/index";
 
 interface RoastingCardPropsType {
   beanData: CoffeeBeanInfoType[];

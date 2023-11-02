@@ -1,10 +1,7 @@
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Box from '@mui/material/Box'
-import { RoastingItemsType, CoffeeBeanInfoType, RoastingDocsType } from '../../types/index';
-import { styled } from '@mui/material';
-import RoastingDescription from './roastingDescription';
-import { useState } from 'react';
+import { useState } from "react";
+import RoastingDescription from "./roastingDescription";
+import { styled, Box, Button, ButtonGroup } from "@mui/material";
+import { RoastingItemsType, CoffeeBeanInfoType, RoastingDocsType } from "../../types/index";
 
 interface RoastingPropsType {
   getBeanData: Function
@@ -16,9 +13,9 @@ interface RoastingPropsType {
 const RoastingName = styled('div')({
   display: 'flex',
   flexDirection: 'row',
+  flexWrap: 'wrap',
   justifyContent: 'center',
-  height: 200,
-  flexWrap: 'wrap'
+  height: 200
 });
 
 interface RoastingButtonType {
@@ -26,8 +23,8 @@ interface RoastingButtonType {
 }
 
 const RoastingButton = styled(Button)<RoastingButtonType>(({ bgColor }) => ({
-  fontSize: 18,
   height: 45,
+  fontSize: 18,
   fontWeight: 700,
   color: '#212121',
 

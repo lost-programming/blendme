@@ -9,13 +9,13 @@ interface RoastingDescriptionPropsType {
 const Description = styled('div')({
   display: 'flex',
   flexFlow: 'row',
-  width: 1140,
-  height: 100,
-  background: '#3F51B5',
-  padding: 5,
   alignItems: 'center',
   justifyContent: 'center',
-  color: '#FFFAFA'
+  width: 1140,
+  height: 100,
+  padding: 5,
+  color: '#FFFAFA',
+  background: '#3F51B5'
 })
 
 const RoastingDescription = ({ selectedMenu, selectedRoasting }: RoastingDescriptionPropsType) => {

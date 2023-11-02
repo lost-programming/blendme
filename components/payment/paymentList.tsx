@@ -1,6 +1,6 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, styled } from "@mui/material";
-import { setNumberComma } from "../../utils/dataFormat";
 import Image from "next/image";
+import { setNumberComma } from "../../utils/dataFormat";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, styled } from "@mui/material";
 
 interface PaymentListTypes {
   image: string | undefined;
@@ -10,39 +10,39 @@ interface PaymentListTypes {
   price: number;
 }
 
-const PaymentListContainer = styled("div")({
-  display: "flex",
+const PaymentListContainer = styled('div')({
+  display: 'flex',
+  width: '100%',
+  height: 300,
+  padding: 30,
+  marginBottom: 30,
   border: 1,
   borderRadius: 5,
-  borderStyle: "solid",
-  borderColor: "#808080",
-  marginBottom: 30,
-  padding: 30,
-  width: "100%",
-  height: 300
+  borderStyle: 'solid',
+  borderColor: '#808080'
 });
 
 const BodyTableCell = styled(TableCell)({
-  display: "inline-block"
+  display: 'inline-block'
 })
 
 const PaymentList = ({ image, info, weight, quantity, price }: PaymentListTypes) => {
   const total_price = quantity && setNumberComma(price * quantity);
   const comma_quantity = quantity && setNumberComma(quantity)
 
-  const rowHeads: string[] = ["상품 이미지", "상품 정보", "무게(g)", "개당 가격(EA)", "수량", "총 가격"]
+  const rowHeads: string[] = ['상품 이미지', '상품 정보', '무게(g)', '개당 가격(EA)', '수량', '총 가격']
   const rowBodys: (string | number | undefined)[] = [
     image, info, setNumberComma(weight), setNumberComma(price), comma_quantity, total_price]
 
   return (
     <PaymentListContainer>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 650 }} aria-label='simple table'>
           <TableHead>
             <TableRow>
               {rowHeads.map((head: string, index: number) => {
                 return (
-                  <TableCell key={index} align="center">{head}</TableCell>
+                  <TableCell key={index} align='center'>{head}</TableCell>
                 )
               })}
             </TableRow>
@@ -52,7 +52,7 @@ const PaymentList = ({ image, info, weight, quantity, price }: PaymentListTypes)
               return (
                 <TableCell
                   key={index}
-                  align="center"
+                  align='center'
                   sx={{ border: 0 }}
                 >
                   {info && body === image
@@ -65,9 +65,9 @@ const PaymentList = ({ image, info, weight, quantity, price }: PaymentListTypes)
                       />
                     : 
                       <BodyTableCell 
-                        component="th" 
-                        scope="row" 
-                        align="center" 
+                        component='th' 
+                        scope='row' 
+                        align='center' 
                         sx={{ border: 0 }}
                       >
                         {body}

@@ -1,10 +1,5 @@
-import React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea, styled } from '@mui/material';
-import { CoffeeBeanInfoType } from '../../types';
+import { styled, Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
+import { CoffeeBeanInfoType } from "../../types";
 
 interface RoastingCardProps {
   bean: CoffeeBeanInfoType;
@@ -13,13 +8,13 @@ interface RoastingCardProps {
 
 const CustomCard = styled(Card)({
   flexBasis: '25%',
-  padding: '15px',
+  padding: 15,
   boxShadow: 'none',
   overflow: 'unset'
 });
 
 const CustomCardContent = styled(CardContent)({
-  padding: '15px 0'
+  padding: '15 0'
 });
 
 const RoastingCard = ({ bean, clickEvent }: RoastingCardProps) => {

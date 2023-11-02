@@ -10,23 +10,23 @@ interface InputTextFieldTypes {
 }
 
 const CustomInputTextField = styled(TextField)({
-  display: "flex",
-  flexDirection: "column",
-  background: "white",
+  display: 'flex',
+  flexDirection: 'column',
   marginBottom: 20,
-  borderRadius: 5,
+  background: 'white',
+  borderRadius: 5
 });
 
 const InputTextField = ({ title, name, label, value, onChange, onClick }: InputTextFieldTypes) => {
   return (
     <CustomInputTextField 
       required
-      id="outlined-required"
+      id='outlined-required'
       title={title}
       name={name}
       label={label}
       value={value}
-      size="small"
+      size='small'
       onChange={onChange}
       onClick={onClick}
     />

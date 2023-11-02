@@ -1,11 +1,11 @@
-import { Button, styled, Checkbox, FormControlLabel, FormControl, RadioGroup, Radio } from "@mui/material"
-import React, { useState } from "react";
-import { InputNameType } from "../../types/index";
-import InputTextField from "./inputTextField";
+import { useState } from "react";
+import { useRouter } from "next/router";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
 import { setNumberComma } from "../../utils/dataFormat";
-import { useRouter } from "next/router";
+import InputTextField from "./inputTextField";
+import { Button, styled, Checkbox, FormControlLabel, FormControl, RadioGroup, Radio } from "@mui/material";
+import { InputNameType } from "../../types/index";
 
 interface PaymentInputTypes {
   price: number;
@@ -17,29 +17,29 @@ interface InputsType {
   phone: string;
 };
 
-const Title = styled("h4")({
+const Title = styled('h4')({
   
 })
 
-const InputContainer = styled("div")({
+const InputContainer = styled('div')({
   marginBottom: 10
 })
 
-const TotalPrice = styled("div")({
-  textAlign: "center"
+const TotalPrice = styled('div')({
+  textAlign: 'center'
 })
 
-const Terms = styled("div")({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+const Terms = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   marginBottom: 10
 });
 
-const ButtonContainer = styled("div")({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+const ButtonContainer = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   marginBottom: 20
 })
 
@@ -53,26 +53,26 @@ const PaymentInput = ({ price, quantity }: PaymentInputTypes) => {
 
   const inputName: InputNameType[] = [
     {
-      title: "name",
-      category: "이름"
+      title: 'name',
+      category: '이름'
     },
     {
-      title: "phone",
-      category: "전화번호"
+      title: 'phone',
+      category: '전화번호'
     }
   ];
 
   const [inputs, setInputs] = useState<InputsType>({
-    name: "",
-    phone: ""
+    name: '',
+    phone: ''
   });
 
   const [checked, setChecked] = useState<boolean>(false);
   const [finish, setFinish] = useState<boolean>(false);
   const [payway, setPayway] = useState<boolean>(false);
-  const [addressInfo, setAddressInfo] = useState<string>("");
-  const [detailAddressInfo, setDetailAddressInfo] = useState<string>("");
-  const [fullAddressInfo, setFullAddressInfo] = useState<string>("");
+  const [addressInfo, setAddressInfo] = useState<string>('');
+  const [detailAddressInfo, setDetailAddressInfo] = useState<string>('');
+  const [fullAddressInfo, setFullAddressInfo] = useState<string>('');
 
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -93,7 +93,7 @@ const PaymentInput = ({ price, quantity }: PaymentInputTypes) => {
         setChecked(!checked);
       }
       else {
-        alert("필수 입력 정보가 입력되지 않았습니다.");
+        alert('필수 입력 정보가 입력되지 않았습니다.');
       }
     }
   };
@@ -102,18 +102,18 @@ const PaymentInput = ({ price, quantity }: PaymentInputTypes) => {
 
   const handleComplete = (data: any) => {
     let fullAddress = data.address;
-    let extraAddress = "";
-    let localAddress = data.sido + " " + data.sigungu;
+    let extraAddress = '';
+    let localAddress = data.sido + ' ' + data.sigungu;
 
-    if (data.addressType === "R") {
-      if (data.bname !== "") {
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
         extraAddress += data.bname;
       }
-      if (data.buildingName !== "") {
-        extraAddress += (extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName);
+      if (data.buildingName !== '') {
+        extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
       }
-      fullAddress = fullAddress.replace(localAddress, "");
-      setAddressInfo(fullAddress += (extraAddress !== "" ? `(${extraAddress})` : ""));
+      fullAddress = fullAddress.replace(localAddress, '');
+      setAddressInfo(fullAddress += (extraAddress !== '' ? `(${extraAddress})` : ''));
     }
   }
 
@@ -125,7 +125,7 @@ const PaymentInput = ({ price, quantity }: PaymentInputTypes) => {
     e.preventDefault();
     checked 
       ? (setFullAddressInfo(addressInfo + detailAddressInfo), setFinish(!finish))
-      : alert("약관 내용에 동의해주세요.")
+      : alert('약관 내용에 동의해주세요.')
   };
 
   return (
@@ -140,21 +140,21 @@ const PaymentInput = ({ price, quantity }: PaymentInputTypes) => {
               title={name.title}
               name={name.title}
               label={name.category}
-              value={name.title === "name" ? inputs.name : inputs.phone}
+              value={name.title === 'name' ? inputs.name : inputs.phone}
               key={index}
               onChange={inputChange}
             />
           )
         })}
         <InputTextField
-          title="address"
-          label="배송지 정보"
+          title='address'
+          label='배송지 정보'
           value={addressInfo}
           onClick={addressSelect}
         />
         <InputTextField
-          title="detail"
-          label="상세 주소 입력"
+          title='detail'
+          label='상세 주소 입력'
           value={detailAddressInfo}
           onChange={addressChange}
         />
@@ -165,12 +165,12 @@ const PaymentInput = ({ price, quantity }: PaymentInputTypes) => {
             결제 수단 선택
           </Title>
           <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            name="radio-buttons-group"
+            aria-labelledby='demo-radio-buttons-group-label'
+            name='radio-buttons-group'
           >
-            <FormControlLabel value="normal" control={<Radio />} label="일반 결제" onClick={() => setPayway(true)}/>
-            <FormControlLabel value="card" control={<Radio />} label="카드 간편 결제" onClick={() => setPayway(true)}/>
-            <FormControlLabel value="naverpay" control={<Radio />} label="네이버페이" onClick={() => setPayway(true)}/>
+            <FormControlLabel value='normal' control={<Radio />} label='일반 결제' onClick={() => setPayway(true)}/>
+            <FormControlLabel value='card' control={<Radio />} label='카드 간편 결제' onClick={() => setPayway(true)}/>
+            <FormControlLabel value='naverpay' control={<Radio />} label='네이버페이' onClick={() => setPayway(true)}/>
           </RadioGroup>
       </FormControl>
       </InputContainer>
@@ -183,11 +183,11 @@ const PaymentInput = ({ price, quantity }: PaymentInputTypes) => {
       </Terms>
       <ButtonContainer>
         <PaymentButton 
-          type="submit" 
-          variant="contained" 
-          size="large" 
+          type='submit' 
+          variant='contained' 
+          size='large' 
           disabled={!checked || finish}
-          onClick={() => router.push("/success")}
+          onClick={() => router.push('/success')}
         >
           결제 완료
         </PaymentButton>
