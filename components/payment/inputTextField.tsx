@@ -10,27 +10,34 @@ interface InputTextFieldPropsType {
 }
 
 const CustomInputTextField = styled(TextField)({
-  display: 'flex',
-  flexDirection: 'column',
+  display: "flex",
+  flexDirection: "column",
   marginBottom: 20,
-  background: 'white',
-  borderRadius: 5
+  background: "white",
+  borderRadius: 5,
 });
 
-const InputTextField = ({ title, name, label, value, onChange, onClick }: InputTextFieldPropsType) => {
+const InputTextField = ({
+  title,
+  name,
+  label,
+  value,
+  onChange,
+  onClick,
+}: InputTextFieldPropsType) => {
   return (
-    <CustomInputTextField 
+    <CustomInputTextField
       required
-      id='outlined-required'
+      id="outlined-required"
       title={title}
       name={name}
       label={label}
       value={value}
-      size='small'
+      size="small"
       onChange={onChange}
       onClick={onClick}
     />
-  )
-}
+  );
+};
 
 export default InputTextField;

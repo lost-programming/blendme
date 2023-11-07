@@ -5,8 +5,8 @@ import { styled, Button } from "@mui/material";
 import { CoffeeBeanInfoType } from "../../types";
 
 const SucceessContainer = styled("div")({
-  textAlign: "center"
-})
+  textAlign: "center",
+});
 
 const PaymentSuccess = () => {
   const router = useRouter();
@@ -22,9 +22,9 @@ const PaymentSuccess = () => {
     price: 0,
     quantity: 0,
     blendingList: [],
-    image: ""
+    image: "",
   });
-  
+
   useEffect(() => {
     const getbuyBean = localStorage.getItem("buyBean");
     if (getbuyBean !== null) {
@@ -44,7 +44,7 @@ const PaymentSuccess = () => {
       <h3>결제가 완료됐습니다.</h3>
       <Button onClick={() => router.push("/")}>메인으로</Button>
     </SucceessContainer>
-  )
-}
+  );
+};
 
 export default PaymentSuccess;

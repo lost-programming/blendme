@@ -1,4 +1,11 @@
-import { styled, Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+  styled,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import { CoffeeBeanInfoType } from "../../types";
 
 interface RoastingCardPropsType {
@@ -7,14 +14,14 @@ interface RoastingCardPropsType {
 }
 
 const CustomCard = styled(Card)({
-  flexBasis: '25%',
+  flexBasis: "25%",
   padding: 15,
-  boxShadow: 'none',
-  overflow: 'unset'
+  boxShadow: "none",
+  overflow: "unset",
 });
 
 const CustomCardContent = styled(CardContent)({
-  padding: '15 0'
+  padding: "15 0",
 });
 
 const RoastingCard = ({ bean, clickEvent }: RoastingCardPropsType) => {
@@ -29,28 +36,25 @@ const RoastingCard = ({ bean, clickEvent }: RoastingCardPropsType) => {
           sx={{ objectFit: "contain" }}
         />
         <CustomCardContent>
-          <Typography 
-            gutterBottom variant="h5" 
-            component="div"
-          >
+          <Typography gutterBottom variant="h5" component="div">
             {bean.name}
           </Typography>
           {bean.roasting.map((item: string, index: number) => {
             return (
-              <Typography 
-                variant="body2" 
+              <Typography
+                variant="body2"
                 color="text.secondary"
                 key={index}
                 display="inline"
               >
-                {bean.roasting.length-1 !== index ? `${item} / ` : item}
+                {bean.roasting.length - 1 !== index ? `${item} / ` : item}
               </Typography>
-            )
+            );
           })}
         </CustomCardContent>
       </CardActionArea>
     </CustomCard>
-  )
+  );
 };
 
 export default RoastingCard;

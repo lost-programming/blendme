@@ -1,7 +1,11 @@
 import { useState } from "react";
 import RoastingDescription from "./roastingDescription";
 import { styled, Box, Button, ButtonGroup } from "@mui/material";
-import { RoastingItemsType, CoffeeBeanInfoType, RoastingDocsType } from "../../types/index";
+import {
+  RoastingItemsType,
+  CoffeeBeanInfoType,
+  RoastingDocsType,
+} from "../../types/index";
 
 interface MenuButtonType {
   bgColor: string;
@@ -14,49 +18,62 @@ interface RoastingButtonPropsType {
   roastingData: RoastingDocsType[];
 }
 
-const RoastingName = styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
-  height: 200
+const RoastingName = styled("div")({
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  justifyContent: "center",
+  height: 200,
 });
 
 const MenuButton = styled(Button)<MenuButtonType>(({ bgColor }) => ({
   height: 45,
   fontSize: 18,
   fontWeight: 700,
-  color: '#212121',
+  color: "#212121",
 
-  '&:hover': {
+  "&:hover": {
     backgroundColor: bgColor,
-    color: '#FFFAFA'
+    color: "#FFFAFA",
   },
-  '&:active': {
+  "&:active": {
     backgroundColor: bgColor,
-    color: '#FFFAFA'
+    color: "#FFFAFA",
   },
-  '&:focus': {
+  "&:focus": {
     backgroundColor: bgColor,
-    color: '#FFFAFA'
-  }
-}))
+    color: "#FFFAFA",
+  },
+}));
 
-const RoastingButton = ({ getBeanData, data, roastingItems, roastingData }: RoastingButtonPropsType) => {
-  const [selectedMenu, setSelectedMenu] = useState<RoastingDocsType[] | undefined>();
-  const [selectedRoasting, setSelectedRoasting] = useState<RoastingItemsType>(roastingItems[0]);
+const RoastingButton = ({
+  getBeanData,
+  data,
+  roastingItems,
+  roastingData,
+}: RoastingButtonPropsType) => {
+  const [selectedMenu, setSelectedMenu] = useState<
+    RoastingDocsType[] | undefined
+  >();
+  const [selectedRoasting, setSelectedRoasting] = useState<RoastingItemsType>(
+    roastingItems[0],
+  );
 
   const menuClick = (item: RoastingItemsType) => {
-    const beans = data && data.filter((bean: CoffeeBeanInfoType) => bean.roasting.includes(item.category));
-    const menus = roastingData.filter((menu: RoastingDocsType) => menu.name === item.name)
-    setSelectedMenu(menus)
-    setSelectedRoasting(item)
+    const beans =
+      data &&
+      data.filter((bean: CoffeeBeanInfoType) =>
+        bean.roasting.includes(item.category),
+      );
+    const menus = roastingData.filter(
+      (menu: RoastingDocsType) => menu.name === item.name,
+    );
+    setSelectedMenu(menus);
+    setSelectedRoasting(item);
 
-    item.category === 'all'
-    ? getBeanData(data) 
-    : getBeanData(beans)
+    item.category === "all" ? getBeanData(data) : getBeanData(beans);
   };
-  
+
   return (
     <RoastingName>
       {roastingItems.map((item: RoastingItemsType, index: number) => {
@@ -64,10 +81,10 @@ const RoastingButton = ({ getBeanData, data, roastingItems, roastingData }: Roas
           <Box
             key={index}
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              '& > *': {
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              "& > *": {
                 m: 1,
               },
             }}
@@ -78,11 +95,14 @@ const RoastingButton = ({ getBeanData, data, roastingItems, roastingData }: Roas
               </MenuButton>
             </ButtonGroup>
           </Box>
-        )
+        );
       })}
-      <RoastingDescription selectedMenu={selectedMenu} selectedRoasting={selectedRoasting}/>
+      <RoastingDescription
+        selectedMenu={selectedMenu}
+        selectedRoasting={selectedRoasting}
+      />
     </RoastingName>
-  )
+  );
 };
 
 export default RoastingButton;

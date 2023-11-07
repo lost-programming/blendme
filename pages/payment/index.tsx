@@ -6,7 +6,7 @@ import { CoffeeBeanInfoType } from "../../types";
 
 const PaymentContainer = styled(Box)({
   marginTop: 30,
-})
+});
 
 const Payment = () => {
   const [buyBeanData, setBuyBeanData] = useState<CoffeeBeanInfoType>({
@@ -20,7 +20,7 @@ const Payment = () => {
     price: 0,
     quantity: 0,
     blendingList: [],
-    image: ""
+    image: "",
   });
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const Payment = () => {
       setBuyBeanData(JSON.parse(getbuyBean));
     }
   }, []);
-  
+
   return (
     <PaymentContainer>
       <PaymentList
@@ -39,9 +39,9 @@ const Payment = () => {
         quantity={buyBeanData.quantity}
         price={buyBeanData.price}
       />
-      <PaymentInput price={buyBeanData.price} quantity={buyBeanData.quantity}/>
+      <PaymentInput price={buyBeanData.price} quantity={buyBeanData.quantity} />
     </PaymentContainer>
-  )
-}
+  );
+};
 
 export default Payment;

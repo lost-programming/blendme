@@ -7,28 +7,33 @@ interface RoastingCardPropsType {
   beanData: CoffeeBeanInfoType[];
 }
 
-const CardContainer = styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap'
+const CardContainer = styled("div")({
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
 });
 
 const RoastingCardList = ({ beanData }: RoastingCardPropsType) => {
   const router = useRouter();
 
   const routerEvent = (name: string) => {
-    router.push(`/detail/${ name }`)
+    router.push(`/detail/${name}`);
   };
 
   return (
     <CardContainer>
-      {beanData && beanData.map((bean: any, index: number) => {
-        return (
-          <RoastingCard bean={bean} key={index} clickEvent={() => routerEvent(bean.name_en)}/>
-        )
-      })}
+      {beanData &&
+        beanData.map((bean: any, index: number) => {
+          return (
+            <RoastingCard
+              bean={bean}
+              key={index}
+              clickEvent={() => routerEvent(bean.name_en)}
+            />
+          );
+        })}
     </CardContainer>
-  )
+  );
 };
 
 export default RoastingCardList;

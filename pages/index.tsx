@@ -5,7 +5,7 @@ const Home = () => {
     <div>
       <RoastingMenu />
     </div>
-  )
+  );
 };
 
 export default Home;
