@@ -16,10 +16,6 @@ const PaymentListContainer = styled('div')({
   height: 300,
   padding: 30,
   marginBottom: 30,
-  border: 1,
-  borderRadius: 5,
-  borderStyle: 'solid',
-  borderColor: '#808080'
 });
 
 const BodyTableCell = styled(TableCell)({
