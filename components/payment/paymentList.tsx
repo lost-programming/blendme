@@ -29,6 +29,7 @@ const PaymentListContainer = styled("div")({
 
 const BodyTableCell = styled(TableCell)({
   display: "inline-block",
+  maxWidth: 190,
 });
 
 const BodyImage = styled("img")({
@@ -45,10 +46,10 @@ const PaymentList = ({
 }: PaymentListPropsType) => {
   const total_price = quantity && setNumberComma(price * quantity);
   const comma_quantity = quantity && setNumberComma(quantity);
-
+  console.log(info);
   const rowHeads: string[] = [
     "상품 이미지",
-    "상품 정보",
+    "상품 이름",
     "무게(g)",
     "개당 가격(EA)",
     "수량",

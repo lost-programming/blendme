@@ -36,7 +36,11 @@ const PaymentSuccess = () => {
     <SucceessContainer>
       <PaymentList
         image={buyBeanData.image}
-        info={buyBeanData.blendingList?.join(" / ")}
+        info={
+          buyBeanData.blendingList
+            ? buyBeanData.blendingList.join(" / ")
+            : buyBeanData.name
+        }
         weight={buyBeanData.weight}
         quantity={buyBeanData.quantity}
         price={buyBeanData.price}
