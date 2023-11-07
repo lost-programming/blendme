@@ -169,8 +169,8 @@ const BlendPage = () => {
       price: totalPrice,
       quantity: quantity,
       blendingList: blendList.map((v, i) => { return [v.name, ratioList[i]] }),
+      image: 'blending_coffee.jpeg'
     };
-    console.log(payData);
     localStorage.setItem('buyBean', JSON.stringify(payData));
     router.push('/payment');
   };
