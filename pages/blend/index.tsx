@@ -171,8 +171,8 @@ const BlendPage = () => {
       blendingList: blendList.map((v, i) => { return [v.name, ratioList[i]] }),
     };
     console.log(payData);
-    // localStorage.setItem('buyBean', JSON.stringify(payData));
-    // router.push('/payment');
+    localStorage.setItem('buyBean', JSON.stringify(payData));
+    router.push('/payment');
   };
 
   useEffect(() => {

@@ -14,8 +14,7 @@ const PaymentListContainer = styled('div')({
   display: 'flex',
   width: '100%',
   height: 300,
-  padding: 30,
-  marginBottom: 30,
+  marginBottom: 30
 });
 
 const BodyTableCell = styled(TableCell)({
