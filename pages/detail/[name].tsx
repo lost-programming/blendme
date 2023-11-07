@@ -121,7 +121,7 @@ const DetailPage = () => {
           <BeanSimpleContainer>
             <BeanName>{ beanData.name } { setNumberComma(beanData.weight) }g</BeanName>
             <BeanOrigin>원산지: { beanData.origin }</BeanOrigin>
-            <BeanImage src={'../coffee_bean.png'}/>
+            <BeanImage src={`../${ beanData.image }`}/>
           </BeanSimpleContainer>
           {/* 원두 기본 정보 */}
           <BeanInfoContainer>

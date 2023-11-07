@@ -209,7 +209,7 @@ const BlendPage = () => {
         }
       </SelectItemList>
       <QuantityText quantity={ quantity } setQuantity={ setQuantity }/>
-      <BlendButton onClick={() => GoPayment()} disabled={ratioSum !== 100}>구매하기</BlendButton>
+      <BlendButton onClick={() => GoPayment()} disabled={ ratioSum !== 100 || blendList.length < 2 }>구매하기</BlendButton>
       {/* 안내 문구 */}
       <InfoTextContainer>
         <InfoTitle>안내사항</InfoTitle>
