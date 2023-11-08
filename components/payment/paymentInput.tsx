@@ -13,7 +13,11 @@ import {
   RadioGroup,
   Radio,
 } from "@mui/material";
-import { InputNameType } from "../../types/index";
+
+interface InputNameType {
+  title: string;
+  category: string;
+}
 
 interface PaymentInputPropsType {
   price: number;

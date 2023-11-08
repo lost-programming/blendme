@@ -12,11 +12,6 @@ export interface CoffeeBeanInfoType {
   image?: string;
 }
 
-export interface MenuItemListType {
-  name: string;
-  items: string[];
-}
-
 export interface RoastingItemsType {
   name: string;
   category: string;
@@ -28,9 +23,4 @@ export interface RoastingDocsType {
   level: number;
   description: string;
   short_description: string;
-}
-
-export interface InputNameType {
-  title: string;
-  category: string;
 }
