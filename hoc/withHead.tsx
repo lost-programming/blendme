@@ -1,7 +1,7 @@
 import Head from "next/head";
 
-const withHead = (Component, title, description) => {
-  const C = props => {
+const withHead = (Component: any, title: string, description: string) => {
+  const C = (props: any) => {
     return (
       <>
         <Head>

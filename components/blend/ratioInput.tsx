@@ -15,21 +15,24 @@ const InputBox = styled('div')({
   justifyContent: 'center',
   left: '50%',
   bottom: '0',
-  transform: 'translate(-50%, 0%)',
-
+  transform: 'translate(-50%, 0%)'
 });
 
 const IconButton = styled(Icon)(({ theme }) => ({
   fontSize: '30px !important',
 }));
 
-const Ratio = styled(Input)(({ theme }) => ({
+const Ratio = styled(Input)<any>(({ theme }) => ({
   width: '50px',
   margin: '0 6px',
   textAlign: 'center',
   "&>input": {
     width: '100%',
     textAlign: 'center',
+    "&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
+      "-webkit-appearance": "none",
+      margin: '0'
+    }
   }
 }));
 
@@ -39,8 +42,8 @@ const RatioInput = ({ value, index, changeEvent, ButtonEvent }: RatioInputProps)
     <InputBox>
       <IconButton onClick={() => ButtonEvent('remove', index)}>remove_circle</IconButton>
       <Ratio
-        type="text"
-        pattern="\d*"
+        type="number"
+        maxlength="3"
         value={ value }
         onChange={ () => changeEvent(event, index) }
         endAdornment={<InputAdornment position="end">%</InputAdornment>}
