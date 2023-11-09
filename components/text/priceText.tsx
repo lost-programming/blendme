@@ -30,7 +30,7 @@ const PriceText = ({ price }: PriceTextProps) => {
       <PriceTitle>가격</PriceTitle>
       <Price>{ setNumberComma(price) }</Price>
     </PriceTextContainer>
-  )
+  );
 };
 
 export default PriceText;

@@ -18,11 +18,11 @@ const InputBox = styled("div")({
   transform: "translate(-50%, 0%)"
 });
 
-const IconButton = styled(Icon)(({ theme }) => ({
+const IconButton = styled(Icon)({
   fontSize: "30px !important",
-}));
+});
 
-const Ratio = styled(Input)<any>(({ theme }) => ({
+const Ratio = styled(Input)<any> ({
   width: "50px",
   margin: "0 6px",
   textAlign: "center",
@@ -34,7 +34,7 @@ const Ratio = styled(Input)<any>(({ theme }) => ({
       margin: "0"
     }
   }
-}));
+});
 
 
 const RatioInput = ({ value, index, changeEvent, ButtonEvent }: RatioInputProps) => {
@@ -50,7 +50,7 @@ const RatioInput = ({ value, index, changeEvent, ButtonEvent }: RatioInputProps)
       />
       <IconButton onClick={() => ButtonEvent("add", index)}>add_circle</IconButton>
     </InputBox>
-  )
+  );
 };
 
 export default RatioInput;

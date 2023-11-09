@@ -72,7 +72,7 @@ const BlendItemList = styled("div")({
   justifyContent: "center"
 });
 
-const BlendButton = styled(Button)(({ theme }) => ({
+const BlendButton = styled(Button)({
   padding: "5px 15px",
   marginRight: "10px",
   color: "#fff",
@@ -82,7 +82,7 @@ const BlendButton = styled(Button)(({ theme }) => ({
     borderColor: "#808080",
     backgroundColor: "#808080",
   }
-}));
+});
 
 // TO-DO : 블랜딩 % 적용 -> index 0번이 40% 이하로 내려갔을때랑 추가 원두가 8% 이하로 내려가면 안내문구 제공
 //                      -> 블랜딩 총합이 100%가 안되거나 초과되면 안내문구 제공 및 버튼 비활성화
@@ -129,6 +129,7 @@ const BlendPage = () => {
   };
 
   // 블랜딩 비율 값 입력, 변경 (input)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const RatioOnChange = (event: any, index: number) => {
     const v: number = Number(event.target.value);
     if (v <= 100) {
@@ -168,7 +169,7 @@ const BlendPage = () => {
       description: "다른 품종의 생두를 혼합해 새로운 커피의 맛과 향을 가진 커피를 만들기 위해 생두를 혼합한 원두",
       price: totalPrice,
       quantity: quantity,
-      blendingList: blendList.map((v, i) => { return [v.name, ratioList[i]] }),
+      blendingList: blendList.map((v, i) => { return [v.name, ratioList[i]]; }),
       image: "blending_coffee.jpeg"
     };
     localStorage.setItem("buyBean", JSON.stringify(payData));
@@ -183,7 +184,7 @@ const BlendPage = () => {
     }, 0);
     // 블랜딩 가격 구하기
     const price = blendList.reduce((a, b, i) => {
-      return a + (b.price * (list[i] / 100))
+      return a + (b.price * (list[i] / 100));
     }, 0);
     setRatioSum(sum);
     setTotalPrice(price);
@@ -203,7 +204,7 @@ const BlendPage = () => {
                 />
                 <RatioInput value={ ratioList[index] } index={ index } changeEvent={ RatioOnChange } ButtonEvent={ RatioAddRemove }/>
               </SelectItem>
-            )
+            );
           }) :
           <NoSelect>원두를 선택해주세요</NoSelect>
         }
@@ -221,12 +222,12 @@ const BlendPage = () => {
       <BlendItemList>
         {beanData.map((bean: CoffeeBeanInfoType, index: number) => {
           return (
-						<RoastingCard bean={ bean } key={ index } clickEvent={() => itemClickEvent(beanData, bean.name_en, "beanList")}/>
-          )
+            <RoastingCard bean={ bean } key={ index } clickEvent={() => itemClickEvent(beanData, bean.name_en, "beanList")}/>
+          );
         })}
       </BlendItemList>
     </BlendContainer>
-  )
+  );
 };
 
 export default withHead(BlendPage, "블랜딩 페이지", "원하는 원두를 섞어 하나의 원두를 만드는것을 도와주는 페이지");

@@ -63,11 +63,11 @@ const RoastingTable = ({ active_level }: RoastingPropsType) => {
               />
               <p>{level}</p>
             </Item>
-          )
+          );
         })}
       </Stack>
     </RoastingContainer>
-  )
+  );
 };
 
 export default RoastingTable;

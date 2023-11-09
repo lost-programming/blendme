@@ -40,7 +40,7 @@ const FeatureList = ({ feature }: FeaturePropsType) => {
         {feature.map((v: string) => <FeatureItem key={ v }>{ v }</FeatureItem> )}
       </List>
     </FeatureContainer>
-  )
+  );
 };
 
 export default FeatureList;

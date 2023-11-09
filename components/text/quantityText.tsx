@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Icon, Input, InputAdornment, styled } from "@mui/material";
-import { setNumberComma } from "../../utils/dataFormat";
+import { Icon, styled } from "@mui/material";
 
 const QuantityTextContainer = styled("div")({
   display: "flex",
@@ -21,9 +20,9 @@ const InputBox = styled("div")({
   justifyContent: "center",
 });
 
-const IconButton = styled(Icon)(({ theme }) => ({
+const IconButton = styled(Icon)({
   fontSize: "30px !important",
-}));
+});
 
 const Text = styled("p")({
   margin: "0 10px",
@@ -57,7 +56,7 @@ const QuantityText = ({ quantity, setQuantity }: QuantityTextProps) => {
         <IconButton onClick={() => quantityCal("add")}>add_circle</IconButton>
       </InputBox>
     </QuantityTextContainer>
-  )
+  );
 };
 
 export default QuantityText;

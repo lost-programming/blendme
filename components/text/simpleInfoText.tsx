@@ -25,7 +25,7 @@ const SimpleInfoText = ({ infoText }: SimpleTextProp) => {
       <SubTitle>원두 설명</SubTitle>
       <Text>{ infoText }</Text>
     </SimpleTextContainer>
-  )
+  );
 };
 
 export default SimpleInfoText;

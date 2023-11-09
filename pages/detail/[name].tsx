@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { getCookie, setCookie } from "cookies-next/lib";
+import { setCookie } from "cookies-next/lib";
 import { styled, Paper, Button } from "@mui/material";
 // ------------------------------------------------------ //
 import { getCoffeeBeanInfo } from "../../api";
@@ -12,12 +12,12 @@ import FeatureList from "../../components/list/FeatureList";
 import PriceText from "../../components/text/priceText";
 import QuantityText from "../../components/text/quantityText";
 
-const DetailContainer = styled(Paper)(({ theme }) => ({
+const DetailContainer = styled(Paper)({
   padding: "30px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-}));
+});
 
 // 이름, 이미지 Box
 const BeanSimpleContainer = styled("div")({
@@ -60,7 +60,7 @@ const ButtonContainer = styled("div")({
 });
 
 // 블랜딩, 결제 버튼
-const BlendButton = styled(Button)(({ theme }) => ({
+const BlendButton = styled(Button)({
   padding: "5px 15px",
   marginRight: "10px",
   color: "#fff",
@@ -70,7 +70,7 @@ const BlendButton = styled(Button)(({ theme }) => ({
     borderColor: "#808080",
     backgroundColor: "#808080",
   }
-}));
+});
 
 // 원두 상세 페이지
 const DetailPage = () => {
@@ -91,20 +91,19 @@ const DetailPage = () => {
   useEffect(() => {
     if (router.isReady) {
       const name: any = router.query.name ? router.query.name : "";
-      getCoffeeBeanInfo(name).then((res: any) => { setBeanData(res) });
+      getCoffeeBeanInfo(name).then((res: any) => { setBeanData(res); });
     }
   }, [router.isReady]);
 
   const GoBlending = () => {
     const expiryDate = addHours(new Date(), 1);
     setCookie("defaultBean", router.query.name, {expires: expiryDate});
-    router.push(`/blend`);
+    router.push("/blend");
   };
 
   const GoPayment = () => {
-    let paymentArr: CoffeeBeanInfoType = beanData;
+    const paymentArr: CoffeeBeanInfoType = beanData;
     paymentArr.quantity = quantity;
-    console.log(paymentArr);
     localStorage.setItem("buyBean", JSON.stringify(paymentArr));
     router.push("/payment");
   };
@@ -136,7 +135,7 @@ const DetailPage = () => {
         <div>데이터가 없습니다.</div>
       }
     </DetailContainer>
-  )
+  );
 };
 
 export default DetailPage;
