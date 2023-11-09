@@ -1,3 +1,4 @@
+import React from "react";
 import { setNumberComma } from "../../utils/dataFormat";
 import {
   Table,

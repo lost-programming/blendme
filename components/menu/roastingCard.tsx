@@ -1,3 +1,4 @@
+import React from "react";
 import {
   styled,
   Card,
@@ -10,7 +11,7 @@ import { CoffeeBeanInfoType } from "../../types";
 
 interface RoastingCardPropsType {
   bean: CoffeeBeanInfoType;
-  clickEvent?: any;
+  clickEvent?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 const CustomCard = styled(Card)({

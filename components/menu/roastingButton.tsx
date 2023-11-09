@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import RoastingDescription from "./roastingDescription";
 import { styled, Box, Button, ButtonGroup } from "@mui/material";
 import {
@@ -12,7 +12,8 @@ interface MenuButtonType {
 }
 
 interface RoastingButtonPropsType {
-  getBeanData: Function;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getBeanData: any;
   data: CoffeeBeanInfoType[];
   roastingItems: RoastingItemsType[];
   roastingData: RoastingDocsType[];

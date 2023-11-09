@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PaymentList from "../../components/payment/paymentList";
 import PaymentInput from "../../components/payment/paymentInput";
 import { styled, Box } from "@mui/material";

@@ -1,6 +1,7 @@
-import '../styles/app.scss';
+import React from "react";
+import "../styles/app.scss";
 import Head from "next/head";
-import Header from '../components/layout/header';
+import Header from "../components/layout/header";
 import { AppProps } from "next/app";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -18,5 +19,5 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </div>
     </>
-  )
+  );
 }

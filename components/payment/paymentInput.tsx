@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { postcodeScriptUrl } from "react-daum-postcode/lib/loadPostcode";
@@ -13,7 +13,15 @@ import {
   RadioGroup,
   Radio,
 } from "@mui/material";
-import React from "react";
+
+interface AddressDataType {
+  address: string;
+  addressType: string;
+  bname: string;
+  buildingName: string;
+  sido: string;
+  sigungu: string;
+}
 
 interface InputNameType {
   title: string;
@@ -83,7 +91,6 @@ const PaymentInput = ({ price, quantity }: PaymentInputPropsType) => {
   const [payway, setPayway] = useState<boolean>(false);
   const [addressInfo, setAddressInfo] = useState<string>("");
   const [detailAddressInfo, setDetailAddressInfo] = useState<string>("");
-  const [fullAddressInfo, setFullAddressInfo] = useState<string>("");
 
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -94,7 +101,6 @@ const PaymentInput = ({ price, quantity }: PaymentInputPropsType) => {
     setDetailAddressInfo(e.target.value);
   };
 
-  // 필수 입력 정보를 지웠을떄 처리는 어떻게 해야함
   const checkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (
       inputs.name &&
@@ -115,10 +121,10 @@ const PaymentInput = ({ price, quantity }: PaymentInputPropsType) => {
 
   const open = useDaumPostcodePopup(postcodeScriptUrl);
 
-  const handleComplete = (data: any) => {
+  const handleComplete = (data: AddressDataType) => {
     let fullAddress = data.address;
     let extraAddress = "";
-    let localAddress = data.sido + " " + data.sigungu;
+    const localAddress = data.sido + " " + data.sigungu;
 
     if (data.addressType === "R") {
       if (data.bname !== "") {
@@ -141,10 +147,7 @@ const PaymentInput = ({ price, quantity }: PaymentInputPropsType) => {
 
   const inputSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    checked
-      ? (setFullAddressInfo(addressInfo + detailAddressInfo),
-        setFinish(!finish))
-      : alert("약관 내용에 동의해주세요.");
+    checked ? setFinish(!finish) : alert("약관 내용에 동의해주세요.");
   };
 
   return (

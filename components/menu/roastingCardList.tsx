@@ -1,3 +1,4 @@
+import React from "react";
 import { useRouter } from "next/router";
 import { styled } from "@mui/material";
 import RoastingCard from "./roastingCard";
@@ -23,7 +24,7 @@ const RoastingCardList = ({ beanData }: RoastingCardPropsType) => {
   return (
     <CardContainer>
       {beanData &&
-        beanData.map((bean: any, index: number) => {
+        beanData.map((bean: CoffeeBeanInfoType, index: number) => {
           return (
             <RoastingCard
               bean={bean}

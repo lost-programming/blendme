@@ -1,3 +1,4 @@
+import React from "react";
 import RoastingMenu from "../components/menu/roastingMenu";
 
 const Home = () => {

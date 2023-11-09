@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getCollectionData } from "../../api";
 import RoastingButton from "./roastingButton";
@@ -52,7 +52,7 @@ const RoastingMenu = () => {
         setStaticBeans(res);
         setBeanData(res);
       });
-      getCollectionData("roasting").then((res: any) => {
+      getCollectionData("roasting").then((res: RoastingDocsType[]) => {
         setRoastingData(res);
       });
     }
