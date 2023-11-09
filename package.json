@@ -2,7 +2,7 @@
   "name": "blendme",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://lost-programming/blendme",
+  "homepage": "http://lost-programming/blendme",
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
