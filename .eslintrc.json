@@ -17,13 +17,17 @@
     },
     "ecmaVersion": "latest"
   },
-  "plugins": ["import", "react", "@typescript-eslint", "prettier"],
+  "plugins": [
+    "import",
+    "react",
+    "@typescript-eslint/eslint-plugin",
+    "prettier"
+  ],
   "extends": [
+    "next/core-web-vitals",
     "plugin:import/recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
     "indent": ["error", 2],
