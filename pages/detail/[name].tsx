@@ -72,14 +72,9 @@ const BlendButton = styled(Button)(({ theme }) => ({
   }
 }));
 
-interface queryData {
-  name: string;
-}
-
 // 원두 상세 페이지
 const DetailPage = () => {
   const router = useRouter();
-  const { query }: queryData = router;
   const [quantity, setQuantity] = useState(1);
   const [beanData, setBeanData] = useState<CoffeeBeanInfoType>({
     description: "",
@@ -94,14 +89,14 @@ const DetailPage = () => {
 
   useEffect(() => {
     if (router.isReady) {
-      const name: string = query.name;
+      const name: any = router.query.name ? router.query.name : '';
       getCoffeeBeanInfo(name).then((res: CoffeeBeanInfoType) => { setBeanData(res) });
     }
   }, [router.isReady]);
 
   const GoBlending = () => {
     const expiryDate = addHours(new Date(), 1);
-    setCookie('defaultBean', query.name, {expires: expiryDate});
+    setCookie('defaultBean', router.query.name, {expires: expiryDate});
     router.push(`/blend`);
   };
 
