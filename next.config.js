@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
-  basePath: "/lost-programming.github.io",
+  basePath: "/blendme",
 };
 
 module.exports = nextConfig;
