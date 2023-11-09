@@ -2,22 +2,22 @@ import * as React from "react";
 import { styled } from "@mui/material";
 import { setNumberComma } from "../../utils/dataFormat";
 
-const PriceTextContainer = styled('div')({
-  display: 'flex',
-  textAlign: 'right',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  marginBottom: '10px',
+const PriceTextContainer = styled("div")({
+  display: "flex",
+  textAlign: "right",
+  alignItems: "center",
+  justifyContent: "space-between",
+  marginBottom: "10px",
 });
 
-const PriceTitle = styled('p')({
-  fontSize: '22px',
-  fontWeight: '700'
+const PriceTitle = styled("p")({
+  fontSize: "22px",
+  fontWeight: "700"
 });
 
-const Price = styled('p')({
-  fontSize: '18px',
-  fontWeight: '500'
+const Price = styled("p")({
+  fontSize: "18px",
+  fontWeight: "500"
 });
 
 interface PriceTextProps {

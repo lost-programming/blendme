@@ -13,62 +13,62 @@ import PriceText from "../../components/text/priceText";
 import QuantityText from "../../components/text/quantityText";
 
 const DetailContainer = styled(Paper)(({ theme }) => ({
-  padding: '30px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
+  padding: "30px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
 }));
 
 // 이름, 이미지 Box
-const BeanSimpleContainer = styled('div')({
-  width: '45%',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
+const BeanSimpleContainer = styled("div")({
+  width: "45%",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
 });
 
 // 원두 이름
-const BeanName = styled('p')({
-  fontSize: '28px',
-  fontWeight: '700',
-  marginBottom: '5px',
+const BeanName = styled("p")({
+  fontSize: "28px",
+  fontWeight: "700",
+  marginBottom: "5px",
 });
 
 // 원두 원산지
-const BeanOrigin = styled('p')({
-  color: '#000',
-  fontSize: '13px',
-  fontWeight: '500',
-  marginBottom: '15px',
+const BeanOrigin = styled("p")({
+  color: "#000",
+  fontSize: "13px",
+  fontWeight: "500",
+  marginBottom: "15px",
 });
 
 // 원두 이미지
-const BeanImage = styled('img')({
-  width: '300px',
-  height: '300px',
-  marginRight: '10px',
+const BeanImage = styled("img")({
+  width: "300px",
+  height: "300px",
+  marginRight: "10px",
 });
 
 // 원두 정보 Container
-const BeanInfoContainer = styled('div')({
-  width: '50%',
+const BeanInfoContainer = styled("div")({
+  width: "50%",
 });
 
 // 결제 Container
-const ButtonContainer = styled('div')({
+const ButtonContainer = styled("div")({
 
 });
 
 // 블랜딩, 결제 버튼
 const BlendButton = styled(Button)(({ theme }) => ({
-  padding: '5px 15px',
-  marginRight: '10px',
-  color: '#fff',
-  borderColor: '#808080',
-  backgroundColor: '#808080',
+  padding: "5px 15px",
+  marginRight: "10px",
+  color: "#fff",
+  borderColor: "#808080",
+  backgroundColor: "#808080",
   "&:hover": {
-    borderColor: '#808080',
-    backgroundColor: '#808080',
+    borderColor: "#808080",
+    backgroundColor: "#808080",
   }
 }));
 
@@ -90,14 +90,14 @@ const DetailPage = () => {
   // res tpye을 CoffeBeanType으로 설정했을시 오류 나오는거 추후 확인
   useEffect(() => {
     if (router.isReady) {
-      const name: any = router.query.name ? router.query.name : '';
+      const name: any = router.query.name ? router.query.name : "";
       getCoffeeBeanInfo(name).then((res: any) => { setBeanData(res) });
     }
   }, [router.isReady]);
 
   const GoBlending = () => {
     const expiryDate = addHours(new Date(), 1);
-    setCookie('defaultBean', router.query.name, {expires: expiryDate});
+    setCookie("defaultBean", router.query.name, {expires: expiryDate});
     router.push(`/blend`);
   };
 
@@ -105,8 +105,8 @@ const DetailPage = () => {
     let paymentArr: CoffeeBeanInfoType = beanData;
     paymentArr.quantity = quantity;
     console.log(paymentArr);
-    localStorage.setItem('buyBean', JSON.stringify(paymentArr));
-    router.push('/payment');
+    localStorage.setItem("buyBean", JSON.stringify(paymentArr));
+    router.push("/payment");
   };
 
   return (

@@ -15,6 +15,6 @@ export const getCollectionData = async (path: string) => {
 
 // 원두 정보 조회
 export const getCoffeeBeanInfo = async (name: string) => {
-  const coffeeData = await getDoc(doc(db, 'bean', name));
+  const coffeeData = await getDoc(doc(db, "bean", name));
   return coffeeData.data();
 };
