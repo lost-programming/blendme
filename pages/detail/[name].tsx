@@ -87,10 +87,11 @@ const DetailPage = () => {
     price: 20000
   });
 
+  // res tpye을 CoffeBeanType으로 설정했을시 오류 나오는거 추후 확인
   useEffect(() => {
     if (router.isReady) {
       const name: any = router.query.name ? router.query.name : '';
-      getCoffeeBeanInfo(name).then((res: CoffeeBeanInfoType) => { setBeanData(res) });
+      getCoffeeBeanInfo(name).then((res: any) => { setBeanData(res) });
     }
   }, [router.isReady]);
 

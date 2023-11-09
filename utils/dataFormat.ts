@@ -4,7 +4,7 @@ export const setNumberComma = (value: number) => {
 };
 
 // 현재 시간에 원하는 시간 추가
-export const addHours = (date, hours: number) => {
+export const addHours = (date: Date, hours: number) => {
   date.setHours(date.getHours() + hours);
   return date;
 };
