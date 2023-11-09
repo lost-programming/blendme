@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
-}
+  basePath: "/lost-programming.github.io",
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
