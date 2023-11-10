@@ -9,7 +9,6 @@ interface RoastingDesPropsType {
 
 const Description = styled("div")({
   display: "flex",
-  flexFlow: "row",
   alignItems: "center",
   justifyContent: "center",
   width: 1140,

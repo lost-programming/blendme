@@ -27,7 +27,6 @@ const CustomCardContent = styled(CardContent)({
 });
 
 const RoastingCard = ({ bean, image, clickEvent }: RoastingCardPropsType) => {
-  console.log(bean.image);
   return (
     <CustomCard onClick={clickEvent}>
       <CardActionArea>
