@@ -28,7 +28,7 @@ const RoastingCardList = ({ beanData }: RoastingCardPropsType) => {
           return (
             <RoastingCard
               bean={bean}
-              image={`../${bean.image}`}
+              image={bean.image}
               key={index}
               clickEvent={() => routerEvent(bean.name_en)}
             />
