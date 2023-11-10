@@ -37,14 +37,6 @@ const RoastingCard = ({ bean, image, clickEvent }: RoastingCardPropsType) => {
   return (
     <CustomCard onClick={clickEvent}>
       <CardActionArea>
-        {/* <CardMedia
-          component="img"
-          loading="lazy"
-          height="140"
-          src={image}
-          alt={bean.image}
-          sx={{ objectFit: "contain" }}
-        /> */}
         <CustomCardMedia
           style={{
             display: "flex",
