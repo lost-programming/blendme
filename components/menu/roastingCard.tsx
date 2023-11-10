@@ -12,7 +12,7 @@ import Image from "next/image";
 
 interface RoastingCardPropsType {
   bean: CoffeeBeanInfoType;
-  image: string;
+  image: string | undefined;
   clickEvent?: React.MouseEventHandler<HTMLDivElement>;
 }
 
@@ -44,14 +44,16 @@ const RoastingCard = ({ bean, image, clickEvent }: RoastingCardPropsType) => {
             justifyContent: "center",
           }}
         >
-          <Image
-            priority
-            src={image}
-            alt={bean.name}
-            width={220}
-            height={140}
-            objectFit="contain"
-          />
+          {image && (
+            <Image
+              priority
+              src={image}
+              alt={bean.name}
+              width={220}
+              height={140}
+              objectFit="contain"
+            />
+          )}
         </CustomCardMedia>
         <CustomCardContent>
           <Typography gutterBottom variant="h5" component="div">
