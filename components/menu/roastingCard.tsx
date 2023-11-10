@@ -46,7 +46,8 @@ const RoastingCard = ({ bean, image, clickEvent }: RoastingCardPropsType) => {
         >
           {image && (
             <Image
-              priority
+              loading="lazy"
+              placeholder="blur"
               src={image}
               alt={bean.name}
               width={220}
