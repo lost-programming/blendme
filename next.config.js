@@ -4,6 +4,7 @@ const nextConfig = {
   swcMinify: true,
   basePath: "/blendme",
   images: {
+    unoptimized: true,
     formats: ["image/avif", "image/webp"],
   },
 };
