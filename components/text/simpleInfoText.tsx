@@ -6,7 +6,7 @@ interface SimpleTextProp {
 }
 
 const SimpleTextContainer = styled("div")({
-  marginBottom: "10px"
+  marginBottom: "10px",
 });
 
 const SubTitle = styled("h4")({
@@ -16,14 +16,14 @@ const SubTitle = styled("h4")({
 });
 
 const Text = styled("p")({
-  lineHeight: "1.4"
+  lineHeight: "1.4",
 });
 
 const SimpleInfoText = ({ infoText }: SimpleTextProp) => {
   return (
     <SimpleTextContainer>
       <SubTitle>원두 설명</SubTitle>
-      <Text>{ infoText }</Text>
+      <Text>{infoText}</Text>
     </SimpleTextContainer>
   );
 };

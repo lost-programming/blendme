@@ -55,9 +55,7 @@ const BeanInfoContainer = styled("div")({
 });
 
 // 결제 Container
-const ButtonContainer = styled("div")({
-
-});
+const ButtonContainer = styled("div")({});
 
 // 블랜딩, 결제 버튼
 const BlendButton = styled(Button)({
@@ -69,7 +67,7 @@ const BlendButton = styled(Button)({
   "&:hover": {
     borderColor: "#808080",
     backgroundColor: "#808080",
-  }
+  },
 });
 
 // 원두 상세 페이지
@@ -84,20 +82,22 @@ const DetailPage = () => {
     origin: "",
     roasting: [],
     weight: 0,
-    price: 20000
+    price: 20000,
   });
 
   // res tpye을 CoffeBeanType으로 설정했을시 오류 나오는거 추후 확인
   useEffect(() => {
     if (router.isReady) {
       const name: any = router.query.name ? router.query.name : "";
-      getCoffeeBeanInfo(name).then((res: any) => { setBeanData(res); });
+      getCoffeeBeanInfo(name).then((res: any) => {
+        setBeanData(res);
+      });
     }
   }, [router.isReady]);
 
   const GoBlending = () => {
     const expiryDate = addHours(new Date(), 1);
-    setCookie("defaultBean", router.query.name, {expires: expiryDate});
+    setCookie("defaultBean", router.query.name, { expires: expiryDate });
     router.push("/blend");
   };
 
@@ -110,30 +110,35 @@ const DetailPage = () => {
 
   return (
     <DetailContainer elevation={3}>
-      {beanData ?
+      {beanData ? (
         <>
           {/* 원두 이름, 이미지 */}
           <BeanSimpleContainer>
-            <BeanName>{ beanData.name } { setNumberComma(beanData.weight) }g</BeanName>
-            <BeanOrigin>원산지: { beanData.origin }</BeanOrigin>
-            <BeanImage src={`../${ beanData.image }`}/>
+            <BeanName>
+              {beanData.name} {setNumberComma(beanData.weight)}g
+            </BeanName>
+            <BeanOrigin>원산지: {beanData.origin}</BeanOrigin>
+            <BeanImage src={`../${beanData.image}`} />
           </BeanSimpleContainer>
           {/* 원두 기본 정보 */}
           <BeanInfoContainer>
-            <FeatureList feature={ beanData.feature }/>
-            <RoastingTable active_level={ beanData.roasting }/>
-            <SimpleInfoText infoText={ beanData.description }/>
-            <PriceText price={ beanData.price }/>
-            <QuantityText quantity={ quantity } setQuantity={ setQuantity }/>
+            <FeatureList feature={beanData.feature} />
+            <RoastingTable active_level={beanData.roasting} />
+            <SimpleInfoText infoText={beanData.description} />
+            <PriceText price={beanData.price} />
+            <QuantityText quantity={quantity} setQuantity={setQuantity} />
             {/* 버튼 Box */}
             <ButtonContainer>
               <BlendButton onClick={() => GoBlending()}>블랜딩</BlendButton>
-              <BlendButton onClick={() => GoPayment()}>바로 구매하기</BlendButton>
+              <BlendButton onClick={() => GoPayment()}>
+                바로 구매하기
+              </BlendButton>
             </ButtonContainer>
           </BeanInfoContainer>
-        </> :
+        </>
+      ) : (
         <div>데이터가 없습니다.</div>
-      }
+      )}
     </DetailContainer>
   );
 };

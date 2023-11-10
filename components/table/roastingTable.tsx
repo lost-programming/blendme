@@ -2,8 +2,7 @@ import * as React from "react";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material";
 
-const RoastingContainer = styled("div")({
-});
+const RoastingContainer = styled("div")({});
 
 // Roasting 단계 Container
 const Item = styled("div")({
@@ -16,11 +15,11 @@ const Item = styled("div")({
   textAlign: "center",
   fontSize: "14px",
   "&:first-of-type": {
-    paddingLeft: "0px"
+    paddingLeft: "0px",
   },
   "&>p": {
-    whiteSpace: "nowrap"
-  }
+    whiteSpace: "nowrap",
+  },
 });
 
 // 커피콩 이미지
@@ -30,8 +29,8 @@ const IconImage = styled("img")({
   opacity: "0.1",
   marginBottom: "10px",
   "&.active": {
-    opacity: "1"
-  }
+    opacity: "1",
+  },
 });
 
 // Roasting Level 글씨
@@ -48,7 +47,16 @@ interface RoastingPropsType {
 
 // 원두 상세 페이지 로스팅 레벨 표시
 const RoastingTable = ({ active_level }: RoastingPropsType) => {
-  const roasting_level = ["Light", "Cinnamon", "Medium", "High", "City", "Full City", "French", "Italian"];
+  const roasting_level = [
+    "Light",
+    "Cinnamon",
+    "Medium",
+    "High",
+    "City",
+    "Full City",
+    "French",
+    "Italian",
+  ];
 
   return (
     <RoastingContainer>

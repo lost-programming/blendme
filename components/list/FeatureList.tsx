@@ -2,7 +2,7 @@ import * as React from "react";
 import { styled } from "@mui/material";
 
 const FeatureContainer = styled("div")({
-  marginBottom: "15px"
+  marginBottom: "15px",
 });
 
 const SubTitle = styled("h4")({
@@ -13,7 +13,7 @@ const SubTitle = styled("h4")({
 
 const List = styled("div")({
   display: "flex",
-  flexDirection: "row"
+  flexDirection: "row",
 });
 
 const FeatureItem = styled("div")({
@@ -37,7 +37,9 @@ const FeatureList = ({ feature }: FeaturePropsType) => {
     <FeatureContainer>
       <SubTitle>원두 특징</SubTitle>
       <List>
-        {feature.map((v: string) => <FeatureItem key={ v }>{ v }</FeatureItem> )}
+        {feature.map((v: string) => (
+          <FeatureItem key={v}>{v}</FeatureItem>
+        ))}
       </List>
     </FeatureContainer>
   );

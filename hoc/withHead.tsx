@@ -9,7 +9,7 @@ const withHead = (Component: any, title: string, description: string) => {
           <meta name="description" content={description} />
         </Head>
 
-        <Component {...props}/>
+        <Component {...props} />
       </>
     );
   };

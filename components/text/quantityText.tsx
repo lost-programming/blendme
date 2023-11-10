@@ -11,7 +11,7 @@ const QuantityTextContainer = styled("div")({
 
 const QuantityTitle = styled("p")({
   fontSize: "22px",
-  fontWeight: "700"
+  fontWeight: "700",
 });
 
 const InputBox = styled("div")({
@@ -26,7 +26,7 @@ const IconButton = styled(Icon)({
 
 const Text = styled("p")({
   margin: "0 10px",
-  fontSize: "22px"
+  fontSize: "22px",
 });
 
 interface QuantityTextProps {
@@ -51,8 +51,10 @@ const QuantityText = ({ quantity, setQuantity }: QuantityTextProps) => {
       <QuantityTitle>수량</QuantityTitle>
 
       <InputBox>
-        <IconButton onClick={() => quantityCal("remove")}>remove_circle</IconButton>
-        <Text>{ quantity }</Text>
+        <IconButton onClick={() => quantityCal("remove")}>
+          remove_circle
+        </IconButton>
+        <Text>{quantity}</Text>
         <IconButton onClick={() => quantityCal("add")}>add_circle</IconButton>
       </InputBox>
     </QuantityTextContainer>

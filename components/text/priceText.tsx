@@ -12,12 +12,12 @@ const PriceTextContainer = styled("div")({
 
 const PriceTitle = styled("p")({
   fontSize: "22px",
-  fontWeight: "700"
+  fontWeight: "700",
 });
 
 const Price = styled("p")({
   fontSize: "18px",
-  fontWeight: "500"
+  fontWeight: "500",
 });
 
 interface PriceTextProps {
@@ -28,7 +28,7 @@ const PriceText = ({ price }: PriceTextProps) => {
   return (
     <PriceTextContainer>
       <PriceTitle>가격</PriceTitle>
-      <Price>{ setNumberComma(price) }</Price>
+      <Price>{setNumberComma(price)}</Price>
     </PriceTextContainer>
   );
 };
