@@ -28,7 +28,7 @@ const SelectItemList = styled("div")({
 
 const NoSelect = styled("div")({
   width: "100%",
-  textAlign: "center"
+  textAlign: "center",
 });
 
 // 선택한 원두
@@ -37,7 +37,7 @@ const SelectItem = styled("div")({
   minHeight: "330px",
   display: "flex",
   flexDirection: "column",
-  flexBasis: "20%"
+  flexBasis: "20%",
 });
 
 // 안내 문구 커버
@@ -60,8 +60,8 @@ const InfoTitle = styled("h4")({
 const InfoText = styled("p")({
   "&.red": {
     color: "red",
-    fontWeight: "700"
-  }
+    fontWeight: "700",
+  },
 });
 
 // 전체 원두 리스트
@@ -69,7 +69,7 @@ const BlendItemList = styled("div")({
   display: "flex",
   flexWrap: "wrap",
   alignItems: "center",
-  justifyContent: "center"
+  justifyContent: "center",
 });
 
 const BlendButton = styled(Button)({
@@ -81,7 +81,7 @@ const BlendButton = styled(Button)({
   "&:hover": {
     borderColor: "#808080",
     backgroundColor: "#808080",
-  }
+  },
 });
 
 // TO-DO : 블랜딩 % 적용 -> index 0번이 40% 이하로 내려갔을때랑 추가 원두가 8% 이하로 내려가면 안내문구 제공
@@ -99,16 +99,19 @@ const BlendPage = () => {
   useEffect(() => {
     if (router.isReady) {
       const defaultBean = getCookie("defaultBean");
-      getCollectionData("bean")
-        .then((res: CoffeeBeanInfoType[]) => {
-          setBlendList(res.filter((v) => v.name_en === defaultBean));
-          setBeanData(res.filter((v) => v.name_en !== defaultBean));
-        });
+      getCollectionData("bean").then((res: CoffeeBeanInfoType[]) => {
+        setBlendList(res.filter((v) => v.name_en === defaultBean));
+        setBeanData(res.filter((v) => v.name_en !== defaultBean));
+      });
     }
   }, [router.isReady]);
 
   // 리스트 클릭시 이벤트 (겹치는 부분이 있어서 한개로 합침) // TO-DO : 추가로 나눌수있는지 계속 확인
-  const itemClickEvent = (items: CoffeeBeanInfoType[], name: string, type: string) => {
+  const itemClickEvent = (
+    items: CoffeeBeanInfoType[],
+    name: string,
+    type: string,
+  ) => {
     const selectItem = items.filter((v) => v.name_en === name);
     if (type === "beanList") {
       if (blendList.length <= 4) {
@@ -166,11 +169,14 @@ const BlendPage = () => {
       weight: 1000 * quantity,
       roasting: [...new Set(blendList.map((v) => v.roasting).flat())],
       feature: [...new Set(blendList.map((v) => v.feature).flat())],
-      description: "다른 품종의 생두를 혼합해 새로운 커피의 맛과 향을 가진 커피를 만들기 위해 생두를 혼합한 원두",
+      description:
+        "다른 품종의 생두를 혼합해 새로운 커피의 맛과 향을 가진 커피를 만들기 위해 생두를 혼합한 원두",
       price: totalPrice,
       quantity: quantity,
-      blendingList: blendList.map((v, i) => { return [v.name, ratioList[i]]; }),
-      image: "blending_coffee.jpeg"
+      blendingList: blendList.map((v, i) => {
+        return [v.name, ratioList[i]];
+      }),
+      image: "blending_coffee.jpeg",
     };
     localStorage.setItem("buyBean", JSON.stringify(payData));
     router.push("/payment");
@@ -184,7 +190,7 @@ const BlendPage = () => {
     }, 0);
     // 블랜딩 가격 구하기
     const price = blendList.reduce((a, b, i) => {
-      return a + (b.price * (list[i] / 100));
+      return a + b.price * (list[i] / 100);
     }, 0);
     setRatioSum(sum);
     setTotalPrice(price);
@@ -194,35 +200,65 @@ const BlendPage = () => {
     <BlendContainer>
       {/* 블랜딩 원두 리스트 */}
       <SelectItemList>
-        {blendList.length > 0 ?
+        {blendList.length > 0 ? (
           blendList.map((bean, index) => {
             return (
-              <SelectItem key={ "selectItem" + index }>
+              <SelectItem key={"selectItem" + index}>
                 <RoastingCard
-                  bean={ bean }
-                  clickEvent={() => itemClickEvent(blendList, bean.name_en, "blendList")}
+                  bean={bean}
+                  image={bean.image}
+                  clickEvent={() =>
+                    itemClickEvent(blendList, bean.name_en, "blendList")
+                  }
                 />
-                <RatioInput value={ ratioList[index] } index={ index } changeEvent={ RatioOnChange } ButtonEvent={ RatioAddRemove }/>
+                <RatioInput
+                  value={ratioList[index]}
+                  index={index}
+                  changeEvent={RatioOnChange}
+                  ButtonEvent={RatioAddRemove}
+                />
               </SelectItem>
             );
-          }) :
+          })
+        ) : (
           <NoSelect>원두를 선택해주세요</NoSelect>
-        }
+        )}
       </SelectItemList>
-      <QuantityText quantity={ quantity } setQuantity={ setQuantity }/>
-      <BlendButton onClick={() => GoPayment()} disabled={ ratioSum !== 100 || blendList.length < 2 }>구매하기</BlendButton>
+      <QuantityText quantity={quantity} setQuantity={setQuantity} />
+      <BlendButton
+        onClick={() => GoPayment()}
+        disabled={ratioSum !== 100 || blendList.length < 2}
+      >
+        구매하기
+      </BlendButton>
       {/* 안내 문구 */}
       <InfoTextContainer>
         <InfoTitle>안내사항</InfoTitle>
-        <InfoText>* 블랜딩: 2가지 이상의 원두를 섞어 새로운 맛과 향의 커피를 만드는 것</InfoText>
-        {ratioSum > 100 && <InfoText className={"red"}>* 전체 원두 비율 합이 100%가 넘었습니다. 비율을 100%로 맞춰주세요.</InfoText>}
-        <InfoText className={"red"}>* 베이스 원두(첫번째 원두)의 비율이 40% 이하면 원하는 맛이 나오지 않습니다.</InfoText>
+        <InfoText>
+          * 블랜딩: 2가지 이상의 원두를 섞어 새로운 맛과 향의 커피를 만드는 것
+        </InfoText>
+        {ratioSum > 100 && (
+          <InfoText className={"red"}>
+            * 전체 원두 비율 합이 100%가 넘었습니다. 비율을 100%로 맞춰주세요.
+          </InfoText>
+        )}
+        <InfoText className={"red"}>
+          * 베이스 원두(첫번째 원두)의 비율이 40% 이하면 원하는 맛이 나오지
+          않습니다.
+        </InfoText>
       </InfoTextContainer>
       {/* 블랜딩 원두 리스트 */}
       <BlendItemList>
         {beanData.map((bean: CoffeeBeanInfoType, index: number) => {
           return (
-            <RoastingCard bean={ bean } key={ index } clickEvent={() => itemClickEvent(beanData, bean.name_en, "beanList")}/>
+            <RoastingCard
+              bean={bean}
+              image={bean.image}
+              key={index}
+              clickEvent={() =>
+                itemClickEvent(beanData, bean.name_en, "beanList")
+              }
+            />
           );
         })}
       </BlendItemList>
@@ -230,4 +266,8 @@ const BlendPage = () => {
   );
 };
 
-export default withHead(BlendPage, "블랜딩 페이지", "원하는 원두를 섞어 하나의 원두를 만드는것을 도와주는 페이지");
+export default withHead(
+  BlendPage,
+  "블랜딩 페이지",
+  "원하는 원두를 섞어 하나의 원두를 만드는것을 도와주는 페이지",
+);

@@ -11,6 +11,7 @@ import { CoffeeBeanInfoType } from "../../types";
 
 interface RoastingCardPropsType {
   bean: CoffeeBeanInfoType;
+  image: string | undefined;
   clickEvent?: React.MouseEventHandler<HTMLDivElement>;
 }
 
@@ -25,14 +26,16 @@ const CustomCardContent = styled(CardContent)({
   padding: "15 0",
 });
 
-const RoastingCard = ({ bean, clickEvent }: RoastingCardPropsType) => {
+const RoastingCard = ({ bean, image, clickEvent }: RoastingCardPropsType) => {
+  console.log(bean.image);
   return (
     <CustomCard onClick={clickEvent}>
       <CardActionArea>
         <CardMedia
           component="img"
+          loading="lazy"
           height="140"
-          src={bean.image}
+          src={image}
           alt={bean.image}
           sx={{ objectFit: "contain" }}
         />
