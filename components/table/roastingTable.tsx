@@ -4,6 +4,12 @@ import { styled } from "@mui/material";
 
 const RoastingContainer = styled("div")({});
 
+const RoastingItemList = styled("div")({
+  display: "flex",
+  flexWrap: "wrap",
+  gap: "10px",
+});
+
 // Roasting 단계 Container
 const Item = styled("div")({
   padding: "5px",
@@ -61,7 +67,7 @@ const RoastingTable = ({ active_level }: RoastingPropsType) => {
   return (
     <RoastingContainer>
       <SubTitle>추천 로스트 레벨</SubTitle>
-      <Stack direction="row" spacing={2}>
+      <RoastingItemList>
         {roasting_level.map((level: string) => {
           return (
             <Item key={level}>
@@ -73,7 +79,7 @@ const RoastingTable = ({ active_level }: RoastingPropsType) => {
             </Item>
           );
         })}
-      </Stack>
+      </RoastingItemList>
     </RoastingContainer>
   );
 };

@@ -17,6 +17,12 @@ const DetailContainer = styled(Paper)({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
+
+  "@media screen and (max-width: 720px)" : {
+    flexDirection: "column",
+    boxShadow: "none"
+  },
+
 });
 
 // 이름, 이미지 Box
@@ -25,6 +31,11 @@ const BeanSimpleContainer = styled("div")({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+
+  "@media screen and (max-width: 720px)" : {
+    width: "100%",
+    marginBottom: "40px",
+  },
 });
 
 // 원두 이름
@@ -52,10 +63,18 @@ const BeanImage = styled("img")({
 // 원두 정보 Container
 const BeanInfoContainer = styled("div")({
   width: "50%",
+  "@media screen and (max-width: 720px)" : {
+    width: "100%"
+  },
 });
 
 // 결제 Container
-const ButtonContainer = styled("div")({});
+const ButtonContainer = styled("div")({
+  display: "flex",
+  "@media screen and (max-width: 720px)" : {
+    justifyContent: "end"
+  },
+});
 
 // 블랜딩, 결제 버튼
 const BlendButton = styled(Button)({
@@ -68,6 +87,9 @@ const BlendButton = styled(Button)({
     borderColor: "#808080",
     backgroundColor: "#808080",
   },
+  "&:last-child": {
+    marginRight: "0px"
+  }
 });
 
 // 원두 상세 페이지
