@@ -7,18 +7,19 @@ interface RoastingDesPropsType {
   selectedRoasting: RoastingItemsType;
 }
 
+const DescriptionContainer = styled(Container)({
+  width: "80%",
+});
+
 const Description = styled("div")({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: 1140,
-  height: 75,
-  padding: 5,
+  width: "100%",
+  height: 60,
   color: "#000000",
   background: "#E2E2E2",
 });
-
-const DescriptionContainer = styled(Container)({});
 
 const RoastingDescription = ({
   selectedMenu,

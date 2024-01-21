@@ -30,6 +30,8 @@ const CustomCardMedia = styled(CardMedia)({
 });
 
 const CustomCardContent = styled(CardContent)({
+  textAlign: "center",
+  wordBreak: "keep-all",
   padding: "15 0",
 });
 

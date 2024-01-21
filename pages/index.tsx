@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getCollectionData } from "../api";
-import { styled } from "@mui/material";
+import { Box, Container, styled } from "@mui/material";
 import {
   CoffeeBeanInfoType,
   RoastingItemsType,
@@ -10,12 +10,18 @@ import RoastingButton from "components/menu/roastingButton";
 import RoastingCard from "components/menu/roastingCard";
 import { useRouter } from "next/router";
 
-const RoastingBeanList = styled("div")({});
+const RoastingBeanList = styled(Container)({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+});
 
-const CardContainer = styled("div")({
+const CardContainer = styled(Container)({
   display: "flex",
   flexDirection: "row",
   flexWrap: "wrap",
+  justifyContent: "center",
 });
 
 const Home = () => {
@@ -77,12 +83,14 @@ const Home = () => {
 
   return (
     <RoastingBeanList>
-      <RoastingButton
-        roastingItems={roastingItems}
-        data={staticBeans}
-        getBeanData={getBeanData}
-        roastingData={roastingData}
-      />
+      <Box sx={{ minWidth: 280 }}>
+        <RoastingButton
+          roastingItems={roastingItems}
+          data={staticBeans}
+          getBeanData={getBeanData}
+          roastingData={roastingData}
+        />
+      </Box>
       <CardContainer>
         {beanData.map((bean: CoffeeBeanInfoType, index: number) => {
           return (

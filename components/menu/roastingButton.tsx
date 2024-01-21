@@ -24,10 +24,11 @@ const RoastingName = styled("div")({
   flexDirection: "row",
   flexWrap: "wrap",
   justifyContent: "center",
-  height: 200,
+  height: "100%",
 });
 
 const MenuButton = styled(Button)<MenuButtonType>(({ bgColor }) => ({
+  width: "100%",
   height: 45,
   fontSize: 18,
   fontWeight: 700,
