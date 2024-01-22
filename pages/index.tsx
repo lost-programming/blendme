@@ -22,6 +22,7 @@ const CardContainer = styled(Container)({
   flexDirection: "row",
   flexWrap: "wrap",
   justifyContent: "center",
+  marginTop: 30,
 });
 
 const Home = () => {

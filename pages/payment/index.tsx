@@ -5,6 +5,7 @@ import { styled, Box } from "@mui/material";
 import { CoffeeBeanInfoType } from "../../types";
 
 const PaymentContainer = styled(Box)({
+  padding: 10,
   marginTop: 30,
 });
 

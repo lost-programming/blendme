@@ -38,32 +38,41 @@ interface InputsType {
   phone: string;
 }
 
+const InputForm = styled("form")({
+  display: "flex",
+  flexDirection: "column",
+  padding: 10,
+});
+
 const Title = styled("h4")({});
 
 const InputContainer = styled("div")({
+  display: "flex",
+  flexDirection: "column",
+  flexWrap: "wrap",
   marginBottom: 10,
 });
 
 const TotalPrice = styled("div")({
   textAlign: "center",
+  marginTop: 10,
+  marginBottom: 10,
 });
 
 const Terms = styled("div")({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+  textAlign: "center",
   marginBottom: 10,
+  wordBreak: "keep-all",
 });
 
 const ButtonContainer = styled("div")({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  marginBottom: 20,
+  marginBottom: 60,
 });
 
 const PaymentButton = styled(Button)({
-  width: 500,
   borderRadius: 5,
 });
 
@@ -151,7 +160,7 @@ const PaymentInput = ({ price, quantity }: PaymentInputPropsType) => {
   };
 
   return (
-    <form onSubmit={inputSubmit}>
+    <InputForm onSubmit={inputSubmit}>
       <InputContainer>
         <Title>필수 정보 입력</Title>
         {inputName.map((name: InputNameType, index: number) => {
@@ -226,7 +235,7 @@ const PaymentInput = ({ price, quantity }: PaymentInputPropsType) => {
           결제 완료
         </PaymentButton>
       </ButtonContainer>
-    </form>
+    </InputForm>
   );
 };
 

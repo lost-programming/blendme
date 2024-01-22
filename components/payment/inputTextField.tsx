@@ -12,9 +12,7 @@ interface InputTextFieldPropsType {
 
 const CustomInputTextField = styled(TextField)({
   display: "flex",
-  flexDirection: "column",
   marginBottom: 20,
-  background: "white",
   borderRadius: 5,
 });
 

@@ -24,7 +24,7 @@ const PaymentListContainer = styled("div")({
   alignItems: "center",
   justifyContent: "center",
   width: "100%",
-  height: 300,
+  maxHeight: 300,
   marginBottom: 30,
 });
 
@@ -68,12 +68,16 @@ const PaymentList = ({
   return (
     <PaymentListContainer>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table aria-label="simple table" stickyHeader>
           <TableHead>
             <TableRow>
               {rowHeads.map((head: string, index: number) => {
                 return (
-                  <TableCell key={index} align="center">
+                  <TableCell
+                    key={index}
+                    align="center"
+                    sx={{ wordBreak: "keep-all" }}
+                  >
                     {head}
                   </TableCell>
                 );
