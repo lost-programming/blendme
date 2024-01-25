@@ -41,7 +41,17 @@ const InputForm = styled("form")({
   padding: 10,
 });
 
-const Title = styled("h4")({});
+const Title = styled("h4")({
+  marginRight: "auto",
+});
+
+const ControlLabel = styled(FormControlLabel)({
+  marginRight: "auto",
+});
+
+const CouponPoint = styled(Box)({
+  width: "50%",
+});
 
 const InputContainer = styled("div")({
   display: "flex",
@@ -190,26 +200,26 @@ const PaymentInput = ({ price, quantity }: PaymentInputPropsType) => {
           onChange={inputChange}
         />
       </InputContainer>
-      <InputContainer>
-        <FormControl>
+      <InputContainer sx={{ flexDirection: "row" }}>
+        <FormControl sx={{ width: "50%" }}>
           <Title>결제 수단 선택</Title>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
             name="radio-buttons-group"
           >
-            <FormControlLabel
+            <ControlLabel
               value="normal"
               control={<Radio />}
               label="일반 결제"
               onClick={() => setPayway(true)}
             />
-            <FormControlLabel
+            <ControlLabel
               value="card"
               control={<Radio />}
               label="카드 간편 결제"
               onClick={() => setPayway(true)}
             />
-            <FormControlLabel
+            <ControlLabel
               value="naverpay"
               control={<Radio />}
               label="네이버페이"
@@ -217,6 +227,9 @@ const PaymentInput = ({ price, quantity }: PaymentInputPropsType) => {
             />
           </RadioGroup>
         </FormControl>
+        <CouponPoint>
+          <Title>쿠폰 / 포인트</Title>
+        </CouponPoint>
       </InputContainer>
       <TotalPrice>
         총 결제 금액{" "}
