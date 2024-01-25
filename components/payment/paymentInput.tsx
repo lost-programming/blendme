@@ -12,6 +12,7 @@ import {
   FormControl,
   RadioGroup,
   Radio,
+  Box,
 } from "@mui/material";
 
 interface AddressDataType {
@@ -23,11 +24,6 @@ interface AddressDataType {
   sigungu: string;
 }
 
-interface InputNameType {
-  title: string;
-  category: string;
-}
-
 interface PaymentInputPropsType {
   price: number;
   quantity: number | undefined;
@@ -36,6 +32,7 @@ interface PaymentInputPropsType {
 interface InputsType {
   name: string;
   phone: string;
+  address: string;
 }
 
 const InputForm = styled("form")({
@@ -51,6 +48,17 @@ const InputContainer = styled("div")({
   flexDirection: "column",
   flexWrap: "wrap",
   marginBottom: 10,
+});
+
+const BasicInfo = styled(Box)({
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  width: "100%",
+});
+
+const BasicInfoDiv = styled("div")({
+  width: "48%",
 });
 
 const TotalPrice = styled("div")({
@@ -79,35 +87,20 @@ const PaymentButton = styled(Button)({
 const PaymentInput = ({ price, quantity }: PaymentInputPropsType) => {
   const router = useRouter();
 
-  const inputName: InputNameType[] = [
-    {
-      title: "name",
-      category: "이름",
-    },
-    {
-      title: "phone",
-      category: "전화번호",
-    },
-  ];
-
   const [inputs, setInputs] = useState<InputsType>({
     name: "",
     phone: "",
+    address: "",
   });
 
   const [checked, setChecked] = useState<boolean>(false);
   const [finish, setFinish] = useState<boolean>(false);
   const [payway, setPayway] = useState<boolean>(false);
   const [addressInfo, setAddressInfo] = useState<string>("");
-  const [detailAddressInfo, setDetailAddressInfo] = useState<string>("");
 
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
-  };
-
-  const addressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDetailAddressInfo(e.target.value);
   };
 
   const checkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -115,7 +108,7 @@ const PaymentInput = ({ price, quantity }: PaymentInputPropsType) => {
       inputs.name &&
       inputs.phone &&
       addressInfo &&
-      detailAddressInfo &&
+      inputs.address &&
       payway
     ) {
       setChecked(e.target.checked);
@@ -163,18 +156,26 @@ const PaymentInput = ({ price, quantity }: PaymentInputPropsType) => {
     <InputForm onSubmit={inputSubmit}>
       <InputContainer>
         <Title>필수 정보 입력</Title>
-        {inputName.map((name: InputNameType, index: number) => {
-          return (
+        <BasicInfo>
+          <BasicInfoDiv>
             <InputTextField
-              title={name.title}
-              name={name.title}
-              label={name.category}
-              value={name.title === "name" ? inputs.name : inputs.phone}
-              key={index}
+              title="name"
+              name="name"
+              label="이름"
+              value={inputs.name}
               onChange={inputChange}
             />
-          );
-        })}
+          </BasicInfoDiv>
+          <BasicInfoDiv sx={{ marginLeft: "auto" }}>
+            <InputTextField
+              title="phone"
+              name="phone"
+              label="전화번호"
+              value={inputs.phone}
+              onChange={inputChange}
+            />
+          </BasicInfoDiv>
+        </BasicInfo>
         <InputTextField
           title="address"
           label="배송지 정보"
@@ -183,9 +184,10 @@ const PaymentInput = ({ price, quantity }: PaymentInputPropsType) => {
         />
         <InputTextField
           title="detail"
+          name="address"
           label="상세 주소 입력"
-          value={detailAddressInfo}
-          onChange={addressChange}
+          value={inputs.address}
+          onChange={inputChange}
         />
       </InputContainer>
       <InputContainer>
