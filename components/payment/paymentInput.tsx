@@ -49,7 +49,7 @@ const ControlLabel = styled(FormControlLabel)({
   marginRight: "auto",
 });
 
-const CouponPoint = styled(Box)({
+const Point = styled(Box)({
   width: "50%",
 });
 
@@ -75,6 +75,7 @@ const TotalPrice = styled("div")({
   textAlign: "center",
   marginTop: 10,
   marginBottom: 10,
+  fontSize: 18,
 });
 
 const Terms = styled("div")({
@@ -227,9 +228,9 @@ const PaymentInput = ({ price, quantity }: PaymentInputPropsType) => {
             />
           </RadioGroup>
         </FormControl>
-        <CouponPoint>
-          <Title>쿠폰 / 포인트</Title>
-        </CouponPoint>
+        <Point>
+          <Title>포인트 사용</Title>
+        </Point>
       </InputContainer>
       <TotalPrice>
         총 결제 금액{" "}
