@@ -13,6 +13,7 @@ import {
   RadioGroup,
   Radio,
   Box,
+  TextField,
 } from "@mui/material";
 
 interface AddressDataType {
@@ -47,10 +48,56 @@ const Title = styled("h4")({
 
 const ControlLabel = styled(FormControlLabel)({
   marginRight: "auto",
+  wordBreak: "keep-all",
 });
 
 const Point = styled(Box)({
   width: "50%",
+});
+
+const HeldPoint = styled("div")({
+  display: "flex",
+  flexWrap: "wrap",
+  flexDirection: "row",
+  alignItems: "center",
+  marginBottom: 20,
+});
+
+const HeldPointMoney = styled("div")({
+  marginLeft: "auto",
+});
+
+const UsePoint = styled("div")({
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+});
+
+const UsePointTitle = styled("div")({
+  width: 50,
+});
+
+const UsePointBox = styled(Box)({
+  display: "flex",
+  width: "100%",
+});
+
+const UsePointDiv = styled("div")({
+  display: "flex",
+  marginRight: "auto",
+  width: "80%",
+});
+
+const UsePointTextField = styled(TextField)({
+  input: { textAlign: "right" },
+  "& .MuiInputBase-root": {
+    height: 50,
+  },
+});
+
+const PointButton = styled(Button)({
+  width: 100,
+  height: 50,
 });
 
 const InputContainer = styled("div")({
@@ -230,6 +277,24 @@ const PaymentInput = ({ price, quantity }: PaymentInputPropsType) => {
         </FormControl>
         <Point>
           <Title>포인트 사용</Title>
+          <HeldPoint>
+            포인트
+            <HeldPointMoney>839원</HeldPointMoney>
+          </HeldPoint>
+          <UsePoint>
+            <UsePointTitle>사용</UsePointTitle>
+            <UsePointBox>
+              <UsePointDiv>
+                <UsePointTextField
+                  id="포인트 사용"
+                  type="search"
+                  variant="standard"
+                  fullWidth={true}
+                />
+              </UsePointDiv>
+              <PointButton>전액사용</PointButton>
+            </UsePointBox>
+          </UsePoint>
         </Point>
       </InputContainer>
       <TotalPrice>
