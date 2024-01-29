@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import PaymentList from "../../components/payment/paymentList";
-import { styled, Button } from "@mui/material";
+import { styled, Button, Container } from "@mui/material";
 import { CoffeeBeanInfoType } from "../../types";
+import PaymentTable from "../../components/payment/paymentTable";
 
-const SucceessContainer = styled("div")({
+const SucceessContainer = styled(Container)({
   textAlign: "center",
 });
 
@@ -34,7 +34,7 @@ const PaymentSuccess = () => {
 
   return (
     <SucceessContainer>
-      <PaymentList
+      <PaymentTable
         image={buyBeanData.image}
         info={
           buyBeanData.blendingList
