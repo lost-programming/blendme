@@ -1,10 +1,11 @@
-import React, { SyntheticEvent } from "react";
 import { Box, Button, TextField, styled } from "@mui/material";
+import React, { SyntheticEvent } from "react";
 import { setNumberComma } from "utils/dataFormat";
 
 interface PaymentPointProps {
   availablePoint: number;
   point: string;
+  setPoint: React.Dispatch<React.SetStateAction<string>>;
   onChange: React.EventHandler<SyntheticEvent>;
 }
 
@@ -52,6 +53,7 @@ const UsePointTextField = styled(TextField)({
   "& .MuiInputBase-root": {
     height: 50,
   },
+  background: "#FFFFFF",
 });
 
 const ButtonDiv = styled("div")({
@@ -62,12 +64,14 @@ const ButtonDiv = styled("div")({
 
 const PointButton = styled(Button)({
   width: 100,
-  height: 48,
+  height: 50,
+  background: "#FFFFFF",
 });
 
 const PaymentPoint = ({
   availablePoint,
   point,
+  setPoint,
   onChange,
 }: PaymentPointProps) => {
   return (
@@ -88,7 +92,9 @@ const PaymentPoint = ({
             />
           </UsePointDiv>
           <ButtonDiv>
-            <PointButton>전액사용</PointButton>
+            <PointButton onClick={() => setPoint(availablePoint.toString())}>
+              전액사용
+            </PointButton>
           </ButtonDiv>
         </UsePointBox>
       </UsePoint>

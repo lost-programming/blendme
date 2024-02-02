@@ -1,4 +1,3 @@
-import React from "react";
 import {
   FormControl,
   FormControlLabel,
@@ -6,6 +5,7 @@ import {
   RadioGroup,
   styled,
 } from "@mui/material";
+import React from "react";
 
 interface PaymentRadioProps {
   onClick: React.MouseEventHandler<HTMLLabelElement>;

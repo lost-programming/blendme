@@ -1,5 +1,5 @@
-import React from "react";
 import { styled, TextField } from "@mui/material";
+import React from "react";
 
 interface InputTextFieldPropsType {
   title: string;
@@ -14,6 +14,7 @@ const CustomInputTextField = styled(TextField)({
   display: "flex",
   marginBottom: 20,
   borderRadius: 5,
+  background: "#FFFFFF",
 });
 
 const InputTextField = ({

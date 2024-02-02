@@ -7,6 +7,7 @@ interface PaymentTermProps {
   quantity: number | undefined;
   checked: boolean;
   finish: boolean;
+  point: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -44,6 +45,7 @@ const PaymentTerm = ({
   quantity,
   checked,
   finish,
+  point,
   onChange,
   onClick,
 }: PaymentTermProps) => {
@@ -51,7 +53,11 @@ const PaymentTerm = ({
     <TermDiv>
       <TotalPrice>
         총 결제 금액{" "}
-        {quantity && <strong>{setNumberComma(price * quantity)}</strong>} 원
+        {quantity &&
+          <strong>
+            {setNumberComma(point ? ((price * quantity) - parseInt(point)) : price * quantity)}
+          </strong>}
+        원
       </TotalPrice>
       <Terms>
         주문 내용을 확인하였으며, 정보 제공 등에 동의합니다.

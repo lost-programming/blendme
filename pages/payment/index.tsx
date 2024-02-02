@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from "react";
-import PaymentTable from "../../components/payment/paymentTable";
-import PaymentInput from "../../components/payment/paymentInput";
-import PaymentRadio from "components/payment/paymentRadio";
+import { Box, Container, styled } from "@mui/material";
 import PaymentPoint from "components/payment/paymentPoint";
+import PaymentRadio from "components/payment/paymentRadio";
 import PaymentTerm from "components/payment/paymentTerm";
-import { styled, Box, Container } from "@mui/material";
-import { CoffeeBeanInfoType } from "../../types";
 import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import { setOnlyNumber } from "utils/dataFormat";
-import { useRecoilState } from "recoil";
-import { usePoint } from "recoil/atom";
+import PaymentInput from "../../components/payment/paymentInput";
+import PaymentTable from "../../components/payment/paymentTable";
+import { CoffeeBeanInfoType } from "../../types";
 
 interface InputsType {
   name: string;
@@ -59,15 +57,14 @@ const Payment = () => {
   const [payway, setPayway] = useState<boolean>(false);
   const [checked, setChecked] = useState<boolean>(false);
   const [finish, setFinish] = useState<boolean>(false);
+  const [point, setPoint] = useState("");
+  const availablePoint = 2000;
 
   const [inputs, setInputs] = useState<InputsType>({
     name: "",
     phone: "",
     address: "",
   });
-
-  const [point, setPoint] = useRecoilState(usePoint);
-  const availablePoint = 2000;
 
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -88,11 +85,11 @@ const Payment = () => {
       return value;
     };
     const totalNumber = limitMaxNumber(changeNumber);
-    const totalPoint = totalNumber.replace(
-      /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-      ",",
-    );
-    setPoint(totalPoint);
+    // const totalPoint = totalNumber.replace(
+    //   /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
+    //   ",",
+    // );
+    setPoint(totalNumber);
   };
 
   const checkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -149,6 +146,7 @@ const Payment = () => {
             <PaymentPoint
               availablePoint={availablePoint}
               point={point}
+              setPoint={setPoint}
               onChange={pointChange}
             />
           </PaymentDiv>
@@ -159,6 +157,7 @@ const Payment = () => {
             quantity={buyBeanData.quantity}
             checked={checked}
             finish={finish}
+            point={point}
             onChange={checkChange}
             onClick={() => router.push("/success")}
           />
