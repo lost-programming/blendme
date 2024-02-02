@@ -8,3 +8,8 @@ export const addHours = (date: Date, hours: number) => {
   date.setHours(date.getHours() + hours);
   return date;
 };
+
+// 숫자만 입력
+export const setOnlyNumber = (value: string) => {
+  return value.replace(/[^0-9.]/g, "").replace(/(\..*)\./g, "");
+};

@@ -7,6 +7,9 @@ import PaymentTerm from "components/payment/paymentTerm";
 import { styled, Box, Container } from "@mui/material";
 import { CoffeeBeanInfoType } from "../../types";
 import { useRouter } from "next/router";
+import { setOnlyNumber } from "utils/dataFormat";
+import { useRecoilState } from "recoil";
+import { usePoint } from "recoil/atom";
 
 interface InputsType {
   name: string;
@@ -14,7 +17,9 @@ interface InputsType {
   address: string;
 }
 
-const PaymentForm = styled("form")({});
+const PaymentForm = styled("form")({
+  marginBottom: 100,
+});
 
 const PaymentContainer = styled(Container)({
   padding: 10,
@@ -32,9 +37,7 @@ const PaymentDiv = styled("div")({
   width: "50%",
 });
 
-const Title = styled("h4")({
-  marginRight: "auto",
-});
+const Title = styled("h4")({});
 
 const Payment = () => {
   const router = useRouter();
@@ -63,6 +66,9 @@ const Payment = () => {
     address: "",
   });
 
+  const [point, setPoint] = useRecoilState(usePoint);
+  const availablePoint = 2000;
+
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
@@ -73,9 +79,21 @@ const Payment = () => {
     checked ? setFinish(!finish) : alert("약관 내용에 동의해주세요.");
   };
 
-  // const onlynumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setPoint(e.target.value);
-  // };
+  const pointChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const changeNumber = setOnlyNumber(e.target.value);
+    const limitMaxNumber = (value: string) => {
+      if (parseInt(value) > availablePoint) {
+        value = availablePoint.toString();
+      }
+      return value;
+    };
+    const totalNumber = limitMaxNumber(changeNumber);
+    const totalPoint = totalNumber.replace(
+      /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
+      ",",
+    );
+    setPoint(totalPoint);
+  };
 
   const checkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (inputs.name && inputs.phone && inputs.address && payway) {
@@ -128,7 +146,11 @@ const Payment = () => {
         <PaymentBox>
           <PaymentDiv>
             <Title>포인트 사용</Title>
-            <PaymentPoint />
+            <PaymentPoint
+              availablePoint={availablePoint}
+              point={point}
+              onChange={pointChange}
+            />
           </PaymentDiv>
         </PaymentBox>
         <PaymentBox>

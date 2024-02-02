@@ -21,7 +21,9 @@ const TotalPrice = styled("div")({
 });
 
 const Terms = styled("div")({
-  textAlign: "center",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   marginBottom: 10,
   wordBreak: "keep-all",
 });
@@ -30,7 +32,7 @@ const ButtonContainer = styled("div")({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  marginBottom: 60,
+  marginBottom: 30,
 });
 
 const PaymentButton = styled(Button)({
