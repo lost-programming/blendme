@@ -47,7 +47,6 @@ const PaymentTable = ({
 }: PaymentTablePropsType) => {
   const total_price = quantity && setNumberComma(price * quantity);
   const comma_quantity = quantity && setNumberComma(quantity);
-  console.log(info);
   const rowHeads: string[] = [
     "상품 이미지",
     "상품 이름",

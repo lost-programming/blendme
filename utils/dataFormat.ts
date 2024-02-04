@@ -11,5 +11,5 @@ export const addHours = (date: Date, hours: number) => {
 
 // 숫자만 입력
 export const setOnlyNumber = (value: string) => {
-  return value.replace(/[^0-9.]/g, "").replace(/(\..*)\./g, "");
+  return value.replace(/[^0-9.]/g, "").replace(/(\..*)\./g, "$1");
 };

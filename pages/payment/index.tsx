@@ -4,14 +4,13 @@ import PaymentRadio from "components/payment/paymentRadio";
 import PaymentTerm from "components/payment/paymentTerm";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { setOnlyNumber } from "utils/dataFormat";
+import { setNumberComma, setOnlyNumber } from "utils/dataFormat";
 import PaymentInput from "../../components/payment/paymentInput";
 import PaymentTable from "../../components/payment/paymentTable";
 import { CoffeeBeanInfoType } from "../../types";
 
 interface InputsType {
   name: string;
-  phone: string;
   address: string;
 }
 
@@ -54,21 +53,40 @@ const Payment = () => {
     image: "",
   });
 
-  const [payway, setPayway] = useState<boolean>(false);
-  const [checked, setChecked] = useState<boolean>(false);
-  const [finish, setFinish] = useState<boolean>(false);
+  const [phone, setPhone] = useState("");
+  const [payway, setPayway] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const [finish, setFinish] = useState(false);
   const [point, setPoint] = useState("");
   const availablePoint = 2000;
 
   const [inputs, setInputs] = useState<InputsType>({
     name: "",
-    phone: "",
     address: "",
   });
 
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
+  };
+
+  const phoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const changePhone = setOnlyNumber(e.target.value);
+    const phoneFormat = (value: string) => {
+      const inputPhone = value.replace(/[^\d]/g, "");
+      if (inputPhone.length < 4) {
+        return inputPhone;
+      }
+      if (inputPhone.length >= 4 && inputPhone.length < 7) {
+        return `${inputPhone.slice(0, 3)}-${inputPhone.slice(3)}`;
+      }
+      return `${inputPhone.slice(0, 3)}-${inputPhone.slice(
+        3,
+        7,
+      )}-${inputPhone.slice(7, 11)}`;
+    };
+    const phoneNumber = phoneFormat(changePhone);
+    setPhone(phoneNumber);
   };
 
   const paymentSubmit = (e: React.FormEvent) => {
@@ -82,18 +100,14 @@ const Payment = () => {
       if (parseInt(value) > availablePoint) {
         value = availablePoint.toString();
       }
-      return value;
+      return setNumberComma(parseInt(value));
     };
     const totalNumber = limitMaxNumber(changeNumber);
-    // const totalPoint = totalNumber.replace(
-    //   /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-    //   ",",
-    // );
     setPoint(totalNumber);
   };
 
   const checkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (inputs.name && inputs.phone && inputs.address && payway) {
+    if (inputs.name && phone && inputs.address && payway) {
       setChecked(e.target.checked);
     } else {
       if (checked) {
@@ -129,8 +143,9 @@ const Payment = () => {
           <Title>필수 정보 입력</Title>
           <PaymentInput
             onChange={inputChange}
+            phoneChange={phoneChange}
             name={inputs.name}
-            phone={inputs.phone}
+            phone={phone}
             address={inputs.address}
           />
         </PaymentBox>

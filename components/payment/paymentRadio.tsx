@@ -12,7 +12,7 @@ interface PaymentRadioProps {
 }
 
 const CustomFormControl = styled(FormControl)({
-  width: "50%",
+  width: "100%",
 });
 
 const ControlLabel = styled(FormControlLabel)({

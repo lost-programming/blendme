@@ -6,6 +6,7 @@ import { styled, Box } from "@mui/material";
 
 interface PaymentInputProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
+  phoneChange: React.ChangeEventHandler<HTMLInputElement>;
   name: string;
   phone: string;
   address: string;
@@ -39,6 +40,7 @@ const BasicInfoDiv = styled("div")({
 
 const PaymentInput = ({
   onChange,
+  phoneChange,
   name,
   phone,
   address,
@@ -89,7 +91,7 @@ const PaymentInput = ({
             name="phone"
             label="전화번호"
             value={phone}
-            onChange={onChange}
+            onChange={phoneChange}
           />
         </BasicInfoDiv>
       </BasicInfo>

@@ -10,19 +10,25 @@ interface PaymentPointProps {
 }
 
 const PointDiv = styled("div")({
-  width: "50%",
+  width: "100%",
 });
 
 const HeldPoint = styled("div")({
   display: "flex",
-  flexWrap: "wrap",
   flexDirection: "row",
   alignItems: "center",
   marginBottom: 20,
 });
 
+const HeldPointTitle = styled("div")({
+  marginRight: "auto",
+  minWidth: 150,
+});
+
 const HeldPointMoney = styled("div")({
-  marginLeft: "auto",
+  textAlign: "end",
+  minWidth: 100,
+  paddingRight: 22,
 });
 
 const UsePoint = styled("div")({
@@ -32,7 +38,7 @@ const UsePoint = styled("div")({
 });
 
 const UsePointTitle = styled("div")({
-  width: 50,
+  minWidth: 50,
 });
 
 const UsePointBox = styled(Box)({
@@ -47,13 +53,14 @@ const UsePointDiv = styled("div")({
 });
 
 const UsePointTextField = styled(TextField)({
+  minWidth: 100,
+  background: "#FFFFFF",
   input: {
     textAlign: "right",
   },
   "& .MuiInputBase-root": {
     height: 50,
   },
-  background: "#FFFFFF",
 });
 
 const ButtonDiv = styled("div")({
@@ -77,7 +84,7 @@ const PaymentPoint = ({
   return (
     <PointDiv>
       <HeldPoint>
-        포인트
+        <HeldPointTitle>보유 포인트</HeldPointTitle>
         <HeldPointMoney>{setNumberComma(availablePoint)}원</HeldPointMoney>
       </HeldPoint>
       <UsePoint>
@@ -87,6 +94,7 @@ const PaymentPoint = ({
             <UsePointTextField
               id="포인트 사용"
               type="text"
+              fullWidth={true}
               value={point}
               onChange={onChange}
             />

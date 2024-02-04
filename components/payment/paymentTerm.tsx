@@ -23,6 +23,7 @@ const TotalPrice = styled("div")({
 
 const Terms = styled("div")({
   display: "flex",
+  flexWrap: "wrap",
   alignItems: "center",
   justifyContent: "center",
   marginBottom: 10,
@@ -49,14 +50,19 @@ const PaymentTerm = ({
   onChange,
   onClick,
 }: PaymentTermProps) => {
+  const usePoint = parseInt(point.replace(",", ""));
+
   return (
     <TermDiv>
       <TotalPrice>
         총 결제 금액{" "}
-        {quantity &&
+        {quantity && (
           <strong>
-            {setNumberComma(point ? ((price * quantity) - parseInt(point)) : price * quantity)}
-          </strong>}
+            {setNumberComma(
+              point ? price * quantity - usePoint : price * quantity,
+            )}
+          </strong>
+        )}
         원
       </TotalPrice>
       <Terms>
