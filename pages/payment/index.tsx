@@ -16,6 +16,10 @@ interface InputsType {
 
 const PaymentForm = styled("form")({
   marginBottom: 100,
+  border: 1,
+  borderStyle: "solid",
+  borderColor: "#E9ECEF",
+  background: "#FFFFFF",
 });
 
 const PaymentContainer = styled(Container)({

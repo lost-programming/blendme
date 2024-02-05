@@ -1,5 +1,7 @@
 import { Button, Checkbox, styled } from "@mui/material";
 import React from "react";
+import { useRecoilState } from "recoil";
+import { totalPrice } from "recoil/atom";
 import { setNumberComma } from "utils/dataFormat";
 
 interface PaymentTermProps {
@@ -51,19 +53,18 @@ const PaymentTerm = ({
   onClick,
 }: PaymentTermProps) => {
   const usePoint = parseInt(point.replace(",", ""));
+  const [paymentPrice, setPaymentPrice] = useRecoilState(totalPrice);
+
+  setPaymentPrice(
+    quantity
+      ? setNumberComma(point ? price * quantity - usePoint : price * quantity)
+      : "",
+  );
 
   return (
     <TermDiv>
       <TotalPrice>
-        총 결제 금액{" "}
-        {quantity && (
-          <strong>
-            {setNumberComma(
-              point ? price * quantity - usePoint : price * quantity,
-            )}
-          </strong>
-        )}
-        원
+        총 결제 금액 {quantity && <strong>{paymentPrice}</strong>}원
       </TotalPrice>
       <Terms>
         주문 내용을 확인하였으며, 정보 제공 등에 동의합니다.

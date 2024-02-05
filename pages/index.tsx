@@ -17,11 +17,16 @@ const RoastingBeanList = styled(Container)({
   justifyContent: "center",
 });
 
-const CardContainer = styled(Container)({
+const CardBox = styled(Box)({
   display: "flex",
   flexDirection: "row",
   flexWrap: "wrap",
   justifyContent: "center",
+  width: "100%",
+  border: 1,
+  borderStyle: "solid",
+  borderColor: "#E9ECEF",
+  background: "#FFFFFF",
   marginTop: 30,
 });
 
@@ -92,7 +97,7 @@ const Home = () => {
           roastingData={roastingData}
         />
       </Box>
-      <CardContainer>
+      <CardBox>
         {beanData.map((bean: CoffeeBeanInfoType, index: number) => {
           return (
             <RoastingCard
@@ -103,7 +108,7 @@ const Home = () => {
             />
           );
         })}
-      </CardContainer>
+      </CardBox>
     </RoastingBeanList>
   );
 };

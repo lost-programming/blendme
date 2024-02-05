@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, styled } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import { RoastingDocsType, RoastingItemsType } from "../../types";
 
 interface RoastingDesPropsType {
@@ -7,7 +7,8 @@ interface RoastingDesPropsType {
   selectedRoasting: RoastingItemsType;
 }
 
-const DescriptionContainer = styled(Container)({
+const DescriptionBox = styled(Box)({
+  maxWidth: 640,
   width: "80%",
 });
 
@@ -26,13 +27,13 @@ const RoastingDescription = ({
   selectedRoasting,
 }: RoastingDesPropsType) => {
   return (
-    <DescriptionContainer disableGutters>
+    <DescriptionBox>
       {selectedMenu && selectedRoasting.category !== "all" ? (
         <Description>{selectedMenu[0].short_description}</Description>
       ) : (
         <Description>전체 로스팅 목록입니다.</Description>
       )}
-    </DescriptionContainer>
+    </DescriptionBox>
   );
 };
 

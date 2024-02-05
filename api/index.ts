@@ -1,12 +1,5 @@
 import { db } from "../firebase";
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  collection,
-  query,
-  getDocs,
-} from "firebase/firestore";
+import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 
 // 원두 전체 정보 조회
 export const getCollectionData = async (path: string) => {

@@ -12,6 +12,7 @@ const MenuStack = styled(Stack)({
   alignItems: "center",
   justifyContent: "center",
   marginTop: 15,
+  marginBottom: 30,
 });
 
 const MenuButton = styled(Button)({
