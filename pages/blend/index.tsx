@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Button, styled } from "@mui/material";
+import { Button, Container, styled } from "@mui/material";
 import { getCookie } from "cookies-next/lib";
 
 import { CoffeeBeanInfoType } from "../../types";
@@ -10,8 +10,12 @@ import RatioInput from "../../components/blend/ratioInput";
 import QuantityText from "../../components/text/quantityText";
 import withHead from "../../hoc/withHead";
 
-const BlendContainer = styled("div")({
+const BlendContainer = styled(Container)({
   width: "100%",
+  border: 1,
+  borderStyle: "solid",
+  borderColor: "#E9ECEF",
+  background: "#FFFFFF",
 });
 
 // 블랜드 원두 리스트
@@ -19,6 +23,7 @@ const SelectItemList = styled("div")({
   width: "100%",
   height: "fit-content",
   padding: "20px 10px",
+  marginTop: "20px",
   marginBottom: "20px",
   display: "flex",
   flexWrap: "wrap",

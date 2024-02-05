@@ -1,17 +1,18 @@
-import React, { useState } from "react";
-import RoastingDescription from "./roastingDescription";
+import React from "react";
 import { styled, Box, Button, ButtonGroup } from "@mui/material";
 import {
   RoastingItemsType,
   CoffeeBeanInfoType,
   RoastingDocsType,
 } from "../../types/index";
+import { useSetRecoilState } from "recoil";
+import { selectMenu, selectRoasting } from "recoil/atom";
 
 interface MenuButtonType {
   bgColor: string;
 }
 
-interface RoastingButtonPropsType {
+interface RoastingButtonProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getBeanData: any;
   data: CoffeeBeanInfoType[];
@@ -53,13 +54,9 @@ const RoastingButton = ({
   data,
   roastingItems,
   roastingData,
-}: RoastingButtonPropsType) => {
-  const [selectedMenu, setSelectedMenu] = useState<
-    RoastingDocsType[] | undefined
-  >();
-  const [selectedRoasting, setSelectedRoasting] = useState<RoastingItemsType>(
-    roastingItems[0],
-  );
+}: RoastingButtonProps) => {
+  const setSelectedMenu = useSetRecoilState(selectMenu);
+  const setSelectedRoasting = useSetRecoilState(selectRoasting);
 
   const menuClick = (item: RoastingItemsType) => {
     const beans =
@@ -99,10 +96,6 @@ const RoastingButton = ({
           </Box>
         );
       })}
-      <RoastingDescription
-        selectedMenu={selectedMenu}
-        selectedRoasting={selectedRoasting}
-      />
     </RoastingName>
   );
 };

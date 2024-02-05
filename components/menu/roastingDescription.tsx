@@ -8,8 +8,7 @@ interface RoastingDesPropsType {
 }
 
 const DescriptionBox = styled(Box)({
-  maxWidth: 640,
-  width: "80%",
+  width: "100%",
 });
 
 const Description = styled("div")({

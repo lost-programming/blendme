@@ -60,7 +60,7 @@ const PaymentSuccess = () => {
           price={buyBeanData.price}
         />
       </TableBox>
-      <h2>총 결제 금액 {paymentPrice} 원</h2>
+      <h2>총 결제 금액 {paymentPrice}원</h2>
       <h3>결제가 완료됐습니다.</h3>
       <Button onClick={() => router.push("/")}>메인으로</Button>
     </SucceessContainer>
