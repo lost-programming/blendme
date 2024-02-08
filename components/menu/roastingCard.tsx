@@ -54,7 +54,7 @@ const RoastingCard = ({ bean, image, clickEvent }: RoastingCardPropsType) => {
               blurDataURL={image}
               width={220}
               height={140}
-              style={{ objectFit: "contain" }}
+              style={{ objectFit: "contain", width: "100%" }}
             />
           )}
         </CustomCardMedia>

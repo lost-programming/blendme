@@ -29,6 +29,9 @@ const SelectItemList = styled("div")({
   flexWrap: "wrap",
   border: "1px solid #DEDEDE",
   borderRadius: "8px",
+  "@media screen and (max-width: 720px)" : {
+    flexDirection: "column",
+  },
 });
 
 const NoSelect = styled("div")({
@@ -81,11 +84,18 @@ const BlendButton = styled(Button)({
   padding: "5px 15px",
   marginRight: "10px",
   color: "#fff",
-  borderColor: "#808080",
-  backgroundColor: "#808080",
+  backgroundColor: "#c2986c",
   "&:hover": {
-    borderColor: "#808080",
+    borderColor: "#fff",
     backgroundColor: "#808080",
+  },
+  "&:disabled": {
+    color: "#DEDEDE",
+    border: "1px solid #DEDEDE",
+    backgroundColor: "#ffffff"
+  },
+  "@media screen and (max-width: 720px)" : {
+    width: "100%"
   },
 });
 

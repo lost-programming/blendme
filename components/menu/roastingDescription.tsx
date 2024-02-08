@@ -19,6 +19,8 @@ const Description = styled("div")({
   height: 60,
   color: "#000000",
   background: "#E2E2E2",
+  borderTopLeftRadius: "8px",
+  borderTopRightRadius: "8px"
 });
 
 const RoastingDescription = ({
