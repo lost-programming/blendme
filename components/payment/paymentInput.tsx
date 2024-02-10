@@ -24,7 +24,6 @@ interface AddressDataType {
 const InputDiv = styled("div")({
   display: "flex",
   flexDirection: "column",
-  padding: 10,
 });
 
 const BasicInfo = styled(Box)({

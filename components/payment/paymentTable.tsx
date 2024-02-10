@@ -95,7 +95,7 @@ const PaymentTable = ({
                         component="th"
                         scope="row"
                         align="center"
-                        sx={{ border: 0 }}
+                        sx={{ border: 0, wordBreak: "keep-all" }}
                       >
                         {body}
                       </BodyTableCell>

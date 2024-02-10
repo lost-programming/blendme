@@ -8,6 +8,7 @@ import { setNumberComma, setOnlyNumber } from "utils/dataFormat";
 import PaymentInput from "../../components/payment/paymentInput";
 import PaymentTable from "../../components/payment/paymentTable";
 import { CoffeeBeanInfoType } from "../../types";
+import PaymentCard from "components/payment/paymentCard";
 
 interface InputsType {
   name: string;
@@ -55,12 +56,24 @@ const Payment = () => {
     image: "",
   });
 
+  const [width, setWidth] = useState(window.innerWidth);
   const [phone, setPhone] = useState("");
   const [payway, setPayway] = useState(false);
   const [checked, setChecked] = useState(false);
   const [finish, setFinish] = useState(false);
   const [point, setPoint] = useState("");
   const availablePoint = 2000;
+
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const [inputs, setInputs] = useState<InputsType>({
     name: "",
@@ -130,17 +143,31 @@ const Payment = () => {
   return (
     <PaymentForm onSubmit={paymentSubmit}>
       <PaymentContainer>
-        <PaymentTable
-          image={buyBeanData.image}
-          info={
-            buyBeanData.blendingList
-              ? buyBeanData.blendingList.join(" / ")
-              : buyBeanData.name
-          }
-          weight={buyBeanData.weight}
-          quantity={buyBeanData.quantity}
-          price={buyBeanData.price}
-        />
+        {width > 720 ? (
+          <PaymentTable
+            image={buyBeanData.image}
+            info={
+              buyBeanData.blendingList
+                ? buyBeanData.blendingList.join(" / ")
+                : buyBeanData.name
+            }
+            weight={buyBeanData.weight}
+            quantity={buyBeanData.quantity}
+            price={buyBeanData.price}
+          />
+        ) : (
+          <PaymentCard
+            image={buyBeanData.image}
+            name={
+              buyBeanData.blendingList
+                ? buyBeanData.blendingList.join(" / ")
+                : buyBeanData.name
+            }
+            weight={buyBeanData.weight}
+            quantity={buyBeanData.quantity}
+            price={buyBeanData.price}
+          />
+        )}
         <PaymentBox>
           <Title>필수 정보 입력</Title>
           <PaymentInput
