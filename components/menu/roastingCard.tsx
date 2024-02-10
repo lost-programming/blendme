@@ -21,12 +21,14 @@ const CustomCard = styled(Card)({
   padding: 15,
   boxShadow: "none",
   overflow: "unset",
+  minHeight: 300,
 });
 
 const CustomCardMedia = styled(CardMedia)({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  minWidth: 200,
 });
 
 const CustomCardContent = styled(CardContent)({
@@ -39,13 +41,7 @@ const RoastingCard = ({ bean, image, clickEvent }: RoastingCardPropsType) => {
   return (
     <CustomCard onClick={clickEvent}>
       <CardActionArea>
-        <CustomCardMedia
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        <CustomCardMedia>
           {image && (
             <Image
               loading="lazy"
