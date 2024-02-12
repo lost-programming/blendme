@@ -148,7 +148,7 @@ const Payment = () => {
             image={buyBeanData.image}
             info={
               buyBeanData.blendingList
-                ? buyBeanData.blendingList.join(" / ")
+                ? buyBeanData.blendingList.join(" , ")
                 : buyBeanData.name
             }
             weight={buyBeanData.weight}
@@ -160,7 +160,7 @@ const Payment = () => {
             image={buyBeanData.image}
             name={
               buyBeanData.blendingList
-                ? buyBeanData.blendingList.join(" / ")
+                ? buyBeanData.blendingList.join(" , ")
                 : buyBeanData.name
             }
             weight={buyBeanData.weight}

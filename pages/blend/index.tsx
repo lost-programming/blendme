@@ -189,7 +189,7 @@ const BlendPage = () => {
       price: totalPrice,
       quantity: quantity,
       blendingList: blendList.map((v, i) => {
-        return [v.name, ratioList[i]];
+        return v.name + " (" + ratioList[i] + ")";
       }),
       image: "blending_coffee.jpeg",
     };
