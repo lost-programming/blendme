@@ -10,7 +10,7 @@ import { CoffeeBeanInfoType } from "../../types";
 
 interface RoastingCardPropsType {
   bean: CoffeeBeanInfoType;
-  image: string;
+  image: string | undefined;
   clickEvent?: React.MouseEventHandler<HTMLDivElement>;
 }
 
