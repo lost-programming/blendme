@@ -28,9 +28,10 @@ const PaymentTableContainer = styled("div")({
   marginBottom: 30,
 });
 
-const BodyTableCell = styled(TableCell)({
+const BodySpan = styled("span")({
   display: "inline-block",
   maxWidth: 190,
+  wordBreak: "keep-all",
 });
 
 const BodyImage = styled("img")({
@@ -74,6 +75,7 @@ const PaymentTable = ({
                 return (
                   <TableCell
                     key={index}
+                    component="th"
                     align="center"
                     sx={{ wordBreak: "keep-all" }}
                   >
@@ -84,26 +86,26 @@ const PaymentTable = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {rowBodys.map(
-              (body: string | number | undefined, index: number) => {
-                return (
-                  <TableCell key={index} align="center" sx={{ border: 0 }}>
-                    {body === image ? (
-                      <BodyImage src={image} alt={info} />
-                    ) : (
-                      <BodyTableCell
-                        component="th"
-                        scope="row"
-                        align="center"
-                        sx={{ border: 0, wordBreak: "keep-all" }}
-                      >
-                        {body}
-                      </BodyTableCell>
-                    )}
-                  </TableCell>
-                );
-              },
-            )}
+            <tr>
+              {rowBodys.map(
+                (body: string | number | undefined, index: number) => {
+                  return (
+                    <TableCell
+                      key={index}
+                      component="td"
+                      align="center"
+                      sx={{ border: 0 }}
+                    >
+                      {body === image ? (
+                        <BodyImage src={image} alt={info} />
+                      ) : (
+                        <BodySpan>{body}</BodySpan>
+                      )}
+                    </TableCell>
+                  );
+                },
+              )}
+            </tr>
           </TableBody>
         </Table>
       </TableContainer>

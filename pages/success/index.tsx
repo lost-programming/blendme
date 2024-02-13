@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { styled, Button, Container } from "@mui/material";
 import PaymentTable from "../../components/payment/paymentTable";
@@ -28,9 +28,13 @@ const PaymentSuccess = () => {
 
   const width = useHandleSize();
 
+  useEffect(() => {
+    localStorage.removeItem("buyBean");
+  }, []);
+
   return (
     <SucceessContainer>
-      {width > 720 ? (
+      {width > 720 || width < 280 ? (
         <PaymentTable
           image={buyBean.image}
           info={

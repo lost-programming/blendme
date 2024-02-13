@@ -44,13 +44,13 @@ const RoastingCard = ({ bean, image, clickEvent }: RoastingCardPropsType) => {
         <CustomCardMedia>
           {image && (
             <Image
-              loading="lazy"
+              priority
               src={image}
               alt={bean.name}
               blurDataURL={image}
               width={220}
               height={140}
-              style={{ objectFit: "contain", width: "100%" }}
+              style={{ objectFit: "contain" }}
             />
           )}
         </CustomCardMedia>

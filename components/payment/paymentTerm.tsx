@@ -1,12 +1,12 @@
 import { Button, Checkbox, styled } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { totalPrice } from "recoil/atom";
 import { setNumberComma } from "utils/dataFormat";
 
 interface PaymentTermProps {
   price: number;
-  quantity: number | undefined;
+  quantity: number;
   checked: boolean;
   finish: boolean;
   point: string;
@@ -55,11 +55,11 @@ const PaymentTerm = ({
   const usePoint = parseInt(point.replace(",", ""));
   const [paymentPrice, setPaymentPrice] = useRecoilState(totalPrice);
 
-  setPaymentPrice(
-    quantity
-      ? setNumberComma(point ? price * quantity - usePoint : price * quantity)
-      : "",
-  );
+  useEffect(() => {
+    setPaymentPrice(
+      setNumberComma(point ? price * quantity - usePoint : price * quantity),
+    );
+  }, [point, price, quantity, usePoint, setPaymentPrice]);
 
   return (
     <TermDiv>

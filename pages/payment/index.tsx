@@ -113,7 +113,7 @@ const Payment = () => {
   return (
     <PaymentForm onSubmit={paymentSubmit}>
       <PaymentContainer>
-        {width > 720 ? (
+        {width > 720 || width < 280 ? (
           <PaymentTable
             image={buyBean.image}
             info={

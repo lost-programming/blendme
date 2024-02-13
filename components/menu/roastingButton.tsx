@@ -8,10 +8,6 @@ import {
 import { useSetRecoilState } from "recoil";
 import { selectMenu, selectRoasting } from "recoil/atom";
 
-interface MenuButtonType {
-  bgColor: string;
-}
-
 interface RoastingButtonProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getBeanData: any;
@@ -28,26 +24,13 @@ const RoastingName = styled("div")({
   height: "100%",
 });
 
-const MenuButton = styled(Button)<MenuButtonType>(({ bgColor }) => ({
+const MenuButton = styled(Button)({
   width: "100%",
   height: 45,
   fontSize: 18,
   fontWeight: 700,
   color: "#212121",
-
-  "&:hover": {
-    backgroundColor: bgColor,
-    color: "#FFFAFA",
-  },
-  "&:active": {
-    backgroundColor: bgColor,
-    color: "#FFFAFA",
-  },
-  "&:focus": {
-    backgroundColor: bgColor,
-    color: "#FFFAFA",
-  },
-}));
+});
 
 const RoastingButton = ({
   getBeanData,
@@ -89,7 +72,23 @@ const RoastingButton = ({
             }}
           >
             <ButtonGroup variant="text" aria-label="text button group">
-              <MenuButton onClick={() => menuClick(item)} bgColor={item.color}>
+              <MenuButton
+                onClick={() => menuClick(item)}
+                sx={{
+                  "&:hover": {
+                    backgroundColor: item.color,
+                    color: "#FFFAFA",
+                  },
+                  "&:active": {
+                    backgroundColor: item.color,
+                    color: "#FFFAFA",
+                  },
+                  "&:focus": {
+                    backgroundColor: item.color,
+                    color: "#FFFAFA",
+                  },
+                }}
+              >
                 {item.name}
               </MenuButton>
             </ButtonGroup>
