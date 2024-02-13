@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import { buyBeanData } from "recoil/atom";
 
 export const useHandleSize = () => {
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(0);
 
   useEffect(() => {
     const handleResize = () => {
