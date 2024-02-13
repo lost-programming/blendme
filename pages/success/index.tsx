@@ -32,38 +32,46 @@ const PaymentSuccess = () => {
     localStorage.removeItem("buyBean");
   }, []);
 
+  useEffect(() => {
+    !buyBean.name ? router.push("/") : "";
+  }, [buyBean, router]);
+
   return (
     <SucceessContainer>
-      {width > 720 || width < 280 ? (
-        <PaymentTable
-          image={buyBean.image}
-          info={
-            buyBean.blendingList
-              ? buyBean.blendingList.join(" / ")
-              : buyBean.name
-          }
-          weight={buyBean.weight}
-          quantity={buyBean.quantity}
-          price={buyBean.price}
-        />
-      ) : (
-        <PaymentCard
-          image={buyBean.image}
-          name={
-            buyBean.blendingList
-              ? buyBean.blendingList.join(" , ")
-              : buyBean.name
-          }
-          weight={buyBean.weight}
-          quantity={buyBean.quantity}
-          price={buyBean.price}
-        />
+      {buyBean && (
+        <div>
+          {width > 720 || width < 280 ? (
+            <PaymentTable
+              image={buyBean.image}
+              info={
+                buyBean.blendingList
+                  ? buyBean.blendingList.join(" / ")
+                  : buyBean.name
+              }
+              weight={buyBean.weight}
+              quantity={buyBean.quantity}
+              price={buyBean.price}
+            />
+          ) : (
+            <PaymentCard
+              image={buyBean.image}
+              name={
+                buyBean.blendingList
+                  ? buyBean.blendingList.join(" , ")
+                  : buyBean.name
+              }
+              weight={buyBean.weight}
+              quantity={buyBean.quantity}
+              price={buyBean.price}
+            />
+          )}
+          <SuccessDiv>
+            <h2>총 결제 금액 {paymentPrice}원</h2>
+            <h3>결제가 완료됐습니다.</h3>
+            <Button onClick={() => router.replace("/")}>메인으로</Button>
+          </SuccessDiv>{" "}
+        </div>
       )}
-      <SuccessDiv>
-        <h2>총 결제 금액 {paymentPrice}원</h2>
-        <h3>결제가 완료됐습니다.</h3>
-        <Button onClick={() => router.replace("/")}>메인으로</Button>
-      </SuccessDiv>
     </SucceessContainer>
   );
 };
