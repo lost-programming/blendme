@@ -28,7 +28,7 @@ const Header = () => {
     },
     {
       name: "Blending",
-      path: "/blend",
+      path: "blend",
     },
   ];
 
@@ -40,7 +40,7 @@ const Header = () => {
             id="basic-button"
             key={"menu" + index}
             onClick={() => {
-              router.push(menu.path);
+              router.push(`/${menu.path}`);
             }}
           >
             {menu.name}
