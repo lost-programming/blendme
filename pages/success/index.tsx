@@ -64,7 +64,7 @@ const PaymentSuccess = () => {
           <SuccessDiv>
             <h2>총 결제 금액 {paymentPrice}원</h2>
             <h3>결제가 완료됐습니다.</h3>
-            <Button onClick={() => router.replace("./")}>메인으로</Button>
+            <Button onClick={() => router.replace("/")}>메인으로</Button>
           </SuccessDiv>{" "}
         </div>
       )}
