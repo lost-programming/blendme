@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import { CoffeeBeanInfoType } from "../../types";
-import Image from "next/image";
 
 interface RoastingCardPropsType {
   bean: CoffeeBeanInfoType;
@@ -41,8 +40,8 @@ const RoastingCard = ({ bean, image, clickEvent }: RoastingCardPropsType) => {
   return (
     <CustomCard onClick={clickEvent}>
       <CardActionArea>
-        <CustomCardMedia>
-          {image && (
+        <CustomCardMedia image={image} sx={{ objectFit: "contain" }} />
+        {/* {image && (
             <Image
               priority
               src={image}
@@ -52,8 +51,7 @@ const RoastingCard = ({ bean, image, clickEvent }: RoastingCardPropsType) => {
               height={140}
               style={{ objectFit: "contain" }}
             />
-          )}
-        </CustomCardMedia>
+          )} */}
         <CustomCardContent>
           <Typography gutterBottom variant="h5" component="div">
             {bean.name}
