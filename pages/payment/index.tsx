@@ -116,7 +116,7 @@ const Payment = () => {
 
   return (
     <PaymentForm onSubmit={paymentSubmit}>
-      {buyBean.name && (
+      {buyBean && (
         <PaymentContainer>
           {width > 720 || width < 280 ? (
             <PaymentTable
