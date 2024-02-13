@@ -24,7 +24,7 @@ const Header = () => {
   const menuItemList: MenuItemListType[] = [
     {
       name: "Coffee Bean",
-      path: "../",
+      path: "/",
     },
     {
       name: "Blending",
