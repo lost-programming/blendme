@@ -10,8 +10,8 @@ import RoastingButton from "components/menu/roastingButton";
 import RoastingCard from "components/menu/roastingCard";
 import { useRouter } from "next/router";
 import RoastingDescription from "components/menu/roastingDescription";
-import { useRecoilValue } from "recoil";
-import { selectMenu, selectRoasting } from "recoil/atom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { selectMenu, selectRoasting, staticBeanData } from "recoil/atom";
 
 const RoastingBeanList = styled(Container)({
   display: "flex",
@@ -64,9 +64,9 @@ const Home = () => {
   const router = useRouter();
 
   const [staticBeans, setStaticBeans] = useState<CoffeeBeanInfoType[]>([]);
-  const [beanData, setBeanData] = useState<CoffeeBeanInfoType[]>([]);
   const [roastingData, setRoastingData] = useState<RoastingDocsType[]>([]);
 
+  const [beanData, setBeanData] = useRecoilState(staticBeanData);
   const selectedMenu = useRecoilValue(selectMenu);
   const selectedRoasting = useRecoilValue(selectRoasting);
 
@@ -89,7 +89,8 @@ const Home = () => {
     fetchRoasting();
   }, []);
 
-  const getBeanData = (v: CoffeeBeanInfoType[]) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const getBeanData = (v: any) => {
     setBeanData(v);
   };
 
@@ -114,7 +115,7 @@ const Home = () => {
           return (
             <RoastingCard
               bean={bean}
-              image={`./${bean.image}`}
+              image={`blendme/${bean.image}`}
               key={"beanImage" + index}
               clickEvent={() => routerEvent(bean.name_en)}
             />
