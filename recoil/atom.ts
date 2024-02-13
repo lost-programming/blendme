@@ -20,7 +20,6 @@ export const staticBeanData = atom({
       image: "",
     },
   ],
-  effects_UNSTABLE: [persistAtom],
 });
 
 export const selectMenu = atom({
