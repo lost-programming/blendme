@@ -3,7 +3,7 @@ import PaymentPoint from "components/payment/paymentPoint";
 import PaymentRadio from "components/payment/paymentRadio";
 import PaymentTerm from "components/payment/paymentTerm";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { setNumberComma, setOnlyNumber } from "utils/dataFormat";
 import PaymentInput from "../../components/payment/paymentInput";
 import PaymentTable from "../../components/payment/paymentTable";
@@ -57,9 +57,9 @@ const Payment = () => {
     address: "",
   });
 
-  useEffect(() => {
-    !buyBean.name ? router.push("/") : "";
-  }, [buyBean, router]);
+  // useEffect(() => {
+  //   !buyBean.name ? router.push("/") : "";
+  // }, [buyBean, router]);
 
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
