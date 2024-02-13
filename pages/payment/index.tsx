@@ -3,12 +3,12 @@ import PaymentPoint from "components/payment/paymentPoint";
 import PaymentRadio from "components/payment/paymentRadio";
 import PaymentTerm from "components/payment/paymentTerm";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { setNumberComma, setOnlyNumber } from "utils/dataFormat";
 import PaymentInput from "../../components/payment/paymentInput";
 import PaymentTable from "../../components/payment/paymentTable";
-import { CoffeeBeanInfoType } from "../../types";
 import PaymentCard from "components/payment/paymentCard";
+import { useGetLocalStorage, useHandleSize } from "hooks/hooks";
 
 interface InputsType {
   name: string;
@@ -42,38 +42,15 @@ const Title = styled("h4")({});
 const Payment = () => {
   const router = useRouter();
 
-  const [buyBeanData, setBuyBeanData] = useState<CoffeeBeanInfoType>({
-    name: "",
-    name_en: "",
-    origin: "",
-    weight: 0,
-    roasting: [],
-    feature: [],
-    description: "",
-    price: 0,
-    quantity: 0,
-    blendingList: [],
-    image: "",
-  });
+  const buyBean = useGetLocalStorage("buyBean");
+  const width = useHandleSize();
+  const availablePoint = 2000;
 
-  const [width, setWidth] = useState(window.innerWidth);
   const [phone, setPhone] = useState("");
   const [payway, setPayway] = useState(false);
   const [checked, setChecked] = useState(false);
   const [finish, setFinish] = useState(false);
   const [point, setPoint] = useState("");
-  const availablePoint = 2000;
-
-  const handleResize = () => {
-    setWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   const [inputs, setInputs] = useState<InputsType>({
     name: "",
@@ -133,39 +110,32 @@ const Payment = () => {
     }
   };
 
-  useEffect(() => {
-    const getbuyBean = localStorage.getItem("buyBean");
-    if (getbuyBean !== null) {
-      setBuyBeanData(JSON.parse(getbuyBean));
-    }
-  }, []);
-
   return (
     <PaymentForm onSubmit={paymentSubmit}>
       <PaymentContainer>
         {width > 720 ? (
           <PaymentTable
-            image={buyBeanData.image}
+            image={buyBean.image}
             info={
-              buyBeanData.blendingList
-                ? buyBeanData.blendingList.join(" , ")
-                : buyBeanData.name
+              buyBean.blendingList
+                ? buyBean.blendingList.join(" , ")
+                : buyBean.name
             }
-            weight={buyBeanData.weight}
-            quantity={buyBeanData.quantity}
-            price={buyBeanData.price}
+            weight={buyBean.weight}
+            quantity={buyBean.quantity}
+            price={buyBean.price}
           />
         ) : (
           <PaymentCard
-            image={buyBeanData.image}
+            image={buyBean.image}
             name={
-              buyBeanData.blendingList
-                ? buyBeanData.blendingList.join(" , ")
-                : buyBeanData.name
+              buyBean.blendingList
+                ? buyBean.blendingList.join(" , ")
+                : buyBean.name
             }
-            weight={buyBeanData.weight}
-            quantity={buyBeanData.quantity}
-            price={buyBeanData.price}
+            weight={buyBean.weight}
+            quantity={buyBean.quantity}
+            price={buyBean.price}
           />
         )}
         <PaymentBox>
@@ -197,13 +167,13 @@ const Payment = () => {
         </PaymentBox>
         <PaymentBox>
           <PaymentTerm
-            price={buyBeanData.price}
-            quantity={buyBeanData.quantity}
+            price={buyBean.price}
+            quantity={buyBean.quantity}
             checked={checked}
             finish={finish}
             point={point}
             onChange={checkChange}
-            onClick={() => router.push("/success")}
+            onClick={() => router.replace("/success")}
           />
         </PaymentBox>
       </PaymentContainer>

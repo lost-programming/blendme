@@ -1,68 +1,65 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useRouter } from "next/router";
-import { styled, Button, Container, Box } from "@mui/material";
-import { CoffeeBeanInfoType } from "../../types";
+import { styled, Button, Container } from "@mui/material";
 import PaymentTable from "../../components/payment/paymentTable";
 import { useRecoilValue } from "recoil";
-import { totalPrice } from "recoil/atom";
+import { buyBeanData, totalPrice } from "recoil/atom";
+import PaymentCard from "components/payment/paymentCard";
+import { useHandleSize } from "hooks/hooks";
 
 const SucceessContainer = styled(Container)({
   width: "100%",
-  textAlign: "center",
+  paddingTop: 20,
   border: 1,
   borderStyle: "solid",
   borderColor: "#E9ECEF",
   background: "#FFFFFF",
 });
 
-const TableBox = styled(Box)({
-  paddingTop: 30,
+const SuccessDiv = styled("div")({
+  textAlign: "center",
 });
 
 const PaymentSuccess = () => {
   const router = useRouter();
 
-  const [buyBeanData, setBuyBeanData] = useState<CoffeeBeanInfoType>({
-    name: "",
-    name_en: "",
-    origin: "",
-    weight: 0,
-    roasting: [],
-    feature: [],
-    description: "",
-    price: 0,
-    quantity: 0,
-    blendingList: [],
-    image: "",
-  });
-
+  const buyBean = useRecoilValue(buyBeanData);
   const paymentPrice = useRecoilValue(totalPrice);
 
-  useEffect(() => {
-    const getbuyBean = localStorage.getItem("buyBean");
-    if (getbuyBean !== null) {
-      setBuyBeanData(JSON.parse(getbuyBean));
-    }
-  }, []);
+  const width = useHandleSize();
 
   return (
     <SucceessContainer>
-      <TableBox>
+      {width > 720 ? (
         <PaymentTable
-          image={buyBeanData.image}
+          image={buyBean.image}
           info={
-            buyBeanData.blendingList
-              ? buyBeanData.blendingList.join(" / ")
-              : buyBeanData.name
+            buyBean.blendingList
+              ? buyBean.blendingList.join(" / ")
+              : buyBean.name
           }
-          weight={buyBeanData.weight}
-          quantity={buyBeanData.quantity}
-          price={buyBeanData.price}
+          weight={buyBean.weight}
+          quantity={buyBean.quantity}
+          price={buyBean.price}
         />
-      </TableBox>
-      <h2>총 결제 금액 {paymentPrice}원</h2>
-      <h3>결제가 완료됐습니다.</h3>
-      <Button onClick={() => router.push("/")}>메인으로</Button>
+      ) : (
+        <PaymentCard
+          image={buyBean.image}
+          name={
+            buyBean.blendingList
+              ? buyBean.blendingList.join(" , ")
+              : buyBean.name
+          }
+          weight={buyBean.weight}
+          quantity={buyBean.quantity}
+          price={buyBean.price}
+        />
+      )}
+      <SuccessDiv>
+        <h2>총 결제 금액 {paymentPrice}원</h2>
+        <h3>결제가 완료됐습니다.</h3>
+        <Button onClick={() => router.replace("/")}>메인으로</Button>
+      </SuccessDiv>
     </SucceessContainer>
   );
 };
