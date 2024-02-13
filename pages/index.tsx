@@ -115,6 +115,7 @@ const Home = () => {
             <RoastingCard
               bean={bean}
               image={`./${bean.image}`}
+              // image={`blendme/${bean.image}`}
               key={"beanImage" + index}
               clickEvent={() => routerEvent(bean.name_en)}
             />
