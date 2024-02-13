@@ -38,7 +38,7 @@ const Header = () => {
         return (
           <MenuButton
             id="basic-button"
-            key={index}
+            key={"menu" + index}
             onClick={() => {
               router.push(menu.path);
             }}
