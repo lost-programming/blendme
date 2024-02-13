@@ -57,10 +57,6 @@ const Payment = () => {
     address: "",
   });
 
-  // useEffect(() => {
-  //   !buyBean.name ? router.push("/") : "";
-  // }, [buyBean, router]);
-
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
@@ -116,73 +112,71 @@ const Payment = () => {
 
   return (
     <PaymentForm onSubmit={paymentSubmit}>
-      {buyBean && (
-        <PaymentContainer>
-          {width > 720 || width < 280 ? (
-            <PaymentTable
-              image={buyBean.image}
-              info={
-                buyBean.blendingList
-                  ? buyBean.blendingList.join(" , ")
-                  : buyBean.name
-              }
-              weight={buyBean.weight}
-              quantity={buyBean.quantity}
-              price={buyBean.price}
-            />
-          ) : (
-            <PaymentCard
-              image={buyBean.image}
-              name={
-                buyBean.blendingList
-                  ? buyBean.blendingList.join(" , ")
-                  : buyBean.name
-              }
-              weight={buyBean.weight}
-              quantity={buyBean.quantity}
-              price={buyBean.price}
-            />
-          )}
-          <PaymentBox>
-            <Title>필수 정보 입력</Title>
-            <PaymentInput
-              onChange={inputChange}
-              phoneChange={phoneChange}
-              name={inputs.name}
-              phone={phone}
-              address={inputs.address}
-            />
-          </PaymentBox>
-          <PaymentBox>
-            <PaymentDiv>
-              <Title>결제 수단 선택</Title>
-              <PaymentRadio onClick={() => setPayway(true)} />
-            </PaymentDiv>
-          </PaymentBox>
-          <PaymentBox>
-            <PaymentDiv>
-              <Title>포인트 사용</Title>
-              <PaymentPoint
-                availablePoint={availablePoint}
-                point={point}
-                setPoint={setPoint}
-                onChange={pointChange}
-              />
-            </PaymentDiv>
-          </PaymentBox>
-          <PaymentBox>
-            <PaymentTerm
-              price={buyBean.price}
-              quantity={buyBean.quantity}
-              checked={checked}
-              finish={finish}
+      <PaymentContainer>
+        {width > 720 || width < 280 ? (
+          <PaymentTable
+            image={buyBean.image}
+            info={
+              buyBean.blendingList
+                ? buyBean.blendingList.join(" , ")
+                : buyBean.name
+            }
+            weight={buyBean.weight}
+            quantity={buyBean.quantity}
+            price={buyBean.price}
+          />
+        ) : (
+          <PaymentCard
+            image={buyBean.image}
+            name={
+              buyBean.blendingList
+                ? buyBean.blendingList.join(" , ")
+                : buyBean.name
+            }
+            weight={buyBean.weight}
+            quantity={buyBean.quantity}
+            price={buyBean.price}
+          />
+        )}
+        <PaymentBox>
+          <Title>필수 정보 입력</Title>
+          <PaymentInput
+            onChange={inputChange}
+            phoneChange={phoneChange}
+            name={inputs.name}
+            phone={phone}
+            address={inputs.address}
+          />
+        </PaymentBox>
+        <PaymentBox>
+          <PaymentDiv>
+            <Title>결제 수단 선택</Title>
+            <PaymentRadio onClick={() => setPayway(true)} />
+          </PaymentDiv>
+        </PaymentBox>
+        <PaymentBox>
+          <PaymentDiv>
+            <Title>포인트 사용</Title>
+            <PaymentPoint
+              availablePoint={availablePoint}
               point={point}
-              onChange={checkChange}
-              onClick={() => router.replace("/success")}
+              setPoint={setPoint}
+              onChange={pointChange}
             />
-          </PaymentBox>
-        </PaymentContainer>
-      )}
+          </PaymentDiv>
+        </PaymentBox>
+        <PaymentBox>
+          <PaymentTerm
+            price={buyBean.price}
+            quantity={buyBean.quantity}
+            checked={checked}
+            finish={finish}
+            point={point}
+            onChange={checkChange}
+            onClick={() => router.replace("/success")}
+          />
+        </PaymentBox>
+      </PaymentContainer>
     </PaymentForm>
   );
 };
