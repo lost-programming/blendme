@@ -32,10 +32,6 @@ const PaymentSuccess = () => {
     localStorage.removeItem("buyBean");
   }, []);
 
-  useEffect(() => {
-    !buyBean.name ? router.push("/") : "";
-  }, [buyBean, router]);
-
   return (
     <SucceessContainer>
       {buyBean && (
