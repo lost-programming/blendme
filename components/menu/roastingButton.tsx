@@ -61,7 +61,7 @@ const RoastingButton = ({
       {roastingItems.map((item: RoastingItemsType, index: number) => {
         return (
           <Box
-            key={index}
+            key={"item" + index}
             sx={{
               display: "flex",
               flexDirection: "column",

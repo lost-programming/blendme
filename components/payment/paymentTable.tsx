@@ -74,7 +74,7 @@ const PaymentTable = ({
               {rowHeads.map((head: string, index: number) => {
                 return (
                   <TableCell
-                    key={index}
+                    key={"headCell" + index}
                     component="th"
                     align="center"
                     sx={{ wordBreak: "keep-all" }}
@@ -91,7 +91,7 @@ const PaymentTable = ({
                 (body: string | number | undefined, index: number) => {
                   return (
                     <TableCell
-                      key={index}
+                      key={"bodyCell" + index}
                       component="td"
                       align="center"
                       sx={{ border: 0 }}
