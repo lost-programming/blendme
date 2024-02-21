@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { styled, Button, Container } from "@mui/material";
 import PaymentTable from "../../components/payment/paymentTable";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { buyBeanData, totalPrice } from "recoil/atom";
 import PaymentCard from "components/payment/paymentCard";
 import { useHandleSize } from "hooks/hooks";
@@ -23,13 +23,29 @@ const SuccessDiv = styled("div")({
 const PaymentSuccess = () => {
   const router = useRouter();
 
-  const buyBean = useRecoilValue(buyBeanData);
-  const paymentPrice = useRecoilValue(totalPrice);
+  const [buyBean, setBuyBean] = useRecoilState(buyBeanData);
+  const [paymentPrice, setPaymentPrice] = useRecoilState(totalPrice);
 
   const width = useHandleSize();
 
   useEffect(() => {
     localStorage.removeItem("buyBean");
+    return () => {
+      setBuyBean({
+        name: "",
+        name_en: "",
+        origin: "",
+        weight: 0,
+        roasting: [],
+        feature: [],
+        description: "",
+        price: 0,
+        quantity: 0,
+        blendingList: [],
+        image: "",
+      });
+      setPaymentPrice("");
+    };
   }, []);
 
   return (

@@ -51,7 +51,7 @@ const RoastingCard = ({ bean, image, clickEvent }: RoastingCardPropsType) => {
             <Typography
               variant="body2"
               color="text.secondary"
-              key={index}
+              key={"beanImage" + index}
               display="inline"
             >
               {bean.roasting.length - 1 !== index ? `${item} / ` : item}
