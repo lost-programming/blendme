@@ -6,6 +6,7 @@ interface InputTextFieldPropsType {
   label: string;
   value: string;
   name?: string;
+  tabIndex: number;
   onChange?: React.ChangeEventHandler;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
@@ -22,6 +23,7 @@ const InputTextField = ({
   name,
   label,
   value,
+  tabIndex,
   onChange,
   onClick,
 }: InputTextFieldPropsType) => {
@@ -36,6 +38,7 @@ const InputTextField = ({
       size="small"
       onChange={onChange}
       onClick={onClick}
+      tabIndex={tabIndex}
     />
   );
 };

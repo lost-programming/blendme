@@ -1,4 +1,4 @@
-import { Box, Container, styled } from "@mui/material";
+import { Container, styled } from "@mui/material";
 import PaymentPoint from "components/payment/paymentPoint";
 import PaymentRadio from "components/payment/paymentRadio";
 import PaymentTerm from "components/payment/paymentTerm";
@@ -26,7 +26,7 @@ const PaymentContainer = styled(Container)({
   marginTop: 20,
 });
 
-const PaymentBox = styled(Box)({
+const PaymentSection = styled("section")({
   display: "flex",
   flexDirection: "column",
   flexWrap: "wrap",
@@ -114,32 +114,34 @@ const Payment = () => {
     <PaymentForm onSubmit={paymentSubmit}>
       {buyBean && (
         <PaymentContainer>
-          {width > 720 || width < 280 ? (
-            <PaymentTable
-              image={buyBean.image}
-              info={
-                buyBean.blendingList
-                  ? buyBean.blendingList.join(" , ")
-                  : buyBean.name
-              }
-              weight={buyBean.weight}
-              quantity={buyBean.quantity}
-              price={buyBean.price}
-            />
-          ) : (
-            <PaymentCard
-              image={buyBean.image}
-              name={
-                buyBean.blendingList
-                  ? buyBean.blendingList.join(" , ")
-                  : buyBean.name
-              }
-              weight={buyBean.weight}
-              quantity={buyBean.quantity}
-              price={buyBean.price}
-            />
-          )}
-          <PaymentBox>
+          <section>
+            {width > 720 || width < 280 ? (
+              <PaymentTable
+                image={buyBean.image}
+                info={
+                  buyBean.blendingList
+                    ? buyBean.blendingList.join(" , ")
+                    : buyBean.name
+                }
+                weight={buyBean.weight}
+                quantity={buyBean.quantity}
+                price={buyBean.price}
+              />
+            ) : (
+              <PaymentCard
+                image={buyBean.image}
+                name={
+                  buyBean.blendingList
+                    ? buyBean.blendingList.join(" , ")
+                    : buyBean.name
+                }
+                weight={buyBean.weight}
+                quantity={buyBean.quantity}
+                price={buyBean.price}
+              />
+            )}
+          </section>
+          <PaymentSection>
             <Title>필수 정보 입력</Title>
             <PaymentInput
               onChange={inputChange}
@@ -148,14 +150,14 @@ const Payment = () => {
               phone={phone}
               address={inputs.address}
             />
-          </PaymentBox>
-          <PaymentBox>
+          </PaymentSection>
+          <PaymentSection>
             <PaymentDiv>
               <Title>결제 수단 선택</Title>
               <PaymentRadio onClick={() => setPayway(true)} />
             </PaymentDiv>
-          </PaymentBox>
-          <PaymentBox>
+          </PaymentSection>
+          <PaymentSection>
             <PaymentDiv>
               <Title>포인트 사용</Title>
               <PaymentPoint
@@ -165,8 +167,8 @@ const Payment = () => {
                 onChange={pointChange}
               />
             </PaymentDiv>
-          </PaymentBox>
-          <PaymentBox>
+          </PaymentSection>
+          <PaymentSection>
             <PaymentTerm
               price={buyBean.price}
               quantity={buyBean.quantity}
@@ -176,7 +178,7 @@ const Payment = () => {
               onChange={checkChange}
               onClick={() => router.replace("/success")}
             />
-          </PaymentBox>
+          </PaymentSection>
         </PaymentContainer>
       )}
     </PaymentForm>

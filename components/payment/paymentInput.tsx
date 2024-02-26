@@ -81,6 +81,7 @@ const PaymentInput = ({
             name="name"
             label="이름"
             value={name}
+            tabIndex={1}
             onChange={onChange}
           />
         </BasicInfoDiv>
@@ -90,6 +91,7 @@ const PaymentInput = ({
             name="phone"
             label="전화번호"
             value={phone}
+            tabIndex={2}
             onChange={phoneChange}
           />
         </BasicInfoDiv>
@@ -98,6 +100,7 @@ const PaymentInput = ({
         title="address"
         label="배송지 정보"
         value={addressInfo}
+        tabIndex={3}
         onClick={addressSelect}
       />
       <InputTextField
@@ -105,6 +108,7 @@ const PaymentInput = ({
         name="address"
         label="상세 주소 입력"
         value={address}
+        tabIndex={4}
         onChange={onChange}
       />
     </InputDiv>

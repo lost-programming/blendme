@@ -16,7 +16,7 @@ const SucceessContainer = styled(Container)({
   background: "#FFFFFF",
 });
 
-const SuccessDiv = styled("div")({
+const SuccessSection = styled("section")({
   textAlign: "center",
 });
 
@@ -52,36 +52,38 @@ const PaymentSuccess = () => {
     <SucceessContainer>
       {buyBean && (
         <div>
-          {width > 720 || width < 280 ? (
-            <PaymentTable
-              image={buyBean.image}
-              info={
-                buyBean.blendingList
-                  ? buyBean.blendingList.join(" / ")
-                  : buyBean.name
-              }
-              weight={buyBean.weight}
-              quantity={buyBean.quantity}
-              price={buyBean.price}
-            />
-          ) : (
-            <PaymentCard
-              image={buyBean.image}
-              name={
-                buyBean.blendingList
-                  ? buyBean.blendingList.join(" , ")
-                  : buyBean.name
-              }
-              weight={buyBean.weight}
-              quantity={buyBean.quantity}
-              price={buyBean.price}
-            />
-          )}
-          <SuccessDiv>
+          <section>
+            {width > 720 || width < 280 ? (
+              <PaymentTable
+                image={buyBean.image}
+                info={
+                  buyBean.blendingList
+                    ? buyBean.blendingList.join(" / ")
+                    : buyBean.name
+                }
+                weight={buyBean.weight}
+                quantity={buyBean.quantity}
+                price={buyBean.price}
+              />
+            ) : (
+              <PaymentCard
+                image={buyBean.image}
+                name={
+                  buyBean.blendingList
+                    ? buyBean.blendingList.join(" , ")
+                    : buyBean.name
+                }
+                weight={buyBean.weight}
+                quantity={buyBean.quantity}
+                price={buyBean.price}
+              />
+            )}
+          </section>
+          <SuccessSection>
             <h2>총 결제 금액 {paymentPrice}원</h2>
             <h3>결제가 완료됐습니다.</h3>
             <Button onClick={() => router.replace("/")}>메인으로</Button>
-          </SuccessDiv>{" "}
+          </SuccessSection>{" "}
         </div>
       )}
     </SucceessContainer>

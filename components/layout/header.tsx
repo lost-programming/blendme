@@ -7,15 +7,19 @@ interface MenuItemListType {
   path: string;
 }
 
+const HeaderNav = styled("nav")({
+  background: "#495057",
+});
+
 const MenuStack = styled(Stack)({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  marginTop: 15,
 });
 
 const MenuButton = styled(Button)({
   fontSize: 18,
+  color: "#E2E2E2",
 });
 
 const Header = () => {
@@ -23,7 +27,7 @@ const Header = () => {
 
   const menuItemList: MenuItemListType[] = [
     {
-      name: "Coffee Bean",
+      name: "Blendme",
       path: "/",
     },
     {
@@ -33,21 +37,25 @@ const Header = () => {
   ];
 
   return (
-    <MenuStack direction="row" spacing={4}>
-      {menuItemList.map((menu: MenuItemListType, index: number) => {
-        return (
-          <MenuButton
-            id="basic-button"
-            key={"menu" + index}
-            onClick={() => {
-              router.push(menu.path);
-            }}
-          >
-            {menu.name}
-          </MenuButton>
-        );
-      })}
-    </MenuStack>
+    <header>
+      <HeaderNav>
+        <MenuStack direction="row" spacing={4}>
+          {menuItemList.map((menu: MenuItemListType, index: number) => {
+            return (
+              <MenuButton
+                id="basic-button"
+                key={"menu" + index}
+                onClick={() => {
+                  router.push(menu.path);
+                }}
+              >
+                {menu.name}
+              </MenuButton>
+            );
+          })}
+        </MenuStack>
+      </HeaderNav>
+    </header>
   );
 };
 

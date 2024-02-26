@@ -13,11 +13,25 @@ import RoastingDescription from "components/menu/roastingDescription";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { selectMenu, selectRoasting, staticBeanData } from "recoil/atom";
 
-const RoastingBeanList = styled(Container)({
+const RoastingBeanContainer = styled(Container)({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
+});
+
+const MenuBox = styled(Box)({
+  width: "100%",
+  border: 1,
+  borderStyle: "solid",
+  borderTop: "none",
+  borderColor: "#212121",
+  background: "#FFFFFF",
+});
+
+const DescriptionBox = styled(Box)({
+  width: "100%",
+  marginTop: 20,
 });
 
 const CardBox = styled(Box)({
@@ -95,34 +109,38 @@ const Home = () => {
   };
 
   return (
-    <RoastingBeanList>
-      <Box sx={{ minWidth: 280 }}>
-        <RoastingButton
-          roastingItems={roastingItems}
-          data={staticBeans}
-          getBeanData={getBeanData}
-          roastingData={roastingData}
-        />
-      </Box>
-      <Box sx={{ width: "100%" }}>
-        <RoastingDescription
-          selectedMenu={selectedMenu}
-          selectedRoasting={selectedRoasting}
-        />
-      </Box>
-      <CardBox>
-        {beanData.map((bean: CoffeeBeanInfoType, index: number) => {
-          return (
-            <RoastingCard
-              bean={bean}
-              image={`../blendme/${bean.image}`}
-              key={"beanImage" + index}
-              clickEvent={() => routerEvent(bean.name_en)}
-            />
-          );
-        })}
-      </CardBox>
-    </RoastingBeanList>
+    <RoastingBeanContainer disableGutters>
+      <section style={{ width: "100%" }}>
+        <MenuBox>
+          <RoastingButton
+            roastingItems={roastingItems}
+            data={staticBeans}
+            getBeanData={getBeanData}
+            roastingData={roastingData}
+          />
+        </MenuBox>
+      </section>
+      <section>
+        <DescriptionBox>
+          <RoastingDescription
+            selectedMenu={selectedMenu}
+            selectedRoasting={selectedRoasting}
+          />
+        </DescriptionBox>
+        <CardBox>
+          {beanData.map((bean: CoffeeBeanInfoType, index: number) => {
+            return (
+              <RoastingCard
+                bean={bean}
+                image={`../blendme/${bean.image}`}
+                key={"beanImage" + index}
+                clickEvent={() => routerEvent(bean.name_en)}
+              />
+            );
+          })}
+        </CardBox>
+      </section>
+    </RoastingBeanContainer>
   );
 };
 

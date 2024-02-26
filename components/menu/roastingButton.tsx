@@ -16,7 +16,7 @@ interface RoastingButtonProps {
   roastingData: RoastingDocsType[];
 }
 
-const RoastingName = styled("div")({
+const RoastingButtonDiv = styled("div")({
   display: "flex",
   flexDirection: "row",
   flexWrap: "wrap",
@@ -57,7 +57,7 @@ const RoastingButton = ({
   };
 
   return (
-    <RoastingName>
+    <RoastingButtonDiv>
       {roastingItems.map((item: RoastingItemsType, index: number) => {
         return (
           <Box
@@ -95,7 +95,7 @@ const RoastingButton = ({
           </Box>
         );
       })}
-    </RoastingName>
+    </RoastingButtonDiv>
   );
 };
 

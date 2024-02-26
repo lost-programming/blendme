@@ -18,11 +18,10 @@ const DetailContainer = styled(Paper)({
   alignItems: "center",
   justifyContent: "space-between",
 
-  "@media screen and (max-width: 720px)" : {
+  "@media screen and (max-width: 720px)": {
     flexDirection: "column",
-    boxShadow: "none"
+    boxShadow: "none",
   },
-
 });
 
 // 이름, 이미지 Box
@@ -32,7 +31,7 @@ const BeanSimpleContainer = styled("div")({
   flexDirection: "column",
   alignItems: "center",
 
-  "@media screen and (max-width: 720px)" : {
+  "@media screen and (max-width: 720px)": {
     width: "100%",
     marginBottom: "40px",
   },
@@ -63,16 +62,16 @@ const BeanImage = styled("img")({
 // 원두 정보 Container
 const BeanInfoContainer = styled("div")({
   width: "50%",
-  "@media screen and (max-width: 720px)" : {
-    width: "100%"
+  "@media screen and (max-width: 720px)": {
+    width: "100%",
   },
 });
 
 // 결제 Container
 const ButtonContainer = styled("div")({
   display: "flex",
-  "@media screen and (max-width: 720px)" : {
-    justifyContent: "end"
+  "@media screen and (max-width: 720px)": {
+    justifyContent: "end",
   },
 });
 
@@ -88,8 +87,8 @@ const BlendButton = styled(Button)({
     backgroundColor: "#808080",
   },
   "&:last-child": {
-    marginRight: "0px"
-  }
+    marginRight: "0px",
+  },
 });
 
 // 원두 상세 페이지
